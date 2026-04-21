@@ -196,13 +196,9 @@ function renderCards(monsters) {
 function filterMonsters(query) {
   const q = query.toLowerCase().trim();
   if (!q) return MONSTERS;
-  return MONSTERS.filter(m =>
-    m.name.toLowerCase().includes(q) ||
-    m.zone.toLowerCase().includes(q) ||
-    m.drops.some(d => d.nom.toLowerCase().includes(q)) ||
-    m.competences.some(c => c.nom.toLowerCase().includes(q)) ||
-    m.items.some(it => it.nom.toLowerCase().includes(q))
-  );
+  // La recherche se fait uniquement sur le nom du monstre pour éviter
+  // les faux positifs (ex: "mal" qui matchait "Maléfice de nécrose").
+  return MONSTERS.filter(m => m.name.toLowerCase().includes(q));
 }
 
 // ── Init ──────────────────────────────────────────────────────
