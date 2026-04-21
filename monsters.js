@@ -270,4 +270,36 @@ const MONSTERS = [
     ],
     description: "La gelée de sang émerge du sol ou tombe mollement des arbres qui généralement les abritent. Il apparaît comme une masse visqueuse, d’un carmin brillant. Ses contours fluctuants semblent constamment en mutation alors qu’il tente par tous les moyens de piéger toute source de vie à même son corps. Des éclats d’os et de métal sont piégés dans sa gelée sinistre, témoins des précédentes victimes à peine digérées. Une odeur de soufre et de fer flotte partout où il va, indiquant bien souvent sa présence avant qu’on ne l’aperçoive. La simple vue de ce limon éveille généralement chez les aventuriers une frayeur toute primale."
   },
+  {
+    id: 101,
+    name: "Avatar de Sang",
+    zone: "Zone ensanglantée (Nandor)",
+    rang: 4,
+    hp: 1000,
+    esq: 60,
+    dm: 60,
+    arm: 10,
+    res: 10,
+    competences: [
+      { nom: "Enchaîner",    type: "tech_combat" },
+      { nom: "Attaque rapide",       type: "tech_combat" },
+      { nom: "Légende", type: "don" },
+      { nom: "Catalyste saignement_icone",          type: "don" },
+      { nom: "Inflige 3 saignement_icone",          type: "don" },
+      { nom: "Inflige 2 lenteur_icone",          type: "don" },
+      { nom: "Vulnérabilité foudre_icone 20%",          type: "don" },
+    ],
+    items: [
+    ],
+    drops: [
+      { id: 369, nom: "Ame légendaire" },
+      { id: 250, nom: "Orbe démon" },
+      { id: 228, nom: "Talisman du centaure" },
+      { id: 15, nom: "Potion d'expérience" },
+      { id: 210, nom: "Sang" },
+      { id: 259, nom: "Potion de vie" },
+      { id: 0, nom: "30-50" },
+    ],
+    description: "On devine un corps fluide et visqueux sous le sang, à la silhouette féminine. Il semble sculpté à partir d’une matière fluide mais poisseuse, élégante et dérangeante à la fois. Sa peau reflète de multiples nuances de carmin, créant de subtil dégradé de pourpre, donnant l’impression d’une cascade de sang en perpétuel mouvement. Elle semble tout à la fois solide et liquide, douce et sinistre, à l’instar de la petite mélodie qui s’échappe d’elle. Comme un murmure lointain et indiscernable, il provoque des émotions contradictoires, de fascination et de crainte. A proximité, la seule chose qui frappe est le rythme très régulier des battements de son cœur qui vous parvient, éclipsant tous les autres sons."
+  },
 ];
