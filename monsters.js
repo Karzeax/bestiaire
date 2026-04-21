@@ -302,4 +302,60 @@ const MONSTERS = [
     ],
     description: "On devine un corps fluide et visqueux sous le sang, à la silhouette féminine. Il semble sculpté à partir d’une matière fluide mais poisseuse, élégante et dérangeante à la fois. Sa peau reflète de multiples nuances de carmin, créant de subtil dégradé de pourpre, donnant l’impression d’une cascade de sang en perpétuel mouvement. Elle semble tout à la fois solide et liquide, douce et sinistre, à l’instar de la petite mélodie qui s’échappe d’elle. Comme un murmure lointain et indiscernable, il provoque des émotions contradictoires, de fascination et de crainte. A proximité, la seule chose qui frappe est le rythme très régulier des battements de son cœur qui vous parvient, éclipsant tous les autres sons."
   },
+  {
+    id: 82,
+    name: "Flammeliée",
+    zone: "Zone ardente (Nandor)",
+    rang: 3,
+    hp: 200,
+    esq: 40,
+    dm: 40,
+    arm: 14,
+    res: 0,
+    competences: [
+      { nom: "Enchaîner",                type: "tech_combat" },
+      { nom: "Attaque défensive",        type: "tech_combat" },
+      { nom: "Exécuter",                 type: "tech_combat" },
+      { nom: "Inflige 1 brulure_icone",  type: "don" },
+      { nom: "Résistance feu_icone 60%", type: "don" },
+    ],
+    items: [
+      { id: 354, nom: "Armure de la fournaise",   emplacement: "Buste" },
+      { id: 357, nom: "Manicle embrasée",         emplacement: "Une main" },
+      { id: 355, nom: "Bouclier de la fournaise", emplacement: "Une main" },
+    ],
+    drops: [
+      { id: 343, nom: "Poudre noire" },
+      { id: 0,   nom: "20-40" },
+    ],
+    description: "Le Flammeliée est un diable de feu dont le corps apparaît seulement à la lueur des flammes. Monstre sanguinaire que seul le sang apaise, il est la main qui châtie au nom de l'Ardent et un véritable boucher pour les villages qu'il incendie en même temps qu'il massacre. Redouté par beaucoup, il est, selon les légendes, l'âme des guerriers qui furent immolés par les flammes de l'Ardent et qui, jugés trop innocents ou pas assez passionnés, furent maudits à vivre par et pour l'Ardent jusqu'à l'éternité. Certaines légendes veulent que chaque Flammeliée possède une braise-coeur et qui, si elle est éteinte, sauve l'âme du malheureux piégé dans son tourment incandescent."
+  },
+  {
+    id: 82,
+    name: "Flammeliée",
+    zone: "Zone ardente (Nandor)",
+    rang: 3,
+    hp: 200,
+    esq: 40,
+    dm: 40,
+    arm: 14,
+    res: 0,
+    competences: [
+      { nom: "Enchaîner",                type: "tech_combat" },
+      { nom: "Attaque défensive",        type: "tech_combat" },
+      { nom: "Exécuter",                 type: "tech_combat" },
+      { nom: "Inflige 1 brulure_icone",  type: "don" },
+      { nom: "Résistance feu_icone 60%", type: "don" },
+    ],
+    items: [
+      { id: 354, nom: "Armure de la fournaise",   emplacement: "Buste" },
+      { id: 328, nom: "Badelaire ardent",         emplacement: "Une main" },
+      { id: 355, nom: "Bouclier de la fournaise", emplacement: "Une main" },
+    ],
+    drops: [
+      { id: 343, nom: "Poudre noire" },
+      { id: 0,   nom: "20-40" },
+    ],
+    description: "Le Flammeliée est un diable de feu dont le corps apparaît seulement à la lueur des flammes. Monstre sanguinaire que seul le sang apaise, il est la main qui châtie au nom de l'Ardent et un véritable boucher pour les villages qu'il incendie en même temps qu'il massacre. Redouté par beaucoup, il est, selon les légendes, l'âme des guerriers qui furent immolés par les flammes de l'Ardent et qui, jugés trop innocents ou pas assez passionnés, furent maudits à vivre par et pour l'Ardent jusqu'à l'éternité. Certaines légendes veulent que chaque Flammeliée possède une braise-coeur et qui, si elle est éteinte, sauve l'âme du malheureux piégé dans son tourment incandescent."
+  },
 ];
