@@ -4,12 +4,15 @@
 // Remplis les URLs toi-même. La clé est le mot exact à détecter (insensible à la casse).
 // L'icône remplace le mot dans le texte de la compétence.
 const INLINE_ICONS = {
-  'Saignement':  'https://www.kigard.fr/images/modificateur/17.gif?v=2.15.06',
-  'Faille':      'https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06',
-  'Terreur':     'https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06',
-  'Nécrose':     'https://www.kigard.fr/images/modificateur/9.gif?v=2.15.06',
-  'Lumière':     'https://www.kigard.fr/images/elements/4.gif?v=2.15.06',
-  'Ombre':       'https://www.kigard.fr/images/elements/5.gif?v=2.15.06',
+  'saignement_icone':  'https://www.kigard.fr/images/modificateur/17.gif?v=2.15.06',
+  'faille_icone':      'https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06',
+  'terreur_icone':     'https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06',
+  'nécrose_icone':     'https://www.kigard.fr/images/modificateur/9.gif?v=2.15.06',
+  'lenteur_icone':     'https://www.kigard.fr/images/modificateur/2.gif?v=2.15.06',
+  'lumière_icone':     'https://www.kigard.fr/images/elements/4.gif?v=2.15.06',
+  'ombre_icone':       'https://www.kigard.fr/images/elements/5.gif?v=2.15.06',
+  'feu_icone':       'https://www.kigard.fr/images/elements/1.gif?v=2.15.06',
+  'foudre_icone':       'https://www.kigard.fr/images/elements/3.gif?v=2.15.06',
 };
 
 // Remplace chaque mot-clé de INLINE_ICONS par une icône inline dans le texte
