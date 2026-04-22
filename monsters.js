@@ -2,7 +2,7 @@ const MONSTERS = [
   {
     id: 87,
     name: "Observateur",
-    zone: "Forêt enchantée (Nandor)",
+    zone: "Forêt de saphir (Nandor)",
     rang: 3,
     hp: 160,
     esq: 50,
@@ -34,7 +34,7 @@ const MONSTERS = [
   {
     id: 85,
     name: "Matagot",
-    zone: "Forêt enchantée (Nandor)",
+    zone: "Forêt de saphir (Nandor)",
     rang: 3,
     hp: 200,
     esq: 85,
@@ -64,7 +64,7 @@ const MONSTERS = [
   {
     id: 84,
     name: "Cauchemar",
-    zone: "Forêt enchantée (Nandor)",
+    zone: "Forêt de saphir (Nandor)",
     rang: 3,
     hp: 200,
     esq: 40,
@@ -92,7 +92,7 @@ const MONSTERS = [
   {
     id: 86,
     name: "Fée maline",
-    zone: "Forêt enchantée (Nandor)",
+    zone: "Forêt de saphir (Nandor)",
     rang: 3,
     hp: 160,
     esq: 60,
@@ -113,7 +113,7 @@ const MONSTERS = [
       { id: 149, nom: "Bottines sylvaines", emplacement: "Pieds" }
     ],
     drops: [
-      { id: 224, nom: "Ouvrage sylvestre" },
+      { id: 224, nom: "Ouvrage sylvestre", emplacement: "Une main" },
       { id: 295, nom: "Aile de fée" },
       { id: 0, nom: "20-40" },
     ],
@@ -122,7 +122,7 @@ const MONSTERS = [
   {
     id: 88,
     name: "Princesse Sombre",
-    zone: "Forêt enchantée (Nandor)",
+    zone: "Forêt de saphir (Nandor)",
     rang: 4,
     hp: 1000,
     esq: 80,
@@ -145,9 +145,9 @@ const MONSTERS = [
       { id: 337, nom: "Eventail noble",      emplacement: "Une main" }
     ],
     drops: [
-      { id: 369, nom: "Ame légendaire" },
       { id: 176, nom: "Gemme améthyste" },
-      { id: 177, nom: "Diadème" },
+      { id: 369, nom: "Ame légendaire", emplacement: "Fétiche" },
+      { id: 177, nom: "Diadème",        emplacement: "Tête" },
       { id: 15,  nom: "Potion d'expérience" },
       { id: 0,   nom: "30-50" },
     ],
@@ -175,34 +175,10 @@ const MONSTERS = [
       { id: 244, nom: "Hache double",      emplacement: "Deux mains" },
       { id: 30,  nom: "Jambières",         emplacement: "Pieds" }
     ],
-    drops: [
-      { id: 210, nom: "Sang" },
-      { id: 178, nom: "Potion de vigueur" },
-      { id: 0,   nom: "20-40" },
-    ],
-    description: "Les Adorateurs sont les bourreaux des cultistes, des êtres qui trouvèrent dans cette nouvelle idéologie une nouvelle façon de vivre ce qui jadis leur était interdit. À quoi bon s’en faire de tuer dans un monde où la mort est partout après tout ? Leur soif de sang ne sera épanchée que le jour où la dernière tête du dernier vivant tombera, et comme il en vient régulièrement, des aventuriers pensant pouvoir les sauver, cela fait bien leur affaire. Si d’aventure, vous voudriez leur faire entendre raison, vous ne tomberez que sur un visage émacié, à l’haleine suintant le fer et balbutiant des mots obscènes, vous faisant comprendre bien vite que la chose qui se tient devant vous n’est plus que l’ombre d’un humain. Un fou aurait plus d’humanité."
-  },
-  {
-    id: 96,
-    name: "Adorateur du Sang",
-    zone: "Zone ensanglantée (Nandor)",
-    rang: 3,
-    hp: 240,
-    esq: 50,
-    dm: 40,
-    arm: 8,
-    res: 2,
-    competences: [
-      { nom: "Attaque puissante", type: "tech_combat" },
-      { nom: "Entailler",         type: "tech_combat" },
-      { nom: "Sauvagerie",        type: "don" },
-      { nom: "Endurance",         type: "don" },
-    ],
-    items: [
-      { id: 11,  nom: "Heaume",            emplacement: "Tête" },
-      { id: 106, nom: "Ceinture de force", emplacement: "Buste" },
-      { id: 245, nom: "Guillotineuse",     emplacement: "Deux mains" },
-      { id: 30,  nom: "Jambières",         emplacement: "Pieds" }
+    variantes: [
+      [
+        { id: 245, nom: "Guillotineuse", emplacement: "Deux mains" },
+      ],
     ],
     drops: [
       { id: 210, nom: "Sang" },
@@ -292,9 +268,9 @@ const MONSTERS = [
     items: [
     ],
     drops: [
-      { id: 369, nom: "Ame légendaire" },
-      { id: 250, nom: "Orbe démon" },
-      { id: 228, nom: "Talisman du centaure" },
+      { id: 369, nom: "Ame légendaire",       emplacement: "Fétiche" },
+      { id: 250, nom: "Orbe démon",           emplacement: "Une main" },
+      { id: 228, nom: "Talisman du centaure", emplacement: "Fétiche" },
       { id: 15,  nom: "Potion d'expérience" },
       { id: 210, nom: "Sang" },
       { id: 259, nom: "Potion de vie" },
@@ -324,6 +300,12 @@ const MONSTERS = [
       { id: 357, nom: "Manicle embrasée",         emplacement: "Une main" },
       { id: 355, nom: "Bouclier de la fournaise", emplacement: "Une main" },
     ],
+    variantes: [
+      [
+        { id: 328, nom: "Badelaire ardent" ,        emplacement: "Une main" },
+        { id: 355, nom: "Bouclier de la fournaise", emplacement: "Une main" },
+      ],
+    ],
     drops: [
       { id: 343, nom: "Poudre noire" },
       { id: 0,   nom: "20-40" },
@@ -331,31 +313,195 @@ const MONSTERS = [
     description: "Le Flammeliée est un diable de feu dont le corps apparaît seulement à la lueur des flammes. Monstre sanguinaire que seul le sang apaise, il est la main qui châtie au nom de l'Ardent et un véritable boucher pour les villages qu'il incendie en même temps qu'il massacre. Redouté par beaucoup, il est, selon les légendes, l'âme des guerriers qui furent immolés par les flammes de l'Ardent et qui, jugés trop innocents ou pas assez passionnés, furent maudits à vivre par et pour l'Ardent jusqu'à l'éternité. Certaines légendes veulent que chaque Flammeliée possède une braise-coeur et qui, si elle est éteinte, sauve l'âme du malheureux piégé dans son tourment incandescent."
   },
   {
-    id: 82,
-    name: "Flammeliée",
+    id: 79,
+    name: "Lampade",
     zone: "Zone ardente (Nandor)",
     rang: 3,
-    hp: 200,
-    esq: 40,
-    dm: 40,
-    arm: 14,
+    hp: 160,
+    esq: 60,
+    dm: 70,
+    arm: 0,
     res: 0,
     competences: [
+      { nom: "Attaque précise",          type: "tech_combat" },
       { nom: "Enchaîner",                type: "tech_combat" },
-      { nom: "Attaque défensive",        type: "tech_combat" },
-      { nom: "Exécuter",                 type: "tech_combat" },
+      { nom: "Incendie",                 type: "magie" },
       { nom: "Inflige 1 brulure_icone",  type: "don" },
-      { nom: "Résistance feu_icone 60%", type: "don" },
+      { nom: "Résistance feu_icone 20%", type: "don" },
     ],
     items: [
-      { id: 354, nom: "Armure de la fournaise",   emplacement: "Buste" },
-      { id: 328, nom: "Badelaire ardent",         emplacement: "Une main" },
-      { id: 355, nom: "Bouclier de la fournaise", emplacement: "Une main" },
+      { id: 191, nom: "Bliaut",            emplacement: "Buste" },
+      { id: 356, nom: "Fouet enflammé",    emplacement: "Une main" },
+      { id: 337, nom: "Eventail noble",    emplacement: "Une main" },
+      { id: 229, nom: "Chaussons en soie", emplacement: "Pieds" },
+    ],
+    drops: [
+      { id: 343, nom: "Poudre noire" },
+      { id: 438, nom: "Elixir d'énergie" },
+      { id: 0,   nom: "20-40" },
+    ],
+    description: "Les Lampades sont des nymphes de l'Ardent, dont les flammes lèchent leur nuque à la façon d'une cascade de cheveux roux. Leur corps est semble-t-il couvert d'une épaisse suie noire ce qui leur donne cet aspect sombre et terreux. Lorsqu'elles se déplacent, elles sont aussi légères et nébuleuses que la flammèche qui vacille au vent. D'une nature dominante, les lampades ont pour arme un fouet de feu qui lacère et cautérise à la fois les plaies, ne permettant pas à sa proie de mourir, comme pour mieux se délecter de sa souffrance. Attirantes derrière leur aspect de diable, nombreux sont ceux qui se sont faits surprendre par la précision de leurs coups et la rapidité d'exécution de celles qui dansent dans les flammes."
+  },
+  {
+    id: 80,
+    name: "Fiélon",
+    zone: "Zone ardente (Nandor)",
+    rang: 3,
+    hp: 160,
+    esq: 65,
+    dm: 65,
+    arm: 0,
+    res: 3,
+    competences: [
+      { nom: "Méditation défensive",     type: "tech_combat" },
+      { nom: "Boule de feu",             type: "magie" },
+      { nom: "Incendie",                 type: "magie" },
+      { nom: "Rapide",                   type: "don" },
+      { nom: "Résistance feu_icone 20%", type: "don" },
+    ],
+    items: [
+      { id: 21,  nom: "Pélerine en soie",  emplacement: "Buste" },
+      { id: 455, nom: "Bâton d'hérétique", emplacement: "Deux mains" },
+      { id: 77,  nom: "Souliers en soie",  emplacement: "Pieds" },
+      { id: 20,  nom: "Bague rubis",       emplacement: "Fétiche" },
     ],
     drops: [
       { id: 343, nom: "Poudre noire" },
       { id: 0,   nom: "20-40" },
     ],
-    description: "Le Flammeliée est un diable de feu dont le corps apparaît seulement à la lueur des flammes. Monstre sanguinaire que seul le sang apaise, il est la main qui châtie au nom de l'Ardent et un véritable boucher pour les villages qu'il incendie en même temps qu'il massacre. Redouté par beaucoup, il est, selon les légendes, l'âme des guerriers qui furent immolés par les flammes de l'Ardent et qui, jugés trop innocents ou pas assez passionnés, furent maudits à vivre par et pour l'Ardent jusqu'à l'éternité. Certaines légendes veulent que chaque Flammeliée possède une braise-coeur et qui, si elle est éteinte, sauve l'âme du malheureux piégé dans son tourment incandescent."
+    description: "Les Fiélons se trouvent plutôt vers le bas de la pyramide des enfers, mais ils n'en sont pas moins dangereux. Mesquins, sournois et surtout rapides, les Fiélons sont, selon quelques légendes, les âmes des traîtres qui ne se firent jamais pardonner. Cela explique en partie leur méthode qui consiste à lancer des boules de feu et fuir en ricanant bruyamment. D'un fond bête et méchant, les fiélons sont attirés par le sang. Ces créatures sont, malgré une magie particulièrement vivace, trop bêtes pour être domestiqués et ont une certaine tendance à être de très mauvais compagnons, tentant de sournoisement vous trahir à la moindre occasion, y compris de face et en plein jour."
+  },
+  {
+    id: 81,
+    name: "Sonneur ardent",
+    zone: "Zone ardente (Nandor)",
+    rang: 3,
+    hp: 200,
+    esq: 40,
+    dm: 50,
+    arm: 8,
+    res: 0,
+    competences: [
+      { nom: "Recherche intuitive",           type: "tech_combat" },
+      { nom: "Attaque précise",               type: "tech_combat" },
+      { nom: "Vigilance",                     type: "tech_combat" },
+      { nom: "Incinération",                  type: "magie" },
+      { nom: "Inflige 2 saignement_icone",    type: "don" },
+      { nom: "Inflige 2 brulure_icone",       type: "don" },
+      { nom: "Résistance feu_icone 20%",      type: "don" },
+      { nom: "Vulnérabilité glace_icone 20%", type: "don" },
+    ],
+    items: [
+      { id: 200,  nom: "Cloche",  emplacement: "Une main" },
+    ],
+    drops: [
+      { id: 343, nom: "Poudre noire" },
+      { id: 0,   nom: "20-40" },
+    ],
+    description: "Les Fiélons se trouvent plutôt vers le bas de la pyramide des enfers, mais ils n'en sont pas moins dangereux. Mesquins, sournois et surtout rapides, les Fiélons sont, selon quelques légendes, les âmes des traîtres qui ne se firent jamais pardonner. Cela explique en partie leur méthode qui consiste à lancer des boules de feu et fuir en ricanant bruyamment. D'un fond bête et méchant, les fiélons sont attirés par le sang. Ces créatures sont, malgré une magie particulièrement vivace, trop bêtes pour être domestiqués et ont une certaine tendance à être de très mauvais compagnons, tentant de sournoisement vous trahir à la moindre occasion, y compris de face et en plein jour."
+  },
+  {
+    id: 83,
+    name: "Prince Rouge",
+    zone: "Zone ardente (Nandor)",
+    rang: 4,
+    hp: 1000,
+    esq: 60,
+    dm: 60,
+    arm: 28,
+    res: 10,
+    competences: [
+      { nom: "Attaque puissante",             type: "tech_combat" },
+      { nom: "Exécuter",                      type: "tech_combat" },
+      { nom: "Attaque défensive",             type: "tech_combat" },
+      { nom: "Légende",                       type: "don" },
+      { nom: "Rapide",                        type: "don" },
+      { nom: "Inflige 1 brulure_icone",       type: "don" },
+      { nom: "Résistance feu_icone 50%",      type: "don" },
+      { nom: "Vulnérabilité ombre_icone 20%", type: "don" },
+    ],
+    items: [
+      { id: 233, nom: "Bassinet en plume",      emplacement: "Tête" },
+      { id: 354, nom: "Armure de la fournaise", emplacement: "Buste" },
+      { id: 358, nom: "Hache incandescente",    emplacement: "Deux mains" },
+      { id: 260, nom: "Jambières en cuivre",    emplacement: "Pieds" }
+    ],
+    drops: [
+      { id: 173, nom: "Gemme topaze" },
+      { id: 369, nom: "Ame légendaire", emplacement: "Fétiche" },
+      { id: 15,  nom: "Potion d'expérience" },
+      { id: 343, nom: "Poudre noire" },
+      { id: 0,   nom: "30-50" },
+    ],
+    description: "Harwin Larn, aussi appelé le Prince Rouge, fut un des Champions de l'Ardent. La famille Larn fut longuement liée à l'Ardent et son église, mais Harwin abjura ses voeux après sa rencontre avec la Princesse Sombre. Tombé amoureux ou sous le maléfice de l'Ombre selon les versions, il fut condamné par son Faiseur à n'être désormais plus qu'un pantin de sa volonté, incendiant et massacrant quiconque tenterait de retirer sa Hache du rocher. La légende veut que cette Hache lui soit réservée afin que le moment venu, il coupe enfin la tête de la Princesse Sombre, à même la roche qu'elle rendit noire-ombre, entraînant la mort d'une partie de la population du Nandor-est. L'homme, qui est décrit par les récits comme un bel homme d'une trentaine d'années, aux cheveux bruns et aux yeux tendres, se montre désormais caché sous une épaisse armure organique qui lui ceinture le corps jusqu'à la constriction la plus féroce. Cette dernière vous semble faite autant pour le protéger que pour le tenir enfermé dans son rôle. Si vous l'apercevez, voyageur, dites vous bien qu'il est déjà trop tard pour vos prières. Il faudra faire preuve de panache si vous voulez échapper à la Hache du Prince Rouge."
+  },
+  {
+    id: 91,
+    name: "Soldat hobgobelin",
+    zone: "Zone hobgobeline (Nandor)",
+    rang: 3,
+    hp: 200,
+    esq: 40,
+    dm: 40,
+    arm: 14,
+    res: 2,
+    competences: [
+      { nom: "Disloquer",              type: "tech_combat" },
+      { nom: "Ravager",                type: "tech_combat" },
+      { nom: "Coup de bouclier",       type: "tech_combat" },
+      { nom: "Bravoure",               type: "don" },
+      { nom: "Inflige 1 faille_icone", type: "don" },
+      { nom: "Inflige 1 assomé_icone", type: "don" },
+    ],
+    items: [
+      { id: 155, nom: "Cabasset à cornes",  emplacement: "Tête" },
+      { id: 81,  nom: "Cuirasse",           emplacement: "Buste" },
+      { id: 308, nom: "Lance",              emplacement: "Une main" },
+      { id: 29,  nom: "Bouclier à pointes", emplacement: "Une main" },
+    ],
+    variantes: [
+      [
+        { id: 60, nom: "Fléau d'armes",      emplacement: "Une main" },
+        { id: 29, nom: "Bouclier à pointes", emplacement: "Une main" },
+      ]
+    ],
+    drops: [
+      { id: 0,   nom: "20-40" },
+    ],
+    description: "Le soldat hobgobelin est un bon soldat, en ce que vous verrez rarement des êtres aussi disciplinés issus de la nature. Leur capacité à se coordonner les uns aux autres est bluffante et tout à fait ancrée dans leurs gênes. Ainsi, on voit chez les plus jeunes hobgobelins des comportements similaires où ils peuvent s'en prendre à des plus faibles qu'eux, et toujours en groupe bien organisé. Le soldat hobgobelin collectionne les trophées de guerre et prend plaisir à tuer un ennemi, surtout si ce dernier est plus grand ou a l'air plus fort que lui. Le but d'un soldat hobgobelin est de parvenir en effet à gravir les rangs de la tribu, toujours dans le respect des règles et dans l'idée d'être méritant vis à vis de ce rang."
+  },
+  {
+    id: 94,
+    name: "Éclaireur hobgobelin",
+    zone: "Zone hobgobeline (Nandor)",
+    rang: 3,
+    hp: 200,
+    esq: 60,
+    dm: 40,
+    arm: 1,
+    res: 1,
+    competences: [
+      { nom: "Attaque précise",        type: "tech_combat" },
+      { nom: "Ravager",                type: "tech_combat" },
+      { nom: "Recherche intuitive",    type: "tech_combat" },
+      { nom: "Bravoure",               type: "don" },
+      { nom: "Inflige 1 faille_icone", type: "don" },
+      { nom: "Inflige 1 assomé_icone", type: "don" },
+    ],
+    items: [
+      { id: 317, nom: "Capuche de rôdeur", emplacement: "Tête" },
+      { id: 318, nom: "Manteau de rôdeur", emplacement: "Buste" },
+      { id: 294, nom: "Arc d'élite",       emplacement: "Deux mains" },
+      { id: 156, nom: "Bottines",          emplacement: "Pieds" },
+    ],
+    variantes: [
+      [
+        { id: 17, nom: "Arc lourd composite", emplacement: "Deux mains" },
+      ]
+    ],
+    drops: [
+      { id: 0,   nom: "20-40" },
+    ],
+    description: "Les éclaireurs hobgobelins sont des adversaires redoutables. Leur précision n’équivaut que leur discrétion et leur rapidité sur le terrain. Capables d’avaler de grandes distances sans se fatiguer, leur résistance à la douleur et leur nature belliqueuse est bien connue et partagée avec les autres soldats d’argile comme on les surnomme en Nandor. On reconnaît un éclaireur à son habit qui généralement tend à se fondre davantage avec la nature. Moins agressifs et belliqueux que leurs comparses, ils ont l’air également plus malins et retors quand il s’agit de traquer une proie. Leur nez écrasé est plus large, avec des conduits nasaux plus écartés et leurs oreilles sont également plus longues que celles de leurs frères d’armes ; beaucoup se sont demandés s’il y avait un lien entre leur physique différent et leur place dans la société hobgobeline."
   },
 ];

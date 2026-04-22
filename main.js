@@ -40,6 +40,83 @@ function tagClass(type) {
   return 'tag tag-' + type;
 }
 
+// ── Helpers items / variantes ─────────────────────────────────
+function isWeaponSlot(emp) {
+  return emp === 'Une main' || emp === 'Deux mains';
+}
+
+// Rendu d'une ligne d'item (utilisée sur carte et dans la modal via classes)
+function renderItemLine(it, containerClass, empClass) {
+  return `
+    <div class="${containerClass}">
+      <span><img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}"></span>
+      <span>${it.nom}</span>
+      <span class="${empClass}">${it.emplacement}</span>
+    </div>
+  `;
+}
+
+// Rendu d'une variante (set d'armement alternatif : 1 ou N items sur une même ligne)
+function renderVarianteLine(variante, containerClass) {
+  const partsHTML = variante.map(it => `
+    <span class="variante-part">
+      <img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}">
+      <span class="variante-name">${it.nom}</span>
+      <span class="variante-emp">${it.emplacement}</span>
+    </span>
+  `).join('');
+
+  return `
+    <div class="${containerClass}">
+      <span class="variante-label">Variante :</span>
+      ${partsHTML}
+    </div>
+  `;
+}
+
+// Assemble items + variantes : variantes insérées juste après la dernière arme
+// du set principal (emplacement "Une main" ou "Deux mains"). Si pas d'arme dans
+// le set principal, variantes ajoutées à la fin.
+function buildItemsHTML(items, variantes, itemClass, empClass, varianteClass) {
+  const hasVariantes = Array.isArray(variantes) && variantes.length > 0;
+  const lastWeaponIdx = items.reduce(
+    (last, it, i) => isWeaponSlot(it.emplacement) ? i : last,
+    -1
+  );
+
+  let html = '';
+  items.forEach((it, i) => {
+    html += renderItemLine(it, itemClass, empClass);
+    if (i === lastWeaponIdx && hasVariantes) {
+      html += variantes.map(v => renderVarianteLine(v, varianteClass)).join('');
+    }
+  });
+
+  if (lastWeaponIdx === -1 && hasVariantes) {
+    html += variantes.map(v => renderVarianteLine(v, varianteClass)).join('');
+  }
+
+  return html;
+}
+
+// Rendu d'un drop (emplacement optionnel : certains drops sont des items
+// d'équipement, d'autres sont des matériaux comme "Fibre violette" ou "Encre").
+function renderDropLine(d) {
+  const imgUrl = d.id === 0
+    ? 'https://www.kigard.fr/images/interface/session_po.gif'
+    : `https://www.kigard.fr/images/items/${d.id}.gif`;
+  const empHTML = d.emplacement
+    ? `<span class="drop-emp">${d.emplacement}</span>`
+    : '';
+  return `
+    <span class="drop-item">
+      <img src="${imgUrl}" alt="${d.nom}" title="${d.nom}">
+      <span class="drop-name">${parseCompetenceText(d.nom)}</span>
+      ${empHTML}
+    </span>
+  `;
+}
+
 // ── Rendu carte ──────────────────────────────────────────────
 function createCard(m, index) {
   const card = document.createElement('div');
@@ -56,22 +133,11 @@ function createCard(m, index) {
     ? `<div class="competence" style="color:var(--muted);font-style:italic;font-size:.78rem">+ ${m.competences.length - 4} autres…</div>`
     : '');
 
-  // items
-  const itemsHTML = m.items.map(it => `
-    <div class="item">
-      <span><img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}"></span>
-      <span>${it.nom}</span>
-      <span class="item-emp">${it.emplacement}</span>
-    </div>
-  `).join('');
+  // items + variantes
+  const itemsHTML = buildItemsHTML(m.items, m.variantes, 'item', 'item-emp', 'variante-item');
 
   // drops
-  const dropsHTML = m.drops.map(d => {
-    const imgUrl = d.id === 0
-      ? 'https://www.kigard.fr/images/interface/session_po.gif'
-      : `https://www.kigard.fr/images/items/${d.id}.gif`;
-    return `<span class="drop-item"><img src="${imgUrl}" alt="${d.nom}" title="${d.nom}"> ${parseCompetenceText(d.nom)}</span>`;
-  }).join('');
+  const dropsHTML = m.drops.map(renderDropLine).join('');
 
   card.innerHTML = `
     <div class="card-img">
@@ -113,20 +179,8 @@ function openModal(m) {
     </div>
   `).join('');
 
-  const itemsHTML = m.items.map(it => `
-    <div class="modal-item">
-      <span><img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}"></span>
-      <span>${it.nom}</span>
-      <span class="emp">${it.emplacement}</span>
-    </div>
-  `).join('');
-
-  const dropsHTML = m.drops.map(d => {
-    const imgUrl = d.id === 0
-      ? 'https://www.kigard.fr/images/interface/session_po.gif'
-      : `https://www.kigard.fr/images/items/${d.id}.gif`;
-    return `<span class="drop-item"><img src="${imgUrl}" alt="${d.nom}" title="${d.nom}"> ${parseCompetenceText(d.nom)}</span>`;
-  }).join('');
+  const itemsHTML = buildItemsHTML(m.items, m.variantes, 'modal-item', 'emp', 'modal-variante-item');
+  const dropsHTML = m.drops.map(renderDropLine).join('');
 
   content.innerHTML = `
     <button class="modal-close" id="modal-close-btn">✕</button>

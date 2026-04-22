@@ -316,6 +316,66 @@ header p {
   font-style: italic;
 }
 
+/* ── Variantes d'armement (carte) ── */
+.variante-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  font-size: .78rem;
+  padding: 4px 8px 4px 12px;
+  margin-left: 10px;
+  opacity: 0.7;
+  transition: opacity .15s, background-color .15s, border-left-color .15s;
+  border-left: 2px solid var(--border);
+  border-radius: 0 6px 6px 0;
+}
+
+.variante-item:hover {
+  opacity: 1;
+  background-color: rgba(255,255,255,.04);
+  border-left-color: var(--accent);
+}
+
+.variante-label {
+  flex-basis: 100%;
+  font-style: italic;
+  color: var(--muted);
+  font-size: .7rem;
+}
+
+.variante-part {
+  flex-basis: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.variante-part img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.variante-name {
+  font-weight: 500;
+}
+
+.variante-emp {
+  color: var(--muted);
+  font-style: italic;
+  font-size: .68rem;
+}
+
+.variante-plus {
+  color: var(--muted);
+  font-weight: 700;
+}
+
 /* drops */
 .drops {
   font-size: .83rem;
@@ -339,6 +399,22 @@ header p {
   width: 20px;
   height: 20px;
   image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.drop-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.drop-emp {
+  font-size: .72rem;
+  color: var(--muted);
+  font-style: italic;
+  flex-shrink: 0;
 }
 
 /* ── Modal ── */
@@ -500,6 +576,50 @@ header p {
   font-size: .78rem;
   color: var(--muted);
   font-style: italic;
+}
+
+/* ── Variantes d'armement (modal) ── */
+.modal-variante-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: .88rem;
+  padding: 6px 12px 6px 16px;
+  margin-left: 14px;
+  opacity: 0.7;
+  transition: opacity .15s, background-color .15s, border-left-color .15s;
+  border-left: 2px solid var(--border);
+  border-radius: 0 8px 8px 0;
+}
+
+.modal-variante-item:hover {
+  opacity: 1;
+  background-color: rgba(255,255,255,.04);
+  border-left-color: var(--accent);
+}
+
+.modal-variante-item .variante-label {
+  flex-basis: 100%;
+  font-size: .82rem;
+}
+
+.modal-variante-item .variante-part {
+  flex-basis: 100%;
+  justify-content: space-between;
+}
+
+.modal-variante-item .variante-part img {
+  width: 20px;
+  height: 20px;
+}
+
+.modal-variante-item .variante-name {
+  font-size: .92rem;
+}
+
+.modal-variante-item .variante-emp {
+  font-size: .78rem;
 }
 
 .modal-desc {
