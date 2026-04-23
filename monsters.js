@@ -26,6 +26,7 @@ const MONSTERS = [
       { id: 186, nom: "Perle",               emplacement: "Fétiche" }
     ],
     drops: [
+      { id: 342, nom: "Encre" },
       { id: 142, nom: "Fibre violette" },
       { id: 0,   nom: "20-40" },
     ],
@@ -57,6 +58,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 342, nom: "Encre" },
+      { id: 298, nom: "Clé en ossements" },
       { id: 67,  nom: "Dents" },
       { id: 0,   nom: "20-40" },
     ],
