@@ -818,9 +818,9 @@ const MONSTERS = [
     rang: 3,
     hp: 140,
     esq: 30,
-    dm: "?",
+    dm: 20,
     arm: 0,
-    res: "?",
+    res: 12,
     competences: [
       { nom: "Offrir son sang",                 type: "tech_combat" },
       { nom: "Choc mental",                     type: "magie" },
@@ -872,9 +872,9 @@ const MONSTERS = [
     rang: 2,
     hp: 140,
     esq: 35,
-    dm: "?",
+    dm: 30,
     arm: 7,
-    res: "?",
+    res: 0,
     competences: [
       { nom: "Siphonner",                      type: "tech_combat" },
       { nom: "Electrocution",                  type: "magie" },
@@ -984,7 +984,7 @@ const MONSTERS = [
     name: "Lutin",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
+    hp: 120,
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1010,7 +1010,7 @@ const MONSTERS = [
     name: "Bandit",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
+    hp: 120,
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1026,7 +1026,7 @@ const MONSTERS = [
       { id: 156, nom: "Bottines",            emplacement: "Pieds" },    
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 0,   nom: "10-20" },
     ],
   },
   {
@@ -1034,10 +1034,10 @@ const MONSTERS = [
     name: "Chef Bandit",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
+    hp: 120,
     esq: "?",
     dm: "?",
-    arm: "?",
+    arm: 13,
     res: "?",
     competences: [
       { nom: "Disloquer",         type: "tech_combat" },
@@ -1056,7 +1056,10 @@ const MONSTERS = [
       ],
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 3,  nom: "Potion de vie mineure" },
+      { id: 15, nom: "Potion d'expérience" },
+      { id: 298, nom: "Clé en ossements" },
+      { id: 0,  nom: "10-20" },
     ],
   },
   {
@@ -1064,7 +1067,7 @@ const MONSTERS = [
     name: "Bandit Barbare",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
+    hp: 120,
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1080,7 +1083,8 @@ const MONSTERS = [
       { id: 156, nom: "Bottines",          emplacement: "Pieds" },     
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 178, nom: "Potion de vigueur" },
+      { id: 0,   nom: "10-20" },
     ],
   },
   {
@@ -1088,11 +1092,11 @@ const MONSTERS = [
     name: "Ogre",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
-    esq: "?",
+    hp: 120,
+    esq: 10,
     dm: "?",
-    arm: "?",
-    res: "?",
+    arm: 16,
+    res: 0,
     competences: [
       { nom: "Assomer",          type: "tech_combat" },
       { nom: "Coup de bouclier", type: "tech_combat" },
@@ -1105,7 +1109,9 @@ const MONSTERS = [
       { id: 260, nom: "Jambières en cuivre", emplacement: "Pieds" },    
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 15, nom: "Potion d'expérience" },
+      { id: 45, nom: "Viande" },
+      { id: 0,  nom: "5-20" },
     ],
   },
   {
@@ -1113,7 +1119,7 @@ const MONSTERS = [
     name: "Troll",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
+    hp: 140,
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1131,7 +1137,9 @@ const MONSTERS = [
       { id: 64,  nom: "Brodequins",        emplacement: "Pieds" },     
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 303, nom: "Potion de régénération" },
+      { id: 45,  nom: "Viande" },
+      { id: 0,   nom: "5-20" },
     ],
   },
   {
@@ -1139,11 +1147,11 @@ const MONSTERS = [
     name: "Troll guérisseur",
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
-    hp: "?",
-    esq: "?",
+    hp: 140,
+    esq: 0,
     dm: "?",
-    arm: "?",
-    res: "?",
+    arm: 5,
+    res: 5,
     competences: [
       { nom: "Piqure",                      type: "magie" },
       { nom: "Maléfice de poison",          type: "magie" },
@@ -1157,7 +1165,8 @@ const MONSTERS = [
       { id: 64,  nom: "Brodequins",       emplacement: "Pieds" },     
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 61, nom: "Potion d'éther mineure" },
+      { id: 0,  nom: "5-20" },
     ],
   },
   {
@@ -1214,7 +1223,7 @@ const MONSTERS = [
       ],
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 0, nom: "10-20" },
     ],
   },
   {
@@ -1266,10 +1275,10 @@ const MONSTERS = [
     name: "Shaman Gobelin",
     zone: "Zone aléatoire (Kigard)",
     rang: 1,
-    hp: "?",
+    hp: 80,
     esq: "?",
     dm: "?",
-    arm: "?",
+    arm: 0,
     res: "?",
     competences: [
       { nom: "Boule de feu", type: "magie" }, 
@@ -1291,9 +1300,9 @@ const MONSTERS = [
     rang: 1,
     hp: "?",
     esq: "?",
-    dm: "?",
+    dm: 0,
     arm: "?",
-    res: "?",
+    res: 2,
     competences: [
       { nom: "Attaque explosive",        type: "tech_combat" }, 
       { nom: "Sournoiserie",             type: "don" }, 
@@ -1313,7 +1322,7 @@ const MONSTERS = [
     name: "Enragé Gobelin",
     zone: "Zone aléatoire (Kigard)",
     rang: 1,
-    hp: "?",
+    hp: 80,
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1328,7 +1337,7 @@ const MONSTERS = [
       { id: 1,   nom: "Epée courte", emplacement: "Une main" },    
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 0, nom: "10-20" },
     ],
   },
 
@@ -1366,12 +1375,12 @@ const MONSTERS = [
     rang: 2,
     hp: 110,
     esq: "?",
-    dm: "?",
+    dm: 20,
     arm: "?",
-    res: "?",
+    res: 13,
     competences: [
-      { nom: "Piqure", type: "magie" }, 
       { nom: "Foudre", type: "magie" }, 
+      { nom: "Piqure", type: "magie" }, 
     ],
     items: [
       { id: 271, nom: "Capuchon en soie",  emplacement: "Tête" },    
@@ -1404,16 +1413,17 @@ const MONSTERS = [
     drops: [
       { id: 0, nom: "20-30" },
     ],
+    description : "⚠️ Il est possible que le monstre ne soit plus disponible depuis la MàJ de juin 2024."
   },
   {
     id: 20,
     name: "Abomination",
     zone: "Monstre de quête (Kigard & Nandor)",
     rang: 2,
-    hp: "?",
-    esq: "?",
+    hp: 120,
+    esq: 20,
     dm: "?",
-    arm: "?",
+    arm: 3,
     res: "?",
     competences: [
       { nom: "Tourmenter",                      type: "tech_combat" }, 
