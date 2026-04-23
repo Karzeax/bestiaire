@@ -595,6 +595,7 @@ const MONSTERS = [
       { id: 447, nom: "Bracelet des étoiles", emplacement: "Fétiche" },
     ],
     drops: [
+      { id: 52,  nom: "Invocation du givre", emplacement: "Une main" },
       { id: 221, nom: "Fiole d'argent" },
       { id: 15,  nom: "Potion d'expérience" },
       { id: 0,   nom: "15-35" },
@@ -1154,6 +1155,177 @@ const MONSTERS = [
       { id: 74,  nom: "Brigandine",       emplacement: "Buste" },    
       { id: 454, nom: "Bâton de sorcier", emplacement: "Deux mains" },    
       { id: 64,  nom: "Brodequins",       emplacement: "Pieds" },     
+    ],
+    drops: [
+      { id: 0, nom: "?" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Goblours",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 1,
+    hp: 100,
+    esq: 0,
+    dm: "?",
+    arm: 6,
+    res: 2,
+    competences: [
+      { nom: "Attaque défensive", type: "tech_combat" },
+      { nom: "Endurance",         type: "don" },
+    ],
+    items: [
+      { id: 48,  nom: "Armure en cuir", emplacement: "Buste" },    
+      { id: 292, nom: "Hachoir",        emplacement: "Une main" },    
+      { id: 2,   nom: "Rondache",       emplacement: "Une main" },    
+    ],
+    variantes: [
+      [
+      { id: 284, nom: "Gourdin clouté", emplacement: "Une main" },    
+      { id: 2,   nom: "Rondache",       emplacement: "Une main" }, 
+      ],
+    ],
+    drops: [
+      { id: 0,   nom: "?" },
+    ],
+  },
+  {
+    id: 4,
+    name: "Vagabond Gobelin",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 1,
+    hp: 80,
+    esq: "?",
+    dm: 0,
+    arm: 3,
+    res: 3,
+    competences: [
+      { nom: "Attaque rapide", type: "tech_combat" },
+      { nom: "Sournoiserie",   type: "don" },
+    ],
+    items: [  
+      { id: 48, nom: "Armure en cuir", emplacement: "Buste" },    
+      { id: 39, nom: "Arc court",      emplacement: "Une main" },    
+      { id: 8,  nom: "Bottes",         emplacement: "Pieds" },   
+    ],
+    variantes: [
+      [
+      { id: 1, nom: "Epée courte", emplacement: "Une main" },    
+      ],
+    ],
+    drops: [
+      { id: 0, nom: "?" },
+    ],
+  },
+  {
+    id: 5,
+    name: "Acolyte Gobelin",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 1,
+    hp: 80,
+    esq: "?",
+    dm: "?",
+    arm: "?",
+    res: "?",
+    competences: [
+      { nom: "Piqure",       type: "magie" },
+      { nom: "Sournoiserie", type: "don" },
+    ],
+    items: [  
+      { id: 166, nom: "Capuchon", emplacement: "Tête" },    
+      { id: 18,  nom: "Toge",     emplacement: "Buste" },    
+      { id: 23,  nom: "Sceptre",  emplacement: "Une main" },    
+    ],
+    drops: [
+      { id: 0, nom: "?" },
+    ],
+  },
+  {
+    id: 128,
+    name: "Esclave Gobelin",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 0,
+    hp: 40,
+    esq: 0,
+    dm: 0,
+    arm: 1,
+    res: 1,
+    competences: [
+    ],
+    items: [
+      { id: 55, nom: "Haillon",       emplacement: "Buste" },    
+      { id: 34, nom: "Coutelas", emplacement: "Une main" },    
+    ],
+    drops: [
+      { id: 0, nom: "?" },
+    ],
+  },
+  
+  {
+    id: 129,
+    name: "Shaman Gobelin",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 1,
+    hp: "?",
+    esq: "?",
+    dm: "?",
+    arm: "?",
+    res: "?",
+    competences: [
+      { nom: "Boule de feu", type: "magie" }, 
+      { nom: "Sournoiserie", type: "don" }, 
+    ],
+    items: [
+      { id: 166, nom: "Capuchon",         emplacement: "Tête" },    
+      { id: 18, nom: "Toge",              emplacement: "Buste" },    
+      { id: 412, nom: "Bâton d'apprenti", emplacement: "Deux mains" },    
+    ],
+    drops: [
+      { id: 0, nom: "?" },
+    ],
+  },
+  {
+    id: 130,
+    name: "Incendiaire Gobelin",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 1,
+    hp: "?",
+    esq: "?",
+    dm: "?",
+    arm: "?",
+    res: "?",
+    competences: [
+      { nom: "Attaque explosive",        type: "tech_combat" }, 
+      { nom: "Sournoiserie",             type: "don" }, 
+      { nom: "Résistance feu_icone 30%", type: "don" }, 
+    ],
+    items: [
+      { id: 19,  nom: "Toque",  emplacement: "Tête" },    
+      { id: 435, nom: "Torche", emplacement: "Une main" },    
+      { id: 8,   nom: "Bottes", emplacement: "Pieds" },     
+    ],
+    drops: [
+      { id: 0, nom: "?" },
+    ],
+  },
+  {
+    id: 131,
+    name: "Enragé Gobelin",
+    zone: "Zone aléatoire (Kigard)",
+    rang: 1,
+    hp: "?",
+    esq: "?",
+    dm: "?",
+    arm: "?",
+    res: "?",
+    competences: [
+      { nom: "Ambidextrie",  type: "tech_combat" }, 
+      { nom: "Sournoiserie", type: "don" }, 
+    ],
+    items: [
+      { id: 59,  nom: "Bandana",     emplacement: "Tête" },    
+      { id: 292, nom: "Hachoir",     emplacement: "Une main" },    
+      { id: 1,   nom: "Epée courte", emplacement: "Une main" },    
     ],
     drops: [
       { id: 0, nom: "?" },

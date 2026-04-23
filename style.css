@@ -294,13 +294,21 @@ header p {
 
 .item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
   font-size: .83rem;
   padding: 4px 8px;
   background: rgba(255,255,255,.03);
   border: 1px solid var(--border);
   border-radius: 6px;
+}
+
+.item > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item img, .modal-item img {
@@ -314,6 +322,7 @@ header p {
   font-size: .72rem;
   color: var(--muted);
   font-style: italic;
+  flex-shrink: 0;
 }
 
 /* ── Variantes d'armement (carte) ── */
@@ -347,10 +356,22 @@ header p {
 .variante-part {
   flex-basis: 100%;
   display: inline-flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
+}
+
+.variante-part .variante-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.variante-part .variante-emp {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .variante-part img {
@@ -563,8 +584,8 @@ header p {
 
 .modal-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 10px;
   font-size: .92rem;
   padding: 7px 12px;
   background: rgba(255,255,255,.03);
@@ -572,10 +593,19 @@ header p {
   border-radius: 8px;
 }
 
+.modal-item > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .modal-item .emp {
   font-size: .78rem;
   color: var(--muted);
   font-style: italic;
+  flex-shrink: 0;
 }
 
 /* ── Variantes d'armement (modal) ── */
@@ -606,7 +636,6 @@ header p {
 
 .modal-variante-item .variante-part {
   flex-basis: 100%;
-  justify-content: space-between;
 }
 
 .modal-variante-item .variante-part img {
