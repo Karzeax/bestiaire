@@ -804,7 +804,8 @@ const MONSTERS = [
       { id: 454, nom: "Bâton de sorcier", emplacement: "Deux mains" },
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 131, nom: "Potion d'éther" },
+      { id: 0,   nom: "20-40" },
     ],
   },
   {
@@ -813,9 +814,9 @@ const MONSTERS = [
     zone: "La Nécropole (Kigard)",
     rang: 3,
     hp: 140,
-    esq: "?",
+    esq: 30,
     dm: "?",
-    arm: "?",
+    arm: 0,
     res: "?",
     competences: [
       { nom: "Offrir son sang",                 type: "tech_combat" },
@@ -831,7 +832,8 @@ const MONSTERS = [
       { id: 442, nom: "Manuel de magie",  emplacement: "Une main" },
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 221, nom: "Fiole d'argent" },
+      { id: 0,   nom: "20-40" },
     ],
   },
   {
@@ -853,10 +855,11 @@ const MONSTERS = [
     ],
     items: [
       { id: 11,  nom: "Heaume",            emplacement: "Tête" },
-      { id: 82, nom: "Armure de plates",   emplacement: "Buste" },
+      { id: 82,  nom: "Armure de plates",  emplacement: "Buste" },
       { id: 316, nom: "Epée de cauchemar", emplacement: "Une main" },    ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 90, nom: "Minerai de fer" },
+      { id: 0,  nom: "15-30" },
     ],
   },
   {
@@ -881,7 +884,8 @@ const MONSTERS = [
       { id: 290, nom: "Sceptre foudre", emplacement: "Une main" },    
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 90, nom: "Minerai de fer" },
+      { id: 0,  nom: "15-30" },
     ],
   },
   {
@@ -907,7 +911,8 @@ const MONSTERS = [
       { id: 80,  nom: "Griffes",                emplacement: "Une main" },    
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 90, nom: "Minerai de fer" },
+      { id: 0,  nom: "15-30" },
     ],
   },
  {
