@@ -1124,7 +1124,7 @@ const MONSTERS = [
       { nom: "Vulnérabilité feu_icone 20%", type: "don" },
     ],
     items: [  
-      { id: 155, nom: "Cabasset à cornes", emplacement: "Pieds" },    
+      { id: 155, nom: "Cabasset à cornes", emplacement: "Tête" },    
       { id: 106, nom: "Ceinture de force", emplacement: "Buste" },    
       { id: 108, nom: "Masse géante",      emplacement: "Deux mains" },    
       { id: 64,  nom: "Brodequins",        emplacement: "Pieds" },     
