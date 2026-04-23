@@ -870,7 +870,7 @@ const MONSTERS = [
     name: "Araignée Automate",
     zone: "La Nécropole (Kigard)",
     rang: 2,
-    hp: 140,
+    hp: 160,
     esq: 35,
     dm: 30,
     arm: 7,
