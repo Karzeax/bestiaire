@@ -1340,7 +1340,6 @@ const MONSTERS = [
       { id: 0, nom: "10-20" },
     ],
   },
-
   {
     id: 133,
     name: "Momie",
@@ -1365,7 +1364,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 438, nom: "Elixir d'énergie" },
-      { id: 0,   nom: "20-30" },
+      { id: 0,   nom: "15-30" },
     ],
   },
   {
@@ -1390,7 +1389,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 365, nom: "Fumigène" },
-      { id: 0,   nom: "20-30" },
+      { id: 0,   nom: "15-30" },
     ],
   },
   {
@@ -1411,7 +1410,7 @@ const MONSTERS = [
       { id: 228, nom: "Talisman du centaure", emplacement: "Fétiche" },    
     ],
     drops: [
-      { id: 0, nom: "20-30" },
+      { id: 0, nom: "15-30" },
     ],
     description : "⚠️ Il est possible que le monstre ne soit plus disponible depuis la MàJ de juin 2024."
   },
@@ -1438,7 +1437,7 @@ const MONSTERS = [
       { id: 104, nom: "Lanterne",          emplacement: "Une main" },    
     ],
     drops: [
-      { id: 0, nom: "20-30" },
+      { id: 0, nom: "15-30" },
     ],
   },
 ];
