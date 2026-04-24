@@ -1374,9 +1374,9 @@ const MONSTERS = [
     zone: "Monstre de quête (Kigard & Nandor)",
     rang: 2,
     hp: 110,
-    esq: "?",
+    esq: 20,
     dm: 20,
-    arm: "?",
+    arm: 0,
     res: 13,
     competences: [
       { nom: "Foudre", type: "magie" }, 
