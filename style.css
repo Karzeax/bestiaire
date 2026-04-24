@@ -79,7 +79,7 @@ header p {
 
 .search-wrap input {
   width: min(440px, 90vw);
-  padding: 13px 20px 13px 48px;
+  padding: 13px 24px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 40px;
@@ -88,6 +88,7 @@ header p {
   font-size: 1.1rem;
   outline: none;
   transition: border-color .2s, box-shadow .2s;
+  text-align: center;
 }
 
 .search-wrap input:focus {
@@ -96,15 +97,6 @@ header p {
 }
 
 .search-wrap input::placeholder { color: var(--muted); }
-
-.search-icon {
-  position: absolute;
-  left: calc(50% - min(440px, 90vw)/2 + 18px);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1rem;
-  pointer-events: none;
-}
 
 .count {
   text-align: center;
@@ -677,3 +669,64 @@ header p {
 }
 
 .empty-icon { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+/* ── Responsive mobile (une vignette par ligne) ── */
+@media (max-width: 640px) {
+  header {
+    padding: 40px 16px 24px;
+  }
+
+  .search-wrap {
+    padding: 24px 16px 16px;
+  }
+
+  #results {
+    padding: 8px 16px 48px;
+    gap: 20px;
+  }
+
+  .monster-card {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .card-img {
+    min-height: 180px;
+    padding: 28px;
+  }
+
+  .card-img img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .card-body h2 {
+    font-size: 1.15rem;
+  }
+
+  .modal-stats {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+
+  .modal-stat {
+    padding: 6px 2px;
+  }
+
+  .modal-stat .lbl {
+    font-size: .62rem;
+  }
+
+  .modal-stat .val {
+    font-size: .85rem;
+  }
+
+  .modal-header {
+    padding: 20px 20px 14px;
+    gap: 14px;
+  }
+
+  .modal-body {
+    padding: 16px 18px 20px;
+  }
+}
