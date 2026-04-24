@@ -1014,7 +1014,7 @@ const MONSTERS = [
     hp: 120,
     esq: "?",
     dm: "?",
-    arm: "?",
+    arm: 1,
     res: "?",
     competences: [
       { nom: "Disparition soudaine", type: "tech_combat" },
@@ -1037,10 +1037,10 @@ const MONSTERS = [
     zone: "Zone aléatoire (Kigard)",
     rang: 2,
     hp: 120,
-    esq: "?",
-    dm: "?",
+    esq: 0,
+    dm: 25,
     arm: 13,
-    res: "?",
+    res: 0,
     competences: [
       { nom: "Disloquer",         type: "tech_combat" },
       { nom: "Attaque défensive", type: "tech_combat" },
@@ -1113,7 +1113,7 @@ const MONSTERS = [
     drops: [
       { id: 15, nom: "Potion d'expérience" },
       { id: 45, nom: "Viande" },
-      { id: 0,  nom: "5-20" },
+      { id: 0,  nom: "5-30" },
     ],
   },
   {
@@ -1125,7 +1125,7 @@ const MONSTERS = [
     esq: "?",
     dm: "?",
     arm: "?",
-    res: "?",
+    res: 4,
     competences: [
       { nom: "Attaque puissante",           type: "tech_combat" },
       { nom: "Exécuter",                    type: "tech_combat" },
@@ -1141,7 +1141,7 @@ const MONSTERS = [
     drops: [
       { id: 303, nom: "Potion de régénération" },
       { id: 45,  nom: "Viande" },
-      { id: 0,   nom: "5-20" },
+      { id: 0,   nom: "5-30" },
     ],
   },
   {
@@ -1168,7 +1168,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 61, nom: "Potion d'éther mineure" },
-      { id: 0,  nom: "5-20" },
+      { id: 0,  nom: "5-30" },
     ],
   },
   {
