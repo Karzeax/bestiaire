@@ -96,7 +96,10 @@ header p {
   box-shadow: 0 0 0 3px rgba(124,77,255,.2);
 }
 
-.search-wrap input::placeholder { color: var(--muted); }
+.search-wrap input::placeholder {
+  color: var(--muted);
+  text-align: center;
+}
 
 .count {
   text-align: center;
