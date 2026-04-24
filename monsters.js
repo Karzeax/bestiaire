@@ -1225,6 +1225,7 @@ const MONSTERS = [
       ],
     ],
     drops: [
+      { id: 3, nom: "Potion de vie mineure" },
       { id: 0, nom: "10-20" },
     ],
   },
