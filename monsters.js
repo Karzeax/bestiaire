@@ -706,7 +706,7 @@ const MONSTERS = [
     rang: 2,
     hp: 120,
     esq: 30,
-    dm: 10,
+    dm: 30,
     arm: 0,
     res: 0,
     competences: [
@@ -975,6 +975,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 370, nom: "Souvenance de Nandor" },
+      { id: 69,  nom: "Oeil" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Les voyageurs dimensionnels possèdent une peau qui rappelle de par sa couleur le satin céleste, tandis que son unique œil, vaste et lumineux, trône au milieu de son front, comme une fenêtre ouverte vers des réalités insoupçonnées. Son apparence, familière et étrangère à la fois, suscite généralement inquiétude et curiosité à tous ceux qui le croisent. C’est qu’il porte des étoffes de mondes inconnus, qu’il parle une langue qui ne sonne comme aucune autre. Il se déplace toujours avec fluidité certaine, malgré une carrure épaisse, et on l’imagine sans mal glisser entre les dimensions avec une aisance déconcertante. Le voyageur dimensionnel est à l’image de ce qu’il est ; un observateur silencieux, discret, captivant par tout le mystère qui entoure son existence. Sa présence est une énigme vivante, une invitation à explorer, allumant souvent une soif d’un voyage transcendant l’espace et le temps."
@@ -1349,7 +1350,7 @@ const MONSTERS = [
     esq: "?",
     dm: "?",
     arm: "?",
-    res: "?",
+    res: 5,
     competences: [
       { nom: "Attaque défensive",               type: "tech_combat" }, 
       { nom: "Inflige 2 nécrose_icone",         type: "don" }, 
