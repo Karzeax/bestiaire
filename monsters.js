@@ -1027,7 +1027,8 @@ const MONSTERS = [
       { id: 156, nom: "Bottines",            emplacement: "Pieds" },    
     ],
     drops: [
-      { id: 0,   nom: "10-20" },
+      { id: 365, nom: "Fumigène" },
+      { id: 0,   nom: "10-30" },
     ],
   },
   {
@@ -1060,7 +1061,7 @@ const MONSTERS = [
       { id: 3,  nom: "Potion de vie mineure" },
       { id: 15, nom: "Potion d'expérience" },
       { id: 298, nom: "Clé en ossements" },
-      { id: 0,  nom: "10-20" },
+      { id: 0,  nom: "10-30" },
     ],
   },
   {
@@ -1085,7 +1086,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 178, nom: "Potion de vigueur" },
-      { id: 0,   nom: "10-20" },
+      { id: 0,   nom: "10-30" },
     ],
   },
   {
