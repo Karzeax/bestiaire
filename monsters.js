@@ -153,6 +153,7 @@ const MONSTERS = [
       { id: 369, nom: "Ame légendaire", emplacement: "Fétiche" },
       { id: 177, nom: "Diadème",        emplacement: "Tête" },
       { id: 15,  nom: "Potion d'expérience" },
+      { id: 342, nom: "Encre" },
       { id: 0,   nom: "30-50" },
     ],
     description: "Bellinda de Nandor, sinistrement connue sous le nom de la Princesse Sombre, est la fille de Cerilla de Nandor, dernière descendante du Roi-Musicien Belen. S'il n'en reste désormais qu'un fantôme pâle qui semble plus réel à la lumière des flammes que de la lune, elle fut de son temps condamnée par la population suite aux nombreuses rumeurs de sacrifice humain que la famille Nandor aurait effectué afin de s'assurer le pouvoir. Pourtant, le titre royal ne semble en rien usurpé : la créature éthérée porte sur elle toute la grâce héritée de son sang et un quelque chose, à la fois, de terrifiant. Comme si sa seule présence pouvait drainer en quelque sorte l'énergie ou la hargne qui habite d'ordinaire le cœur des hommes. La légende veut que ceux qui rencontrent la mort de la main de la Princesse Sombre ne peuvent plus jamais mourir et que leur âme est alors piégée dans la Chapelle Nocturne. Une note de plus sur la grande partition. Une note fatidique pour celle dont les doigts atrophiés et douloureux, comme brisés par des coups violents, ne saurait plus jamais jouer la Musique de l'Ombre."
