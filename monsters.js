@@ -1417,7 +1417,6 @@ const MONSTERS = [
     drops: [
       { id: 0, nom: "15-30" },
     ],
-    description : "⚠️ Il est possible que le monstre ne soit plus disponible depuis la MàJ de juin 2024."
   },
   {
     id: 20,

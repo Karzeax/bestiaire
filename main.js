@@ -167,6 +167,88 @@ function createCard(m, index) {
   return card;
 }
 
+// ── Affixes ───────────────────────────────────────────────────
+// 3 états : aucun affixe, Farouche, Robuste.
+//   - Farouche : +10 + 5 × rang en ESQ et DM
+//   - Robuste  : +20 + 10 × rang en HP
+// Si la stat n'est pas un nombre (ex. "?"), on la laisse telle quelle.
+function addBonus(stat, bonus) {
+  return typeof stat === 'number' ? stat + bonus : stat;
+}
+
+const AFFIXES = {
+  none: {
+    label: 'Aucun',
+    name:  '',
+    boosted: [],
+    apply: (m) => ({ hp: m.hp, esq: m.esq, dm: m.dm, arm: m.arm, res: m.res }),
+  },
+  farouche: {
+    label: 'Farouche',
+    name:  'Farouche',
+    boosted: ['esq', 'dm'],
+    apply: (m) => {
+      const bonus = 10 + 5 * m.rang;
+      return {
+        hp:  m.hp,
+        esq: addBonus(m.esq, bonus),
+        dm:  addBonus(m.dm, bonus),
+        arm: m.arm,
+        res: m.res,
+      };
+    },
+  },
+  robuste: {
+    label: 'Robuste',
+    name:  'Robuste',
+    boosted: ['hp'],
+    apply: (m) => {
+      const bonus = 20 + 10 * m.rang;
+      return {
+        hp:  addBonus(m.hp, bonus),
+        esq: m.esq,
+        dm:  m.dm,
+        arm: m.arm,
+        res: m.res,
+      };
+    },
+  },
+};
+
+function applyAffixToModal(m, affixKey) {
+  const affix = AFFIXES[affixKey] || AFFIXES.none;
+  const stats = affix.apply(m);
+
+  // Met à jour les valeurs et la mise en évidence
+  const statMap = [
+    { key: 'hp',  selector: '[data-stat="hp"]',  format: v => v },
+    { key: 'esq', selector: '[data-stat="esq"]', format: v => v + '%' },
+    { key: 'dm',  selector: '[data-stat="dm"]',  format: v => v + '%' },
+    { key: 'arm', selector: '[data-stat="arm"]', format: v => v },
+    { key: 'res', selector: '[data-stat="res"]', format: v => v },
+  ];
+
+  statMap.forEach(({ key, selector, format }) => {
+    const cell = document.querySelector('#modal-content ' + selector);
+    if (!cell) return;
+    cell.querySelector('.val').textContent = format(stats[key]);
+    // On ne met en évidence que si la valeur est réellement numérique
+    const isNumeric = typeof stats[key] === 'number';
+    cell.classList.toggle('boosted', affix.boosted.includes(key) && isNumeric);
+  });
+
+  // Met à jour le nom de l'affixe sous le titre
+  const affixNameEl = document.getElementById('modal-affix-name');
+  if (affixNameEl) {
+    affixNameEl.textContent = affix.name;
+  }
+
+  // Met à jour les pills actives
+  document.querySelectorAll('#modal-content .affix-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.affix === affixKey);
+  });
+}
+
 // ── Modal ─────────────────────────────────────────────────────
 function openModal(m) {
   const overlay = document.getElementById('modal-overlay');
@@ -189,18 +271,25 @@ function openModal(m) {
       <img src="https://www.kigard.fr/images/vue/monstre/${m.id}.gif" alt="${m.name}">
       <div>
         <h2>${m.name}</h2>
+        <span class="affix-name" id="modal-affix-name"></span>
         <div style="margin-top:4px">${getStars(m.rang)}</div>
         <div style="font-size:.82rem;color:var(--muted);font-style:italic;margin-top:2px">📍 ${m.zone}</div>
       </div>
     </div>
 
     <div class="modal-body">
+      <div class="affix-selector" role="tablist" aria-label="Affixe">
+        <button type="button" class="affix-pill active" data-affix="none" role="tab" aria-selected="true">Aucun</button>
+        <button type="button" class="affix-pill" data-affix="farouche" role="tab" aria-selected="false">Farouche</button>
+        <button type="button" class="affix-pill" data-affix="robuste" role="tab" aria-selected="false">Robuste</button>
+      </div>
+
       <div class="modal-stats">
-        <div class="modal-stat"><span class="lbl">HP</span><span class="val c-hp">${m.hp}</span></div>
-        <div class="modal-stat"><span class="lbl">ESQ</span><span class="val c-esq">${m.esq}%</span></div>
-        <div class="modal-stat"><span class="lbl">DM</span><span class="val c-dm">${m.dm}%</span></div>
-        <div class="modal-stat"><span class="lbl">ARM</span><span class="val c-arm">${m.arm}</span></div>
-        <div class="modal-stat"><span class="lbl">RES</span><span class="val c-res">${m.res}</span></div>
+        <div class="modal-stat" data-stat="hp"><span class="lbl">HP</span><span class="val c-hp">${m.hp}</span></div>
+        <div class="modal-stat" data-stat="esq"><span class="lbl">ESQ</span><span class="val c-esq">${m.esq}%</span></div>
+        <div class="modal-stat" data-stat="dm"><span class="lbl">DM</span><span class="val c-dm">${m.dm}%</span></div>
+        <div class="modal-stat" data-stat="arm"><span class="lbl">ARM</span><span class="val c-arm">${m.arm}</span></div>
+        <div class="modal-stat" data-stat="res"><span class="lbl">RES</span><span class="val c-res">${m.res}</span></div>
       </div>
 
       <div class="modal-section">
@@ -231,6 +320,17 @@ function openModal(m) {
 
   overlay.classList.add('open');
   document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+
+  // Pills affixes : recalcul des stats à chaque clic
+  content.querySelectorAll('.affix-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      const affixKey = pill.dataset.affix;
+      applyAffixToModal(m, affixKey);
+      content.querySelectorAll('.affix-pill').forEach(p =>
+        p.setAttribute('aria-selected', p === pill ? 'true' : 'false')
+      );
+    });
+  });
 }
 
 function closeModal() {
@@ -243,22 +343,26 @@ function renderCards(monsters) {
   const emptyDiv   = document.getElementById('empty');
   const countEl    = document.getElementById('count');
 
+  // Pipeline final : on applique le filtre par zone après le filtre texte
+  const filtered = monsters.filter(matchesActiveRegions);
+
   resultsDiv.innerHTML = '';
 
-  if (monsters.length === 0) {
+  if (filtered.length === 0) {
     emptyDiv.style.display = 'block';
     countEl.textContent = '';
     return;
   }
 
   emptyDiv.style.display = 'none';
-  countEl.textContent = monsters.length + ' monstre' + (monsters.length > 1 ? 's' : '') + ' trouvé' + (monsters.length > 1 ? 's' : '');
+  countEl.textContent = filtered.length + ' monstre' + (filtered.length > 1 ? 's' : '') + ' trouvé' + (filtered.length > 1 ? 's' : '');
 
-  monsters.forEach((m, i) => resultsDiv.appendChild(createCard(m, i)));
+  filtered.forEach((m, i) => resultsDiv.appendChild(createCard(m, i)));
 }
 
 // ── Recherche multi-modes ─────────────────────────────────────
 let searchMode = 'name';
+let activeRegions = new Set(['Nandor', 'Kigard']);
 
 const SEARCH_PLACEHOLDERS = {
   name:        'Rechercher un monstre…',
@@ -266,6 +370,27 @@ const SEARCH_PLACEHOLDERS = {
   items:       'Rechercher un item…',
   drops:       'Rechercher un drop…',
 };
+
+// Renvoie la liste des régions d'un monstre.
+//   - Si m.regions est défini (cas des monstres de quête présents partout),
+//     on utilise cette liste explicite.
+//   - Sinon on parse m.zone pour y trouver "(Nandor)" ou "(Kigard)".
+function getMonsterRegions(m) {
+  if (Array.isArray(m.regions) && m.regions.length > 0) {
+    return m.regions;
+  }
+  const regions = [];
+  if (m.zone && /\(Nandor\)/i.test(m.zone)) regions.push('Nandor');
+  if (m.zone && /\(Kigard\)/i.test(m.zone)) regions.push('Kigard');
+  return regions;
+}
+
+function matchesActiveRegions(m) {
+  const regs = getMonsterRegions(m);
+  // Si aucune région détectée, on garde le monstre par défaut
+  if (regs.length === 0) return true;
+  return regs.some(r => activeRegions.has(r));
+}
 
 // Normalise une chaîne pour la recherche :
 //   - minuscules
@@ -345,6 +470,40 @@ document.addEventListener('DOMContentLoaded', () => {
       searchInput.placeholder = SEARCH_PLACEHOLDERS[searchMode] || '';
 
       // On garde la requête en cours et on relance la recherche dans le nouveau mode
+      renderCards(filterMonsters(searchInput.value));
+    });
+  });
+
+  // Pills : filtre par zone (multi-sélection, au moins une zone active)
+  document.querySelectorAll('.zone-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const region = btn.dataset.region;
+      const isActive = btn.classList.contains('active');
+
+      if (isActive) {
+        // Garde-fou : on refuse de désactiver la dernière zone active
+        if (activeRegions.size <= 1) {
+          // Petite animation pour signaler le refus
+          btn.animate(
+            [
+              { transform: 'translateX(0)' },
+              { transform: 'translateX(-3px)' },
+              { transform: 'translateX(3px)' },
+              { transform: 'translateX(0)' },
+            ],
+            { duration: 220, easing: 'ease-in-out' }
+          );
+          return;
+        }
+        activeRegions.delete(region);
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      } else {
+        activeRegions.add(region);
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+
       renderCards(filterMonsters(searchInput.value));
     });
   });
