@@ -1382,8 +1382,9 @@ const MONSTERS = [
     arm: 0,
     res: 13,
     competences: [
-      { nom: "Foudre", type: "magie" }, 
-      { nom: "Piqure", type: "magie" }, 
+      { nom: "Foudre",                      type: "magie" }, 
+      { nom: "Piqure",                      type: "magie" }, 
+      { nom: "Résistance foudre_icone 20%", type: "don" }, 
     ],
     items: [
       { id: 271, nom: "Capuchon en soie",  emplacement: "Tête" },    
