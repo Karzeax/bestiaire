@@ -15,6 +15,12 @@
 </header>
 
 <div class="search-wrap">
+  <div class="search-modes" role="tablist" aria-label="Mode de recherche">
+    <button type="button" class="search-mode active" data-mode="name" role="tab" aria-selected="true">Monstres</button>
+    <button type="button" class="search-mode" data-mode="competences" role="tab" aria-selected="false">Compétences</button>
+    <button type="button" class="search-mode" data-mode="items" role="tab" aria-selected="false">Items</button>
+    <button type="button" class="search-mode" data-mode="drops" role="tab" aria-selected="false">Drops</button>
+  </div>
   <input type="text" id="search" placeholder="Rechercher un monstre…" autocomplete="off">
 </div>
 

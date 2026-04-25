@@ -257,20 +257,83 @@ function renderCards(monsters) {
   monsters.forEach((m, i) => resultsDiv.appendChild(createCard(m, i)));
 }
 
+// ── Recherche multi-modes ─────────────────────────────────────
+let searchMode = 'name';
+
+const SEARCH_PLACEHOLDERS = {
+  name:        'Rechercher un monstre…',
+  competences: 'Rechercher une compétence…',
+  items:       'Rechercher un item…',
+  drops:       'Rechercher un drop…',
+};
+
 function filterMonsters(query) {
   const q = query.toLowerCase().trim();
   if (!q) return MONSTERS;
-  // La recherche se fait uniquement sur le nom du monstre pour éviter
-  // les faux positifs (ex: "mal" qui matchait "Maléfice de nécrose").
-  return MONSTERS.filter(m => m.name.toLowerCase().includes(q));
+
+  switch (searchMode) {
+    case 'name':
+      return MONSTERS.filter(m => m.name.toLowerCase().includes(q));
+
+    case 'competences':
+      return MONSTERS.filter(m =>
+        Array.isArray(m.competences) &&
+        m.competences.some(c => c.nom.toLowerCase().includes(q))
+      );
+
+    case 'items':
+      return MONSTERS.filter(m => {
+        const inItems = Array.isArray(m.items) &&
+          m.items.some(it => it.nom.toLowerCase().includes(q));
+        if (inItems) return true;
+        if (Array.isArray(m.variantes)) {
+          return m.variantes.some(v =>
+            v.some(it => it.nom.toLowerCase().includes(q))
+          );
+        }
+        return false;
+      });
+
+    case 'drops':
+      // On exclut les drops d'or (id === 0) qui ne portent pas de vrai nom
+      return MONSTERS.filter(m =>
+        Array.isArray(m.drops) &&
+        m.drops.some(d => d.id !== 0 && d.nom.toLowerCase().includes(q))
+      );
+
+    default:
+      return MONSTERS;
+  }
 }
 
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderCards(MONSTERS);
 
-  document.getElementById('search').addEventListener('input', e => {
+  const searchInput = document.getElementById('search');
+
+  searchInput.addEventListener('input', e => {
     renderCards(filterMonsters(e.target.value));
+  });
+
+  // Pills : changement de mode de recherche
+  document.querySelectorAll('.search-mode').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+
+      document.querySelectorAll('.search-mode').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      searchMode = btn.dataset.mode;
+      searchInput.placeholder = SEARCH_PLACEHOLDERS[searchMode] || '';
+
+      // On garde la requête en cours et on relance la recherche dans le nouveau mode
+      renderCards(filterMonsters(searchInput.value));
+    });
   });
 
   document.getElementById('modal-overlay').addEventListener('click', e => {
@@ -281,19 +344,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeModal();
   });
 
-  // ── Bouton retour en haut ──
+  // ── Scroll : bouton retour en haut + barre de recherche sticky ──
   const backToTop = document.getElementById('back-to-top');
-  if (backToTop) {
-    const toggleBackToTop = () => {
-      if (window.scrollY > 400) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    };
-    window.addEventListener('scroll', toggleBackToTop, { passive: true });
-    toggleBackToTop();
+  const searchWrap = document.querySelector('.search-wrap');
+  const headerEl = document.querySelector('header');
 
+  const handleScroll = () => {
+    const y = window.scrollY;
+
+    if (backToTop) {
+      backToTop.classList.toggle('visible', y > 400);
+    }
+
+    if (searchWrap && headerEl) {
+      // On colle la barre dès qu'on a dépassé le header
+      searchWrap.classList.toggle('is-stuck', y > headerEl.offsetHeight - 1);
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  if (backToTop) {
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });

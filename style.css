@@ -70,11 +70,62 @@ header p {
 
 /* ── Search ── */
 .search-wrap {
-  position: relative;
-  z-index: 1;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   padding: 32px 20px 20px;
+  transition: padding .25s ease, background-color .25s ease, border-color .25s ease, backdrop-filter .25s ease, gap .25s ease;
+}
+
+/* Pills de mode de recherche */
+.search-modes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.search-mode {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .03);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background-color .2s;
+}
+
+.search-mode:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.search-mode.active {
+  border-color: var(--accent);
+  background: rgba(124, 77, 255, .15);
+  color: #f0f4ff;
+}
+
+.search-wrap.is-stuck {
+  padding: 12px 20px;
+  gap: 8px;
+  background-color: rgba(10, 12, 18, .82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.search-wrap.is-stuck .search-mode {
+  padding: 4px 11px;
+  font-size: .72rem;
 }
 
 .search-wrap input {
@@ -87,8 +138,13 @@ header p {
   font-family: 'Crimson Pro', serif;
   font-size: 1.1rem;
   outline: none;
-  transition: border-color .2s, box-shadow .2s;
+  transition: border-color .2s, box-shadow .2s, padding .25s ease, font-size .25s ease;
   text-align: center;
+}
+
+.search-wrap.is-stuck input {
+  padding: 9px 22px;
+  font-size: 1rem;
 }
 
 .search-wrap input:focus {
@@ -728,6 +784,32 @@ header p {
 
   .search-wrap {
     padding: 24px 16px 16px;
+    gap: 10px;
+  }
+
+  .search-modes {
+    gap: 6px;
+  }
+
+  .search-mode {
+    padding: 4px 11px;
+    font-size: .72rem;
+    letter-spacing: .06em;
+  }
+
+  .search-wrap.is-stuck {
+    padding: 10px 16px;
+    gap: 6px;
+  }
+
+  .search-wrap.is-stuck .search-mode {
+    padding: 3px 9px;
+    font-size: .68rem;
+  }
+
+  .search-wrap.is-stuck input {
+    padding: 8px 18px;
+    font-size: .95rem;
   }
 
   #results {
