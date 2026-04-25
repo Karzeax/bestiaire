@@ -103,9 +103,11 @@ header p {
   transition: border-color .2s, color .2s, background-color .2s;
 }
 
-.search-mode:hover {
-  border-color: var(--accent);
-  color: var(--text);
+@media (hover: hover) {
+  .search-mode:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
 }
 
 .search-mode.active {
@@ -163,9 +165,11 @@ header p {
   transition: opacity .2s, background-color .2s, box-shadow .2s;
 }
 
-.zone-filter:hover {
-  border-color: var(--accent2);
-  color: var(--text);
+@media (hover: hover) {
+  .zone-filter:hover {
+    border-color: var(--accent2);
+    color: var(--text);
+  }
 }
 
 .zone-filter.active {
@@ -259,10 +263,12 @@ header p {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.monster-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0,0,0,.6), 0 0 0 1px var(--accent);
-  border-color: var(--accent);
+@media (hover: hover) {
+  .monster-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.6), 0 0 0 1px var(--accent);
+    border-color: var(--accent);
+  }
 }
 
 .card-img {
@@ -453,10 +459,12 @@ header p {
   border-radius: 0 6px 6px 0;
 }
 
-.variante-item:hover {
-  opacity: 1;
-  background-color: rgba(255,255,255,.04);
-  border-left-color: var(--accent);
+@media (hover: hover) {
+  .variante-item:hover {
+    opacity: 1;
+    background-color: rgba(255,255,255,.04);
+    border-left-color: var(--accent);
+  }
 }
 
 .variante-label {
@@ -594,7 +602,9 @@ header p {
   line-height: 1;
   transition: color .15s;
 }
-.modal-close:hover { color: var(--text); }
+@media (hover: hover) {
+  .modal-close:hover { color: var(--text); }
+}
 
 .modal-header {
   padding: 24px 24px 16px;
@@ -649,9 +659,11 @@ header p {
   transition: border-color .2s, color .2s, background-color .2s;
 }
 
-.affix-pill:hover {
-  border-color: var(--accent);
-  color: var(--text);
+@media (hover: hover) {
+  .affix-pill:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
 }
 
 .affix-pill.active {
@@ -798,10 +810,12 @@ header p {
   border-radius: 0 8px 8px 0;
 }
 
-.modal-variante-item:hover {
-  opacity: 1;
-  background-color: rgba(255,255,255,.04);
-  border-left-color: var(--accent);
+@media (hover: hover) {
+  .modal-variante-item:hover {
+    opacity: 1;
+    background-color: rgba(255,255,255,.04);
+    border-left-color: var(--accent);
+  }
 }
 
 .modal-variante-item .variante-label {
@@ -884,10 +898,12 @@ header p {
   transform: translateY(0);
 }
 
-.back-to-top:hover {
-  border-color: var(--accent);
-  color: #f0f4ff;
-  background: rgba(124, 77, 255, .15);
+@media (hover: hover) {
+  .back-to-top:hover {
+    border-color: var(--accent);
+    color: #f0f4ff;
+    background: rgba(124, 77, 255, .15);
+  }
 }
 
 .back-to-top:active {
