@@ -1175,7 +1175,7 @@ const MONSTERS = [
   {
     id: 3,
     name: "Goblours",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt & Marais (Kigard)",
     rang: 1,
     hp: 100,
     esq: 0,
@@ -1204,7 +1204,7 @@ const MONSTERS = [
   {
     id: 4,
     name: "Vagabond Gobelin",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt & Marais (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1233,7 +1233,7 @@ const MONSTERS = [
   {
     id: 5,
     name: "Acolyte Gobelin",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt & Marais (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1256,7 +1256,7 @@ const MONSTERS = [
   {
     id: 128,
     name: "Esclave Gobelin",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt & Marais (Kigard)",
     rang: 0,
     hp: 40,
     esq: 0,
@@ -1277,7 +1277,7 @@ const MONSTERS = [
   {
     id: 129,
     name: "Shaman Gobelin",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1300,7 +1300,7 @@ const MONSTERS = [
   {
     id: 130,
     name: "Incendiaire Gobelin",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt (Kigard)",
     rang: 1,
     hp: "?",
     esq: "?",
@@ -1324,7 +1324,7 @@ const MONSTERS = [
   {
     id: 131,
     name: "Enragé Gobelin",
-    zone: "Zone aléatoire (Kigard)",
+    zone: "Forêt (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1349,7 +1349,7 @@ const MONSTERS = [
     name: "Momie",
     zone: "Monstre de quête (Kigard & Nandor)",
     rang: 2,
-    hp: "?",
+    hp: 120,
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1402,7 +1402,7 @@ const MONSTERS = [
     name: "Centaure",
     zone: "Monstre de quête (Kigard & Nandor)",
     rang: 2,
-    hp: "?",
+    hp: 150,
     esq: "?",
     dm: "?",
     arm: "?",
