@@ -267,28 +267,41 @@ const SEARCH_PLACEHOLDERS = {
   drops:       'Rechercher un drop…',
 };
 
+// Normalise une chaîne pour la recherche :
+//   - minuscules
+//   - apostrophes/guillemets typographiques → ASCII (fix iOS smart punctuation)
+//   - suppression des accents (é → e, etc.)
+function normalizeSearch(str) {
+  return (str || '')
+    .toLowerCase()
+    .replace(/[\u2018\u2019\u201A\u201B\u2032]/g, "'")
+    .replace(/[\u201C\u201D\u201E\u201F\u2033]/g, '"')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
+
 function filterMonsters(query) {
-  const q = query.toLowerCase().trim();
+  const q = normalizeSearch(query.trim());
   if (!q) return MONSTERS;
 
   switch (searchMode) {
     case 'name':
-      return MONSTERS.filter(m => m.name.toLowerCase().includes(q));
+      return MONSTERS.filter(m => normalizeSearch(m.name).includes(q));
 
     case 'competences':
       return MONSTERS.filter(m =>
         Array.isArray(m.competences) &&
-        m.competences.some(c => c.nom.toLowerCase().includes(q))
+        m.competences.some(c => normalizeSearch(c.nom).includes(q))
       );
 
     case 'items':
       return MONSTERS.filter(m => {
         const inItems = Array.isArray(m.items) &&
-          m.items.some(it => it.nom.toLowerCase().includes(q));
+          m.items.some(it => normalizeSearch(it.nom).includes(q));
         if (inItems) return true;
         if (Array.isArray(m.variantes)) {
           return m.variantes.some(v =>
-            v.some(it => it.nom.toLowerCase().includes(q))
+            v.some(it => normalizeSearch(it.nom).includes(q))
           );
         }
         return false;
@@ -298,7 +311,7 @@ function filterMonsters(query) {
       // On exclut les drops d'or (id === 0) qui ne portent pas de vrai nom
       return MONSTERS.filter(m =>
         Array.isArray(m.drops) &&
-        m.drops.some(d => d.id !== 0 && d.nom.toLowerCase().includes(q))
+        m.drops.some(d => d.id !== 0 && normalizeSearch(d.nom).includes(q))
       );
 
     default:
