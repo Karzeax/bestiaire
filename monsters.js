@@ -626,7 +626,7 @@ const MONSTERS = [
   },
   {
     id: 22,
-    name: "Tarentule",
+    name: "Tarentule géante",
     zone: "Île aux Venins (Kigard)",
     rang: 0,
     hp: 120,
