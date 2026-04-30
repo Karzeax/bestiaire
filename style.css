@@ -993,8 +993,9 @@ header p {
 
 .help-desc br + br { content: ''; }
 
-/* Icônes inline. Image en background-image avec un léger zoom pour mettre en
-   valeur le contenu central de chaque icône (background-size > 100% du box). */
+/* Icônes inline. Image en background-image, taille fixe avec rendering pixel-art.
+   Par défaut on n'applique aucun zoom (chaque pixel du sprite compte).
+   Variante .kigard-icon-item : crop pour les sprites qui ont un frame intégré. */
 .kigard-icon {
   display: inline-block;
   width: 24px;
@@ -1003,8 +1004,12 @@ header p {
   margin: 0 3px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 140%;
+  background-size: 100%;
   image-rendering: pixelated;
+}
+
+.kigard-icon-item {
+  background-size: 140%;
 }
 
 @media (max-width: 640px) {

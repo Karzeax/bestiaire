@@ -445,14 +445,17 @@ function openModal(m) {
 }
 
 // Convertit les <img> en <span> avec l'image en background-image.
-// Permet d'ajuster l'affichage finement via CSS (zoom, position, recadrage).
+// Différencie les types d'icônes pour appliquer un zoom adapté :
+//   - items (gros sprite avec frame intégré) : crop important pour cacher le frame
+//   - autres (modificateur, elements, etc.) : pas de crop, chaque pixel compte
 function sanitizeKigardIcons(html) {
   if (!html) return '';
   return html.replace(
     /<img\s+[^>]*?src="([^"]+)"[^>]*?\/?>/g,
     (_, src) => {
       const safeUrl = src.replace(/'/g, '%27');
-      return `<span class="kigard-icon" style="background-image:url('${safeUrl}')"></span>`;
+      const variant = /\/images\/items\//.test(src) ? ' kigard-icon-item' : '';
+      return `<span class="kigard-icon${variant}" style="background-image:url('${safeUrl}')"></span>`;
     }
   );
 }
