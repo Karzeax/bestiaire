@@ -239,7 +239,7 @@ function createCard(m, index) {
       <div class="zone">📍 ${m.zone}</div>
       <div class="stars">${getStars(m.rang)}</div>
       <div class="stats">
-        <div class="stat"><span class="stat-label">HP</span>  <span class="stat-val c-hp">${m.hp}</span></div>
+        <div class="stat"><span class="stat-label">PV</span>  <span class="stat-val c-hp">${m.hp}</span></div>
         <div class="stat"><span class="stat-label">ESQ</span> <span class="stat-val c-esq">${m.esq}%</span></div>
         <div class="stat"><span class="stat-label">DM</span>  <span class="stat-val c-dm">${m.dm}%</span></div>
         <div class="stat"><span class="stat-label">ARM</span> <span class="stat-val c-arm">${m.arm}</span></div>
@@ -261,7 +261,7 @@ function createCard(m, index) {
 // ── Affixes ───────────────────────────────────────────────────
 // 3 états : aucun affixe, Farouche, Robuste.
 //   - Farouche : +10 + 5 × rang en ESQ et DM
-//   - Robuste  : +20 + 10 × rang en HP
+//   - Robuste  : +20 + 10 × rang en PV
 // Si la stat n'est pas un nombre (ex. "?"), on la laisse telle quelle.
 function addBonus(stat, bonus) {
   return typeof stat === 'number' ? stat + bonus : stat;
@@ -383,7 +383,7 @@ function openModal(m) {
       </div>
 
       <div class="modal-stats">
-        <div class="modal-stat" data-stat="hp"><span class="lbl">HP</span><span class="val c-hp">${m.hp}</span></div>
+        <div class="modal-stat" data-stat="hp"><span class="lbl">PV</span><span class="val c-hp">${m.hp}</span></div>
         <div class="modal-stat" data-stat="esq"><span class="lbl">ESQ</span><span class="val c-esq">${m.esq}%</span></div>
         <div class="modal-stat" data-stat="dm"><span class="lbl">DM</span><span class="val c-dm">${m.dm}%</span></div>
         <div class="modal-stat" data-stat="arm"><span class="lbl">ARM</span><span class="val c-arm">${m.arm}</span></div>
