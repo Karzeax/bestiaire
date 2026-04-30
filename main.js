@@ -39,7 +39,6 @@ function getStars(rang) {
 // ── URLs des fiches d'aide Kigard ────────────────────────────
 // Mapping nom → id pour les magies (les magies utilisent des id numériques
 // côté Kigard, contrairement aux techniques et aux dons qui utilisent le nom).
-// Les noms suivent l'orthographe en jeu (ex. "Piqure" sans accent circonflexe).
 const MAGIE_IDS = {
   "Armure":                  138,
   "Boule de feu":             11,
@@ -71,7 +70,7 @@ const MAGIE_IDS = {
   "Mur de cristal":          128,
   "Mur de ronces":           109,
   "Permutation":             176,
-  "Piqure":                  105,
+  "Piqûre":                  105,
   "Purification":             76,
   "Rafale de givre":         100,
   "Réflexes":                136,
