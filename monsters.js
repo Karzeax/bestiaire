@@ -12,7 +12,7 @@ const MONSTERS = [
     competences: [
       { nom: "Disparition soudaine",            type: "tech_combat" },
       { nom: "Recherche intuitive",             type: "tech_combat" },
-      { nom: "Piqure",                          type: "magie" },
+      { nom: "Piqûre",                          type: "magie" },
       { nom: "Invisibilité",                    type: "magie" },
       { nom: "Maléfice de nécrose",             type: "magie" },
       { nom: "Rapide",                          type: "don" },
@@ -205,7 +205,7 @@ const MONSTERS = [
   //   competences: [
   //     { nom: "Offrir son sang",        type: "tech_combat" },
   //     { nom: "Méditation défensive",   type: "tech_combat" },
-  //     { nom: "Piqure",                 type: "magie" },
+  //     { nom: "Piqûre",                 type: "magie" },
   //     { nom: "Maléfice de saignement", type: "magie" },
   //     { nom: "Sauvagerie",             type: "don" },
   //   ],
@@ -797,7 +797,7 @@ const MONSTERS = [
     res: 9,
     competences: [
       { nom: "Surcharge magique",               type: "tech_combat" },
-      { nom: "Piqure",                          type: "magie" },
+      { nom: "Piqûre",                          type: "magie" },
       { nom: "Vol de magie",                    type: "magie" },
       { nom: "Inflige 1 terreur_icone",         type: "don" },
       { nom: "Vulnérabilité lumière_icone 20%", type: "don" },
@@ -1156,7 +1156,7 @@ const MONSTERS = [
     arm: 5,
     res: 5,
     competences: [
-      { nom: "Piqure",                      type: "magie" },
+      { nom: "Piqûre",                      type: "magie" },
       { nom: "Maléfice de poison",          type: "magie" },
       { nom: "Régénération",                type: "don" },
       { nom: "Vulnérabilité feu_icone 20%", type: "don" },
@@ -1241,7 +1241,7 @@ const MONSTERS = [
     arm: "?",
     res: "?",
     competences: [
-      { nom: "Piqure",       type: "magie" },
+      { nom: "Piqûre",       type: "magie" },
       { nom: "Sournoiserie", type: "don" },
     ],
     items: [  
@@ -1383,7 +1383,7 @@ const MONSTERS = [
     res: 13,
     competences: [
       { nom: "Foudre",                      type: "magie" }, 
-      { nom: "Piqure",                      type: "magie" }, 
+      { nom: "Piqûre",                      type: "magie" }, 
       { nom: "Résistance foudre_icone 20%", type: "don" }, 
     ],
     items: [
