@@ -626,7 +626,7 @@ const MONSTERS = [
   },
   {
     id: 22,
-    name: "Tarentule géante",
+    name: "Tarentule",
     zone: "Île aux Venins (Kigard)",
     rang: 0,
     hp: 120,
@@ -1077,7 +1077,7 @@ const MONSTERS = [
     res: "?",
     competences: [
       { nom: "Attaque puissante", type: "tech_combat" },
-      { nom: "Enchainer",         type: "tech_combat" },
+      { nom: "Enchaîner",         type: "tech_combat" },
     ],
     items: [
       { id: 146, nom: "Bandana en soie",   emplacement: "Tête" },    
@@ -1101,7 +1101,7 @@ const MONSTERS = [
     arm: 16,
     res: 0,
     competences: [
-      { nom: "Assomer",          type: "tech_combat" },
+      { nom: "Assommer",         type: "tech_combat" },
       { nom: "Coup de bouclier", type: "tech_combat" },
       { nom: "Sauvagerie",       type: "don" },
     ],
@@ -1175,7 +1175,7 @@ const MONSTERS = [
   {
     id: 3,
     name: "Goblours",
-    zone: "Forêt & Marais (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 1,
     hp: 100,
     esq: 0,
@@ -1204,7 +1204,7 @@ const MONSTERS = [
   {
     id: 4,
     name: "Vagabond Gobelin",
-    zone: "Forêt & Marais (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1233,7 +1233,7 @@ const MONSTERS = [
   {
     id: 5,
     name: "Acolyte Gobelin",
-    zone: "Forêt & Marais (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1256,7 +1256,7 @@ const MONSTERS = [
   {
     id: 128,
     name: "Esclave Gobelin",
-    zone: "Forêt & Marais (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 0,
     hp: 40,
     esq: 0,
@@ -1277,7 +1277,7 @@ const MONSTERS = [
   {
     id: 129,
     name: "Shaman Gobelin",
-    zone: "Forêt (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1300,7 +1300,7 @@ const MONSTERS = [
   {
     id: 130,
     name: "Incendiaire Gobelin",
-    zone: "Forêt (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 1,
     hp: "?",
     esq: "?",
@@ -1324,7 +1324,7 @@ const MONSTERS = [
   {
     id: 131,
     name: "Enragé Gobelin",
-    zone: "Forêt (Kigard)",
+    zone: "Zone aléatoire (Kigard)",
     rang: 1,
     hp: 80,
     esq: "?",
@@ -1349,7 +1349,7 @@ const MONSTERS = [
     name: "Momie",
     zone: "Monstre de quête (Kigard & Nandor)",
     rang: 2,
-    hp: 120,
+    hp: "?",
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1402,7 +1402,7 @@ const MONSTERS = [
     name: "Centaure",
     zone: "Monstre de quête (Kigard & Nandor)",
     rang: 2,
-    hp: 150,
+    hp: "?",
     esq: "?",
     dm: "?",
     arm: "?",
@@ -1417,6 +1417,7 @@ const MONSTERS = [
     drops: [
       { id: 0, nom: "15-30" },
     ],
+    description : "⚠️ Il est possible que le monstre ne soit plus disponible depuis la MàJ de juin 2024."
   },
   {
     id: 20,

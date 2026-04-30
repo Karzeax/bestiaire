@@ -36,8 +36,100 @@ function getStars(rang) {
   return '⭐'.repeat(rang);
 }
 
-function tagClass(type) {
-  return 'tag tag-' + type;
+// ── URLs des fiches d'aide Kigard ────────────────────────────
+// Mapping nom → id pour les magies (les magies utilisent des id numériques
+// côté Kigard, contrairement aux techniques et aux dons qui utilisent le nom).
+// Les noms suivent l'orthographe en jeu (ex. "Piqure" sans accent circonflexe).
+const MAGIE_IDS = {
+  "Armure":                  138,
+  "Boule de feu":             11,
+  "Choc mental":             195,
+  "Congélation":              26,
+  "Discipline":              135,
+  "Drain de vie":             72,
+  "Dévotion":                 75,
+  "Egide":                   137,
+  "Electrocution":           190,
+  "Entrave":                  38,
+  "Envoûtement":             119,
+  "Exaltation":              118,
+  "Foudre":                   25,
+  "Guérison":                 31,
+  "Incendie":                149,
+  "Incinération":            102,
+  "Instinct":                104,
+  "Invisibilité":            178,
+  "Invocation de la forêt":   51,
+  "Invocation de la roche":  185,
+  "Invocation du cristal":   187,
+  "Invocation du givre":     186,
+  "Jugement":                 73,
+  "Lance de cristal":        127,
+  "Maléfice de nécrose":     182,
+  "Maléfice de poison":       74,
+  "Maléfice de saignement":  181,
+  "Mur de cristal":          128,
+  "Mur de ronces":           109,
+  "Permutation":             176,
+  "Piqure":                  105,
+  "Purification":             76,
+  "Rafale de givre":         100,
+  "Réflexes":                136,
+  "Régénération":            134,
+  "Réveil des chairs":       183,
+  "Réveil des ossements":     77,
+  "Réveil des âmes":         184,
+  "Subversion":              129,
+  "Télékinésie":              49,
+  "Téléportation":            50,
+  "Vol de magie":             71,
+};
+
+// Préfixes de noms de compétences "passives" qui n'ont pas de vraie fiche
+// d'aide (Kigard renvoie une page vide). On les rend non-cliquables.
+const PASSIVE_PREFIXES = ['Inflige', 'Vulnérabilité', 'Résistance'];
+
+function isPassiveCompetence(nom) {
+  return PASSIVE_PREFIXES.some(p => nom.startsWith(p));
+}
+
+// Retire les tokens "_icone" qui sont des placeholders pour des icônes inline
+// (ex: "Catalyste saignement_icone" → "Catalyste"). Sert pour la lookup canonique.
+function canonicalizeName(nom) {
+  return nom.replace(/\s*\S*_icone\b\S*/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+// Index inversé nom → id pour les abilities (techniques, magies, talents),
+// construit une fois à partir de COMPETENCES.
+const NAME_TO_ID = {};
+if (typeof COMPETENCES === 'object' && COMPETENCES) {
+  for (const [id, fiche] of Object.entries(COMPETENCES)) {
+    if (fiche && fiche.name) {
+      NAME_TO_ID[fiche.name.toLowerCase()] = id;
+    }
+  }
+}
+
+// Renvoie la fiche d'aide locale pour une compétence, ou null si introuvable.
+//   - magie  : on passe par MAGIE_IDS (nom canonique → id), puis COMPETENCES[id]
+//   - don    : on passe par DONS, indexé par nom canonique
+//   - autres : tech_combat / talents → on cherche par nom dans COMPETENCES
+function getCompetenceFiche(c) {
+  if (isPassiveCompetence(c.nom)) return null;
+  const cleaned = canonicalizeName(c.nom);
+
+  if (c.type === 'magie') {
+    const id = MAGIE_IDS[cleaned];
+    if (id === undefined) return null;
+    return (typeof COMPETENCES === 'object' && COMPETENCES[String(id)]) || null;
+  }
+  if (c.type === 'don') {
+    return (typeof DONS === 'object' && DONS[cleaned]) || null;
+  }
+  // tech_combat (et autres) : lookup par nom dans COMPETENCES
+  const id = NAME_TO_ID[cleaned.toLowerCase()];
+  if (!id) return null;
+  return COMPETENCES[id] || null;
 }
 
 // ── Helpers items / variantes ─────────────────────────────────
@@ -254,12 +346,19 @@ function openModal(m) {
   const overlay = document.getElementById('modal-overlay');
   const content = document.getElementById('modal-content');
 
-  const compsHTML = m.competences.map(c => `
-    <div class="modal-competence">
-      <span><img src="https://www.kigard.fr/images/interface/${c.type}.gif?v=2.15.06" alt="${c.type}"></span>
-      <span>${parseCompetenceText(c.nom)}</span>
-    </div>
-  `).join('');
+  const compsHTML = m.competences.map((c, i) => {
+    const fiche = getCompetenceFiche(c);
+    const cls = fiche ? 'modal-competence clickable' : 'modal-competence';
+    // On stocke l'index de la compétence dans le monstre pour pouvoir
+    // récupérer la fiche au clic (évite d'inliner du HTML dans un attribut).
+    const dataAttr = fiche ? ` data-comp-index="${i}"` : '';
+    return `
+      <div class="${cls}"${dataAttr}>
+        <span><img src="https://www.kigard.fr/images/interface/${c.type}.gif?v=2.15.06" alt="${c.type}"></span>
+        <span>${parseCompetenceText(c.nom)}</span>
+      </div>
+    `;
+  }).join('');
 
   const itemsHTML = buildItemsHTML(m.items, m.variantes, 'modal-item', 'emp', 'modal-variante-item');
   const dropsHTML = m.drops.map(renderDropLine).join('');
@@ -331,6 +430,61 @@ function openModal(m) {
       );
     });
   });
+
+  // Clic sur une compétence cliquable → ouvre la fiche d'aide en natif
+  content.querySelectorAll('.modal-competence.clickable').forEach(row => {
+    row.addEventListener('click', () => {
+      const idx = parseInt(row.dataset.compIndex, 10);
+      if (Number.isNaN(idx)) return;
+      const c = m.competences[idx];
+      if (!c) return;
+      const fiche = getCompetenceFiche(c);
+      if (fiche) openHelpModal(fiche);
+    });
+  });
+}
+
+// Convertit les <img> en <span> avec l'image en background-image.
+// Permet d'ajuster l'affichage finement via CSS (zoom, position, recadrage).
+function sanitizeKigardIcons(html) {
+  if (!html) return '';
+  return html.replace(
+    /<img\s+[^>]*?src="([^"]+)"[^>]*?\/?>/g,
+    (_, src) => {
+      const safeUrl = src.replace(/'/g, '%27');
+      return `<span class="kigard-icon" style="background-image:url('${safeUrl}')"></span>`;
+    }
+  );
+}
+
+// ── Modal d'aide (rendu natif sombre) ─────────────────────────
+function openHelpModal(fiche) {
+  const overlay = document.getElementById('help-modal-overlay');
+  const content = document.getElementById('help-content');
+  if (!overlay || !content) return;
+
+  const parts = [];
+  parts.push(`<h3 class="help-title">${fiche.name || ''}</h3>`);
+  if (fiche.type) {
+    parts.push(`<div class="help-subtype">${fiche.type}</div>`);
+  }
+  if (fiche.info_html) {
+    parts.push(`<div class="help-info">${sanitizeKigardIcons(fiche.info_html)}</div>`);
+  }
+  if (fiche.desc_html) {
+    parts.push(`<div class="help-desc">${sanitizeKigardIcons(fiche.desc_html)}</div>`);
+  }
+  content.innerHTML = parts.join('');
+  overlay.classList.add('open');
+  // Reset scroll au cas où la modal a été scrollée auparavant
+  const modal = overlay.querySelector('.help-modal');
+  if (modal) modal.scrollTop = 0;
+}
+
+function closeHelpModal() {
+  const overlay = document.getElementById('help-modal-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
 }
 
 function closeModal() {
@@ -512,8 +666,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === e.currentTarget) closeModal();
   });
 
+  // Modal d'aide : clic sur l'overlay et bouton de fermeture
+  const helpOverlay = document.getElementById('help-modal-overlay');
+  if (helpOverlay) {
+    helpOverlay.addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeHelpModal();
+    });
+  }
+  const helpCloseBtn = document.getElementById('help-close-btn');
+  if (helpCloseBtn) {
+    helpCloseBtn.addEventListener('click', closeHelpModal);
+  }
+
+  // Escape : on ferme la modal du dessus en priorité (modal d'aide), puis la modal monstre
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key !== 'Escape') return;
+    if (helpOverlay && helpOverlay.classList.contains('open')) {
+      closeHelpModal();
+    } else {
+      closeModal();
+    }
   });
 
   // ── Scroll : bouton retour en haut + barre de recherche sticky ──

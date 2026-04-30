@@ -43,13 +43,23 @@
   </svg>
 </button>
 
-<!-- Modal -->
+<!-- Modal principale (détails monstre) -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal" id="modal-content"></div>
 </div>
 
+<!-- Modal d'aide (fiche Kigard rendue nativement en thème sombre) -->
+<div class="help-overlay" id="help-modal-overlay">
+  <div class="help-modal">
+    <button class="help-close" id="help-close-btn" aria-label="Fermer">✕</button>
+    <div class="help-content" id="help-content"></div>
+  </div>
+</div>
+
 <!-- Données puis logique -->
 <script src="monsters.js"></script>
+<script src="competences.js"></script>
+<script src="dons.js"></script>
 <script src="main.js"></script>
 
 </body>

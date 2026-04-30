@@ -513,11 +513,6 @@ header p {
   font-size: .68rem;
 }
 
-.variante-plus {
-  color: var(--muted);
-  font-weight: 700;
-}
-
 /* drops */
 .drops {
   font-size: .83rem;
@@ -749,6 +744,41 @@ header p {
   gap: 6px;
 }
 
+/* État cliquable d'une ligne de compétence (ouvre la fiche d'aide Kigard) */
+.modal-competence.clickable {
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 6px;
+  transition: background-color .15s, color .15s;
+  position: relative;
+}
+
+.modal-competence.clickable::after {
+  content: '?';
+  margin-left: auto;
+  padding-left: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--muted);
+  opacity: .55;
+  flex-shrink: 0;
+  transition: color .15s, opacity .15s;
+}
+
+@media (hover: hover) {
+  .modal-competence.clickable:hover {
+    background-color: rgba(124, 77, 255, .1);
+    color: #f0f4ff;
+  }
+
+  .modal-competence.clickable:hover::after {
+    color: var(--accent2);
+    opacity: 1;
+  }
+}
+
 .modal-competence {
   display: flex;
   align-items: center;
@@ -851,6 +881,137 @@ header p {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+/* ── Modal d'aide (fiche Kigard rendue nativement, au-dessus de la modal principale) ── */
+.help-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.help-overlay.open { display: flex; }
+
+.help-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: min(560px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalIn .25s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(124,77,255,.2);
+}
+
+.help-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(17, 21, 32, .85);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .15s, border-color .15s, background-color .15s;
+}
+
+@media (hover: hover) {
+  .help-close:hover {
+    color: #f0f4ff;
+    border-color: var(--accent);
+    background: rgba(124, 77, 255, .25);
+  }
+}
+
+/* Contenu natif */
+.help-content {
+  padding: 28px 28px 24px;
+  color: var(--text);
+}
+
+.help-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #f0f4ff;
+  margin-right: 36px;     /* place pour le bouton fermer */
+  margin-bottom: 4px;
+}
+
+.help-subtype {
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--accent2);
+  margin-bottom: 18px;
+  letter-spacing: .02em;
+}
+
+.help-info {
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: .92rem;
+  line-height: 1.7;
+  color: #cbd5e7;
+  margin-bottom: 14px;
+}
+
+.help-info b { color: #f0f4ff; font-weight: 600; }
+
+.help-desc {
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: .98rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.help-desc b   { color: #f0f4ff; font-weight: 600; }
+.help-desc i   { font-style: italic; color: #b0bcd8; }
+.help-desc u   { text-decoration: underline; text-decoration-color: var(--accent2); text-underline-offset: 2px; }
+.help-desc small { color: var(--muted); font-size: .85em; }
+
+.help-desc br + br { content: ''; }
+
+/* Icônes inline. Image en background-image avec un léger zoom pour mettre en
+   valeur le contenu central de chaque icône (background-size > 100% du box). */
+.kigard-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 3px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 140%;
+  image-rendering: pixelated;
+}
+
+@media (max-width: 640px) {
+  .help-overlay { padding: 12px; }
+  .help-modal { border-radius: 12px; }
+  .help-content { padding: 24px 22px 20px; }
+  .help-title { font-size: 1.25rem; }
 }
 
 /* ── Empty ── */
