@@ -998,6 +998,17 @@ header p {
   background-size: 140%;
 }
 
+/* Icônes des résultats de jet (Réussite / Semi-réussite / Critique).
+   Insérées en SVG inline juste avant le mot-clé, héritent de la couleur du texte. */
+.outcome-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
 @media (max-width: 640px) {
   .help-overlay { padding: 12px; }
   .help-modal { border-radius: 12px; }

@@ -443,6 +443,24 @@ function openModal(m) {
   });
 }
 
+// Icônes inline pour les jets de dés (Réussite / Semi-réussite / Critique).
+// Embarquées en SVG inline pour zéro requête réseau et héritage de couleur via currentColor.
+const OUTCOME_ICONS = {
+  reussite:      '<svg class="outcome-icon" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>',
+  semi_reussite: '<svg class="outcome-icon" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path d="M320 64C324.6 64 329.2 65 333.4 66.9L521.8 146.8C543.8 156.1 560.2 177.8 560.1 204C559.6 303.2 518.8 484.7 346.5 567.2C329.8 575.2 310.4 575.2 293.7 567.2C121.3 484.7 80.6 303.2 80.1 204C80 177.8 96.4 156.1 118.4 146.8L306.7 66.9C310.9 65 315.4 64 320 64z"/></svg>',
+  critique:      '<svg class="outcome-icon" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><path d="M101.6 68.2C92 61.7 79.2 62.9 71 71C62.8 79.1 61.7 92 68.2 101.6L180.2 264.9L80.6 297.2C70.7 300.4 64 309.6 64 320C64 330.4 70.7 339.6 80.6 342.8L183.7 376.2L130.8 476.8C125.9 486.1 127.6 497.5 135.1 504.9C142.6 512.3 153.9 514.1 163.2 509.2L263.8 456.3L297.2 559.4C300.4 569.3 309.6 576 320 576C330.4 576 339.6 569.3 342.8 559.4L376.2 456.3L476.8 509.2C486.1 514.1 497.5 512.4 504.9 504.9C512.3 497.4 514.1 486.1 509.2 476.8L456.3 376.2L559.4 342.8C569.3 339.6 576 330.4 576 320C576 309.6 569.3 300.4 559.4 297.2L452.9 262.7L478.6 192.3C481.8 183.5 479.6 173.7 473 167.1C466.4 160.5 456.6 158.3 447.8 161.5L377.4 187.2L342.9 80.7C339.6 70.7 330.4 64 320 64C309.6 64 300.4 70.7 297.2 80.6L264.9 180.2L101.6 68.2z"/></svg>',
+};
+
+// Préfixe les <b>Réussite</b> / <b>Semi-réussite</b> / <b>Critique</b> par leur icône.
+// "Semi-réussite" matché avant "Réussite" pour éviter les collisions de remplacement.
+function decorateOutcomes(html) {
+  if (!html) return '';
+  return html
+    .replace(/<b>Semi-réussite<\/b>/g, OUTCOME_ICONS.semi_reussite + '<b>Semi-réussite</b>')
+    .replace(/<b>Réussite<\/b>/g,      OUTCOME_ICONS.reussite      + '<b>Réussite</b>')
+    .replace(/<b>Critique<\/b>/g,      OUTCOME_ICONS.critique      + '<b>Critique</b>');
+}
+
 // Convertit les <img> en <span> avec l'image en background-image.
 // Différencie les types d'icônes pour appliquer un zoom adapté :
 //   - items (gros sprite avec frame intégré) : crop important pour cacher le frame
@@ -474,7 +492,7 @@ function openHelpModal(fiche) {
     parts.push(`<div class="help-info">${sanitizeKigardIcons(fiche.info_html)}</div>`);
   }
   if (fiche.desc_html) {
-    parts.push(`<div class="help-desc">${sanitizeKigardIcons(fiche.desc_html)}</div>`);
+    parts.push(`<div class="help-desc">${decorateOutcomes(sanitizeKigardIcons(fiche.desc_html))}</div>`);
   }
   content.innerHTML = parts.join('');
   overlay.classList.add('open');
