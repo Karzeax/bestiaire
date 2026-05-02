@@ -28,19 +28,19 @@ const DONS = {
     "name": "Impulsion électrique",
     "type": "",
     "info_html": "",
-    "desc_html": "A l'activation, consomme 10 niveaux de statut <img src=\"https://www.kigard.fr/images/modificateur/29.gif?v=2.15.06\" class=\"statut\" title=\"\" alt=\"\" /> Surcharge Surcharge pour lancer +1D6 PA.<br> Le statut Surcharge n'expire pas à l'activation du tour."
+    "desc_html": "A l'activation, consomme 10 niveaux de statut <img src=\"https://www.kigard.fr/images/modificateur/29.gif?v=2.15.06\" class=\"statut\" title=\"Surcharge\" alt=\"\" /> Surcharge pour lancer +1D6 PA.<br> Le statut Surcharge n'expire pas à l'activation du tour."
   },
   "Légende": {
     "name": "Légende",
     "type": "",
     "info_html": "",
-    "desc_html": "+3PA/tour. Laisse une Ame légendaire et + 10 Potions d'expérience lors de sa mort."
+    "desc_html": "+3PA/tour. Laisse une Ame légendaire et + 5 Potions d'expérience lors de sa mort."
   },
   "Morsure du froid": {
     "name": "Morsure du froid",
     "type": "",
     "info_html": "",
-    "desc_html": "Dans un rayon de 3 cases autour du monstre, le statut Gel inflige 2X dégâts de Glace <img src=\"https://www.kigard.fr/images/elements/2.gif?v=2.15.06\" class=\"elements title=\"\" alt=\"\" /> à l'activation."
+    "desc_html": "Dans un rayon de 3 cases autour du monstre, le statut Gel inflige 2X dégâts de Glace <img src=\"https://www.kigard.fr/images/elements/2.gif?v=2.15.06\" class=\"elements\" title=\"Glace\" alt=\"\" /> à l'activation."
   },
   "Prudence": {
     "name": "Prudence",

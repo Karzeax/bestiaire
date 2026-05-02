@@ -464,18 +464,36 @@ function decorateOutcomes(html) {
     .replace(new RegExp(prefix + '<b>Critique</b>',      'g'), '$1' + OUTCOME_ICONS.critique      + '<b>Critique</b>');
 }
 
+// Dédoublonne les "Mot Mot" qui suivent une icône avec title="Mot".
+// La source duplique parfois ce label (typo Kigard, ex: "<img title='Surcharge'/> Surcharge Surcharge").
+function dedupeIconLabels(html) {
+  if (!html) return '';
+  return html.replace(
+    /(<img\s+[^>]*\btitle="([^"]+)"[^>]*?\/?>\s*\2)\s+\2\b/g,
+    '$1'
+  );
+}
+
 // Convertit les <img> en <span> avec l'image en background-image.
 // Différencie les types d'icônes pour appliquer un zoom adapté :
 //   - items (gros sprite avec frame intégré) : crop important pour cacher le frame
 //   - autres (modificateur, elements, etc.) : pas de crop, chaque pixel compte
+// Préserve l'attribut title pour donner un tooltip natif au survol.
 function sanitizeKigardIcons(html) {
   if (!html) return '';
   return html.replace(
-    /<img\s+[^>]*?src="([^"]+)"[^>]*?\/?>/g,
-    (_, src) => {
+    /<img\s+([^>]*?)\/?>/g,
+    (_, attrs) => {
+      const srcMatch   = attrs.match(/\bsrc="([^"]+)"/);
+      const titleMatch = attrs.match(/\btitle="([^"]*)"/);
+      if (!srcMatch) return '';
+      const src = srcMatch[1];
       const safeUrl = src.replace(/'/g, '%27');
       const variant = /\/images\/items\//.test(src) ? ' kigard-icon-item' : '';
-      return `<span class="kigard-icon${variant}" style="background-image:url('${safeUrl}')"></span>`;
+      const titleAttr = titleMatch && titleMatch[1]
+        ? ` title="${titleMatch[1].replace(/"/g, '&quot;')}"`
+        : '';
+      return `<span class="kigard-icon${variant}" style="background-image:url('${safeUrl}')"${titleAttr}></span>`;
     }
   );
 }
@@ -492,10 +510,10 @@ function openHelpModal(fiche) {
     parts.push(`<div class="help-subtype">${fiche.type}</div>`);
   }
   if (fiche.info_html) {
-    parts.push(`<div class="help-info">${sanitizeKigardIcons(fiche.info_html)}</div>`);
+    parts.push(`<div class="help-info">${sanitizeKigardIcons(dedupeIconLabels(fiche.info_html))}</div>`);
   }
   if (fiche.desc_html) {
-    parts.push(`<div class="help-desc">${decorateOutcomes(sanitizeKigardIcons(fiche.desc_html))}</div>`);
+    parts.push(`<div class="help-desc">${decorateOutcomes(sanitizeKigardIcons(dedupeIconLabels(fiche.desc_html)))}</div>`);
   }
   content.innerHTML = parts.join('');
   overlay.classList.add('open');

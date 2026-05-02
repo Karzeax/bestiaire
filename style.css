@@ -1009,6 +1009,19 @@ header p {
   flex-shrink: 0;
 }
 
+/* Neutralise les blocs avec fond blanc inline (ex: profils d'invocation Kigard
+   sur les sorts type Réveil des âmes/chairs/ossements). On les ré-habille pour
+   coller au thème sombre du modal. */
+.help-content div[style*="background-color:white"],
+.help-content div[style*="background-color: white"] {
+  background-color: rgba(255, 255, 255, .03) !important;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px !important;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
 @media (max-width: 640px) {
   .help-overlay { padding: 12px; }
   .help-modal { border-radius: 12px; }
