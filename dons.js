@@ -34,7 +34,7 @@ const DONS = {
     "name": "Légende",
     "type": "",
     "info_html": "",
-    "desc_html": "+3PA/tour. Laisse une Ame légendaire et + 5 Potions d'expérience lors de sa mort."
+    "desc_html": "+3PA/tour. Laisse une Ame légendaire et + 10 Potions d'expérience lors de sa mort."
   },
   "Morsure du froid": {
     "name": "Morsure du froid",
