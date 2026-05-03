@@ -277,6 +277,7 @@ const MONSTERS = [
       { id: 250, nom: "Orbe démon",           emplacement: "Une main" },
       { id: 228, nom: "Talisman du centaure", emplacement: "Fétiche" },
       { id: 15,  nom: "Potion d'expérience" },
+      { id: 298, nom: "Clé en ossements" },
       { id: 210, nom: "Sang" },
       { id: 259, nom: "Potion de vie" },
       { id: 0,   nom: "30-50" },
@@ -1199,7 +1200,8 @@ const MONSTERS = [
       ],
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 303, nom: "Potion de régénération" },
+      { id: 0, nom: "5-20" },
     ],
   },
   {
@@ -1228,7 +1230,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 3, nom: "Potion de vie mineure" },
-      { id: 0, nom: "10-20" },
+      { id: 0, nom: "5-20" },
     ],
   },
   {
@@ -1239,7 +1241,7 @@ const MONSTERS = [
     hp: 80,
     esq: "?",
     dm: 15,
-    arm: "?",
+    arm: 0,
     res: 6,
     competences: [
       { nom: "Piqûre",       type: "magie" },
@@ -1251,7 +1253,8 @@ const MONSTERS = [
       { id: 23,  nom: "Sceptre",  emplacement: "Une main" },    
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 61, nom: "Potion d'éther mineure" },
+      { id: 0, nom: "5-20" },
     ],
   },
   {
@@ -1271,7 +1274,7 @@ const MONSTERS = [
       { id: 34, nom: "Coutelas", emplacement: "Une main" },    
     ],
     drops: [
-      { id: 0, nom: "?" },
+      { id: 0, nom: "5-10" },
     ],
   },
   
