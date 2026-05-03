@@ -1238,9 +1238,9 @@ const MONSTERS = [
     rang: 1,
     hp: 80,
     esq: "?",
-    dm: "?",
+    dm: 15,
     arm: "?",
-    res: "?",
+    res: 6,
     competences: [
       { nom: "Piqûre",       type: "magie" },
       { nom: "Sournoiserie", type: "don" },
@@ -1329,9 +1329,9 @@ const MONSTERS = [
     rang: 1,
     hp: 80,
     esq: "?",
-    dm: "?",
+    dm: 0,
     arm: "?",
-    res: "?",
+    res: 0,
     competences: [
       { nom: "Ambidextrie",  type: "tech_combat" }, 
       { nom: "Sournoiserie", type: "don" }, 
