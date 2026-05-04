@@ -460,7 +460,7 @@ const MONSTERS = [
       { nom: "Coup de bouclier",       type: "tech_combat" },
       { nom: "Bravoure",               type: "don" },
       { nom: "Inflige 1 faille_icone", type: "don" },
-      { nom: "Inflige 1 assomé_icone", type: "don" },
+      { nom: "Inflige 1 assommé_icone", type: "don" },
     ],
     items: [
       { id: 155, nom: "Cabasset à cornes",  emplacement: "Tête" },
@@ -497,7 +497,7 @@ const MONSTERS = [
       { nom: "Recherche intuitive",    type: "tech_combat" },
       { nom: "Bravoure",               type: "don" },
       { nom: "Inflige 1 faille_icone", type: "don" },
-      { nom: "Inflige 1 assomé_icone", type: "don" },
+      { nom: "Inflige 1 assommé_icone", type: "don" },
     ],
     items: [
       { id: 317, nom: "Capuche de rôdeur", emplacement: "Tête" },
