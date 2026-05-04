@@ -136,10 +136,19 @@ function isWeaponSlot(emp) {
   return emp === 'Une main' || emp === 'Deux mains';
 }
 
-// Rendu d'une ligne d'item (utilisée sur carte et dans la modal via classes)
-function renderItemLine(it, containerClass, empClass) {
+// Renvoie true si l'item est cliquable (a une fiche dans ITEMS).
+function hasItemFiche(id) {
+  return typeof ITEMS === 'object' && ITEMS && ITEMS[id] !== undefined;
+}
+
+// Rendu d'une ligne d'item (utilisée sur carte et dans la modal via classes).
+// `clickable` (modal uniquement) ajoute la classe + data-item-id.
+function renderItemLine(it, containerClass, empClass, clickable) {
+  const isClickable = clickable && hasItemFiche(it.id);
+  const cls = isClickable ? `${containerClass} clickable` : containerClass;
+  const dataAttr = isClickable ? ` data-item-id="${it.id}"` : '';
   return `
-    <div class="${containerClass}">
+    <div class="${cls}"${dataAttr}>
       <span><img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}"></span>
       <span>${it.nom}</span>
       <span class="${empClass}">${it.emplacement}</span>
@@ -148,14 +157,19 @@ function renderItemLine(it, containerClass, empClass) {
 }
 
 // Rendu d'une variante (set d'armement alternatif : 1 ou N items sur une même ligne)
-function renderVarianteLine(variante, containerClass) {
-  const partsHTML = variante.map(it => `
-    <span class="variante-part">
-      <img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}">
-      <span class="variante-name">${it.nom}</span>
-      <span class="variante-emp">${it.emplacement}</span>
-    </span>
-  `).join('');
+function renderVarianteLine(variante, containerClass, clickable) {
+  const partsHTML = variante.map(it => {
+    const isClickable = clickable && hasItemFiche(it.id);
+    const cls = isClickable ? 'variante-part clickable' : 'variante-part';
+    const dataAttr = isClickable ? ` data-item-id="${it.id}"` : '';
+    return `
+      <span class="${cls}"${dataAttr}>
+        <img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}">
+        <span class="variante-name">${it.nom}</span>
+        <span class="variante-emp">${it.emplacement}</span>
+      </span>
+    `;
+  }).join('');
 
   return `
     <div class="${containerClass}">
@@ -168,7 +182,8 @@ function renderVarianteLine(variante, containerClass) {
 // Assemble items + variantes : variantes insérées juste après la dernière arme
 // du set principal (emplacement "Une main" ou "Deux mains"). Si pas d'arme dans
 // le set principal, variantes ajoutées à la fin.
-function buildItemsHTML(items, variantes, itemClass, empClass, varianteClass) {
+// `clickable` propage au sous-rendu (uniquement true depuis la modal).
+function buildItemsHTML(items, variantes, itemClass, empClass, varianteClass, clickable) {
   const hasVariantes = Array.isArray(variantes) && variantes.length > 0;
   const lastWeaponIdx = items.reduce(
     (last, it, i) => isWeaponSlot(it.emplacement) ? i : last,
@@ -177,14 +192,14 @@ function buildItemsHTML(items, variantes, itemClass, empClass, varianteClass) {
 
   let html = '';
   items.forEach((it, i) => {
-    html += renderItemLine(it, itemClass, empClass);
+    html += renderItemLine(it, itemClass, empClass, clickable);
     if (i === lastWeaponIdx && hasVariantes) {
-      html += variantes.map(v => renderVarianteLine(v, varianteClass)).join('');
+      html += variantes.map(v => renderVarianteLine(v, varianteClass, clickable)).join('');
     }
   });
 
   if (lastWeaponIdx === -1 && hasVariantes) {
-    html += variantes.map(v => renderVarianteLine(v, varianteClass)).join('');
+    html += variantes.map(v => renderVarianteLine(v, varianteClass, clickable)).join('');
   }
 
   return html;
@@ -192,15 +207,19 @@ function buildItemsHTML(items, variantes, itemClass, empClass, varianteClass) {
 
 // Rendu d'un drop (emplacement optionnel : certains drops sont des items
 // d'équipement, d'autres sont des matériaux comme "Fibre violette" ou "Encre").
-function renderDropLine(d) {
+// Cliquable uniquement si l'item a un emplacement ET une fiche dans ITEMS.
+function renderDropLine(d, clickable) {
   const imgUrl = d.id === 0
     ? 'https://www.kigard.fr/images/interface/session_po.gif'
     : `https://www.kigard.fr/images/items/${d.id}.gif`;
   const empHTML = d.emplacement
     ? `<span class="drop-emp">${d.emplacement}</span>`
     : '';
+  const isClickable = clickable && d.id !== 0 && d.emplacement && hasItemFiche(d.id);
+  const cls = isClickable ? 'drop-item clickable' : 'drop-item';
+  const dataAttr = isClickable ? ` data-item-id="${d.id}"` : '';
   return `
-    <span class="drop-item">
+    <span class="${cls}"${dataAttr}>
       <img src="${imgUrl}" alt="${d.nom}" title="${d.nom}">
       <span class="drop-name">${parseCompetenceText(d.nom)}</span>
       ${empHTML}
@@ -359,8 +378,8 @@ function openModal(m) {
     `;
   }).join('');
 
-  const itemsHTML = buildItemsHTML(m.items, m.variantes, 'modal-item', 'emp', 'modal-variante-item');
-  const dropsHTML = m.drops.map(renderDropLine).join('');
+  const itemsHTML = buildItemsHTML(m.items, m.variantes, 'modal-item', 'emp', 'modal-variante-item', true);
+  const dropsHTML = m.drops.map(d => renderDropLine(d, true)).join('');
 
   content.innerHTML = `
     <button class="modal-close" id="modal-close-btn">✕</button>
@@ -441,6 +460,16 @@ function openModal(m) {
       if (fiche) openHelpModal(fiche);
     });
   });
+
+  // Clic sur un item (item équipé, variante, ou drop avec emplacement) → fiche d'item
+  content.querySelectorAll('[data-item-id]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = el.dataset.itemId;
+      const item = (typeof ITEMS === 'object' && ITEMS) ? ITEMS[id] : null;
+      if (item) openItemModal(item);
+    });
+  });
 }
 
 // Icônes inline pour les jets de dés (Réussite / Semi-réussite / Critique).
@@ -503,6 +532,7 @@ function openHelpModal(fiche) {
   const overlay = document.getElementById('help-modal-overlay');
   const content = document.getElementById('help-content');
   if (!overlay || !content) return;
+  content.classList.remove('is-item-fiche');
 
   const parts = [];
   parts.push(`<h3 class="help-title">${fiche.name || ''}</h3>`);
@@ -526,10 +556,183 @@ function closeHelpModal() {
   const overlay = document.getElementById('help-modal-overlay');
   if (!overlay) return;
   overlay.classList.remove('open');
+  // On retire la classe item-fiche au cas où le prochain ouvert soit une compétence
+  const content = document.getElementById('help-content');
+  if (content) content.classList.remove('is-item-fiche');
 }
 
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
+}
+
+// ── Fiche d'item (rendu natif sombre) ─────────────────────────
+const ELEMENT_ICONS = {
+  'Feu':     'https://www.kigard.fr/images/elements/1.gif?v=2.15.06',
+  'Glace':   'https://www.kigard.fr/images/elements/2.gif?v=2.15.06',
+  'Foudre':  'https://www.kigard.fr/images/elements/3.gif?v=2.15.06',
+  'Lumière': 'https://www.kigard.fr/images/elements/4.gif?v=2.15.06',
+  'Ombre':   'https://www.kigard.fr/images/elements/5.gif?v=2.15.06',
+};
+
+const STATUS_ICONS = {
+  'Assommé':    'https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06',
+  'Faille':     'https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06',
+  'Nécrose':    'https://www.kigard.fr/images/modificateur/9.gif?v=2.15.06',
+  'Brûlure':    'https://www.kigard.fr/images/modificateur/16.gif?v=2.15.06',
+  'Saignement': 'https://www.kigard.fr/images/modificateur/17.gif?v=2.15.06',
+  'Terreur':    'https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06',
+  'Cécité':     'https://www.kigard.fr/images/modificateur/38.gif?v=2.15.06',
+};
+
+const PARCHEMIN_ICON = 'https://www.kigard.fr/images/items/52.gif?v=2.15.06';
+
+const WEIGHT_ICON_SVG = '<svg class="weight-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M510.28 445.86l-73-292a16 16 0 0 0-15.51-12.36H320.7c1.45-5 2.69-10 2.69-15.4a64 64 0 0 0-128 0c0 5.4 1.24 10.4 2.69 15.4H93.27a16 16 0 0 0-15.51 12.36l-73 292A16 16 0 0 0 20.6 464h470.8a16 16 0 0 0 18.88-18.14zM256 64a32 32 0 1 1-32 32 32 32 0 0 1 32-32z"/></svg>';
+
+// Stats à afficher avec leur libellé et leur format
+// (les stats marquées 'percent' s'affichent avec %)
+const ITEM_STAT_DEFS = [
+  // Caracs
+  { key: 'FOR',       label: 'FOR',  percent: false },
+  { key: 'DEX',       label: 'DEX',  percent: false },
+  { key: 'INT',       label: 'INT',  percent: false },
+  { key: 'CON',       label: 'CON',  percent: false },
+  { key: 'ESP',       label: 'ESP',  percent: false },
+  { key: 'CHA',       label: 'CHA',  percent: false },
+  // Combat / magie
+  { key: 'ARM',       label: 'ARM',  percent: false },
+  { key: 'RES',       label: 'RES',  percent: false },
+  { key: 'BonusDGT',  label: 'DGT',  percent: false },
+  { key: 'BonusMAG',  label: 'MAG',  percent: false },
+  { key: 'Bonus PA',  label: 'PA',   percent: false },
+  // Stats secondaires
+  { key: 'PRE',       label: 'PRE',  percent: true },
+  { key: 'ESQ',       label: 'ESQ',  percent: true },
+  { key: 'MM',        label: 'MM',   percent: true },
+  { key: 'DM',        label: 'DM',   percent: true },
+  { key: 'OBS',       label: 'OBS',  percent: true },
+  { key: 'DIS',       label: 'DIS',  percent: true },
+];
+
+function fmtSigned(n, percent) {
+  const sign = n >= 0 ? '+' : '';
+  return sign + n + (percent ? '%' : '');
+}
+
+function elementIconHtml(name) {
+  const url = ELEMENT_ICONS[name];
+  if (!url) return '';
+  return `<span class="kigard-icon" style="background-image:url('${url}')" title="${name}"></span>`;
+}
+
+function statusIconHtml(name) {
+  const url = STATUS_ICONS[name];
+  if (!url) return '';
+  return `<span class="kigard-icon" style="background-image:url('${url}')" title="${name}"></span>`;
+}
+
+function renderItemFiche(item) {
+  const isWeapon = item.usageCost !== undefined;
+  const type     = isWeapon ? 'Arme' : 'Equipement';
+  const iconUrl  = `https://www.kigard.fr/images/items/${item.id}.gif?v=2.15.06`;
+  const iconCls  = 'item-icon kigard-icon-item';
+
+  let html = `
+    <div class="item-header">
+      <span class="${iconCls}" style="background-image:url('${iconUrl}')"></span>
+      <span class="item-name">${item.name}</span>
+    </div>
+    <div class="item-meta">
+      <span>${type}</span>
+      <span>${item.slot}</span>
+    </div>
+    <div class="item-body">
+  `;
+
+  // ── Section Caractéristiques (armes uniquement) ──
+  if (isWeapon) {
+    html += `<div class="item-section-title">Caractéristiques</div>`;
+    html += `<div class="effect-line"><span class="label">Coût</span><span class="stat-value">${item.usageCost} PA</span></div>`;
+    if (item.range) {
+      html += `<div class="effect-line"><span class="label">Portée</span><span class="stat-value">${item.range.min} à ${item.range.max}</span></div>`;
+    }
+    if (item.element) {
+      html += `<div class="effect-line"><span class="label">Élément</span>${elementIconHtml(item.element)}<span class="stat-value">${item.element}</span></div>`;
+    }
+  }
+
+  // ── Section Stats ──
+  const statLines = [];
+  for (const def of ITEM_STAT_DEFS) {
+    const v = item[def.key];
+    if (v === undefined || v === 0) continue;
+    statLines.push(`<div class="stat-line"><span class="stat-name">${def.label}</span><span class="stat-value">${fmtSigned(v, def.percent)}</span></div>`);
+  }
+  if (item.regeneration) {
+    statLines.push(`<div class="stat-line"><span class="stat-name">PV</span><span class="stat-value">+${item.regeneration}/tour</span></div>`);
+  }
+  if (statLines.length) {
+    if (isWeapon) html += `<div class="item-section-title">Stats</div>`;
+    html += statLines.join('');
+  }
+
+  // ── Section Résistances élémentaires ──
+  if (Array.isArray(item.elementaryResistances) && item.elementaryResistances.length) {
+    html += `<div class="item-section-title">Résistances élémentaires</div>`;
+    for (const r of item.elementaryResistances) {
+      html += `<div class="effect-line">${elementIconHtml(r.element)}<span class="stat-value">+${r.value}%</span></div>`;
+    }
+  }
+
+  // ── Section Effets ──
+  const hasStatus    = Array.isArray(item.status) && item.status.length;
+  const hasAffinity  = !!item.elementaryAffinity;
+  const hasMagSpace  = !!item.magicalSpace;
+  if (hasStatus || hasAffinity || hasMagSpace) {
+    html += `<div class="item-section-title">Effets</div>`;
+
+    if (hasStatus) {
+      for (const s of item.status) {
+        html += `<div class="effect-line"><span class="label">Inflige</span><span class="stat-value">${s.value}</span>${statusIconHtml(s.status)}<span class="stat-value">${s.status}</span></div>`;
+      }
+    }
+
+    if (hasAffinity) {
+      html += `
+        <div class="affinity-block">
+          <div class="affinity-title">Affinité élémentaire ${elementIconHtml(item.elementaryAffinity)}</div>
+          <div class="affinity-formula"><b>MAG +2</b> et <b>MM +10</b> pour lancer un sort de cet élément.</div>
+        </div>
+      `;
+    }
+
+    if (hasMagSpace) {
+      for (let i = 0; i < item.magicalSpace; i++) {
+        html += `
+          <div class="scroll-slot">
+            <span class="kigard-icon" style="background-image:url('${PARCHEMIN_ICON}')"></span>
+            — emplacement libre —
+          </div>
+        `;
+      }
+    }
+  }
+
+  html += `
+    </div>
+    <div class="item-footer">${WEIGHT_ICON_SVG} ${item.weight}</div>
+  `;
+  return html;
+}
+
+function openItemModal(item) {
+  const overlay = document.getElementById('help-modal-overlay');
+  const content = document.getElementById('help-content');
+  if (!overlay || !content) return;
+  content.classList.add('is-item-fiche');
+  content.innerHTML = renderItemFiche(item);
+  overlay.classList.add('open');
+  const modal = overlay.querySelector('.help-modal');
+  if (modal) modal.scrollTop = 0;
 }
 
 // ── Rendu liste ───────────────────────────────────────────────

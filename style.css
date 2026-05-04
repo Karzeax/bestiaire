@@ -1022,6 +1022,154 @@ header p {
   line-height: 1.6;
 }
 
+/* ── Fiche d'item dans le modal d'aide ── */
+.help-content.is-item-fiche { padding: 0; }
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.item-header .item-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  image-rendering: pixelated;
+}
+.item-header .item-icon.kigard-icon-item { background-size: 140%; }
+.item-header .item-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: #f0f4ff;
+  flex: 1;
+  margin-right: 36px;  /* place pour le bouton fermer absolu */
+}
+
+.item-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 24px;
+  font-style: italic;
+  font-size: .9rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.item-body {
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.item-section-title {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--muted);
+  margin: 10px 0 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--border);
+}
+.item-section-title:first-child { margin-top: 0; }
+
+.stat-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.stat-name { color: var(--accent2); min-width: 48px; }
+.stat-value { color: #f0f4ff; }
+
+.effect-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .92rem;
+  color: var(--text);
+}
+.effect-line .label {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.scroll-slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-style: italic;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.scroll-slot .kigard-icon { width: 18px; height: 18px; margin: 0; }
+
+.affinity-block { margin-top: 2px; }
+.affinity-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #f0f4ff;
+  font-size: .95rem;
+  margin-bottom: 4px;
+}
+.affinity-title .kigard-icon { width: 18px; height: 18px; margin: 0; }
+.affinity-formula {
+  font-size: .9rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.affinity-formula b { color: #f0f4ff; }
+
+.item-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px 14px;
+  font-size: .9rem;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+}
+.weight-icon {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  opacity: .8;
+}
+
+/* État cliquable sur les items dans la modal monstre */
+.modal-item.clickable,
+.modal-variante-item .variante-part.clickable,
+.drop-item.clickable {
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s;
+}
+@media (hover: hover) {
+  .modal-item.clickable:hover {
+    background-color: rgba(124, 77, 255, .1);
+    border-color: var(--accent);
+  }
+  .drop-item.clickable:hover {
+    background-color: rgba(124, 77, 255, .1);
+    border-color: var(--accent);
+  }
+  .modal-variante-item .variante-part.clickable:hover {
+    color: #f0f4ff;
+  }
+}
+
 @media (max-width: 640px) {
   .help-overlay { padding: 12px; }
   .help-modal { border-radius: 12px; }

@@ -16,7 +16,7 @@ const COMPETENCES = {
     "name": "Coup de bouclier",
     "type": "Technique (Attaque)",
     "info_html": "3 PA • Portée 1 • <span class='rouge'>Requis : Bouclier (main gauche)",
-    "desc_html": "Attaque du <b>bouclier</b> avec <b>2 <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Malus d'Esquive\" alt=\"\" /> Malus d'Esquive</b>.<br><br>Base de dégâts: <b>CON</b> <i>(au lieu de FOR)</i><br><br><i>Le bouclier est considéré comme une arme avec +0 DGT et +0 Pre.<i>"
+    "desc_html": "Attaque du <b>bouclier</b> avec <b>2 <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Assommé\" alt=\"\" /> Assommé</b>.<br><br>Base de dégâts: <b>CON</b> <i>(au lieu de FOR)</i><br><br><i>Le bouclier est considéré comme une arme avec +0 DGT et +0 Pre.<i>"
   },
   "25": {
     "name": "Foudre",
@@ -148,7 +148,7 @@ const COMPETENCES = {
     "name": "Réveil des ossements",
     "type": "Sortilège (Invocation)",
     "info_html": "4 PA & PM • Dépouille • Portée 1 à 2",
-    "desc_html": "Relève un <b><img src=\"https://www.kigard.fr/images/vue/monstre/19.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Squelette</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil du <img src=\"https://www.kigard.fr/images/vue/monstre/19.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Squelette</b><br>Invocation mineure<br><br>FOR <b>0.6 x MAG</b><br>CON <b>0.2 x MAG</b><br>ESP <b>0.2 x MAG</b><br>Pre <b>1.5 x MAG</b><br><br><b>Vulnérabilité Lumière <img src=\"https://www.kigard.fr/images/elements/4.gif?v=2.15.06\" class=\"elements\" title=\"Lumière\" alt=\"\" /> 30%</b><br>DGT <b>+3</b><br><br><u>Bonus <b>Critique</b>:</u><br><b>Attaque précise</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Malus de Volonté\" alt=\"\" /> Malus de Volonté</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i><br><br>Note : le contenu de la <b>dépouille</b> est ramassé."
+    "desc_html": "Relève un <b><img src=\"https://www.kigard.fr/images/vue/monstre/19.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Squelette</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil du <img src=\"https://www.kigard.fr/images/vue/monstre/19.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Squelette</b><br>Invocation mineure<br><br>FOR <b>0.6 x MAG</b><br>CON <b>0.2 x MAG</b><br>ESP <b>0.2 x MAG</b><br>Pre <b>1.5 x MAG</b><br><br><b>Vulnérabilité Lumière <img src=\"https://www.kigard.fr/images/elements/4.gif?v=2.15.06\" class=\"elements\" title=\"Lumière\" alt=\"\" /> 30%</b><br>DGT <b>+3</b><br><br><u>Bonus <b>Critique</b>:</u><br><b>Attaque précise</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Terreur\" alt=\"\" /> Terreur</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i><br><br>Note : le contenu de la <b>dépouille</b> est ramassé."
   },
   "88": {
     "name": "Attaque précise",
@@ -268,7 +268,7 @@ const COMPETENCES = {
     "name": "Subversion",
     "type": "Sortilège (Hostile)",
     "info_html": "4 PA & PM • Portée 1 à 3",
-    "desc_html": "Inflige <b>(MAG/10) <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Malus de Volonté\" alt=\"\" /> Malus de Volonté</b> et confère au lanceur <b> autant de <img src=\"https://www.kigard.fr/images/modificateur/40.gif?v=2.15.06\" class=\"statut\" title=\"Bonus de Volonté\" alt=\"\" /> Bonus de Volonté</b>."
+    "desc_html": "Inflige <b>(MAG/10) <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Terreur\" alt=\"\" /> Terreur</b> et confère au lanceur <b> autant de <img src=\"https://www.kigard.fr/images/modificateur/40.gif?v=2.15.06\" class=\"statut\" title=\"Bonus de Volonté\" alt=\"\" /> Bonus de Volonté</b>."
   },
   "133": {
     "name": "Attaque rapide",
@@ -370,7 +370,7 @@ const COMPETENCES = {
     "name": "Assommer",
     "type": "Technique (Attaque)",
     "info_html": "(Coût Arme + 2) PA • Portée Arme • <span class='rouge'>Requis : Masse, Gant ou Fusil",
-    "desc_html": "Attaque de l'<b>arme principale</b> avec <b>3 <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Malus d'Esquive\" alt=\"\" /> Malus d'Esquive</b>."
+    "desc_html": "Attaque de l'<b>arme principale</b> avec <b>3 <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Assommé\" alt=\"\" /> Assommé</b>."
   },
   "163": {
     "name": "Vigilance",
@@ -418,7 +418,7 @@ const COMPETENCES = {
     "name": "Disloquer",
     "type": "Technique (Attaque)",
     "info_html": "(Coût Arme + 2) PA • Portée Arme • <span class='rouge'>Requis : Masse, Hache, Lance ou Fusil",
-    "desc_html": "Attaque de l'<b>arme principale</b> avec <b>3 <img src=\"https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06\" class=\"statut\" title=\"Malus d'Armure\" alt=\"\" /> Malus d'Armure</b>."
+    "desc_html": "Attaque de l'<b>arme principale</b> avec <b>3 <img src=\"https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06\" class=\"statut\" title=\"Faille\" alt=\"\" /> Faille</b>."
   },
   "172": {
     "name": "Entailler",
@@ -442,7 +442,7 @@ const COMPETENCES = {
     "name": "Ravager",
     "type": "Technique (Attaque)",
     "info_html": "(Coût Arme + 2) PA • Portée Arme",
-    "desc_html": "Attaque de l'<b>arme principale</b>.<br><br>Les statuts suivants ont leurs effets <b>doublés pendant l'action</b>: <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Malus d'Esquive\" alt=\"\" /><img src=\"https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06\" class=\"statut\" title=\"Malus d'Armure\" alt=\"\" /><img src=\"https://www.kigard.fr/images/modificateur/28.gif?v=2.15.06\" class=\"statut\" title=\"Impact\" alt=\"\" />"
+    "desc_html": "Attaque de l'<b>arme principale</b>.<br><br>Les statuts suivants ont leurs effets <b>doublés pendant l'action</b>: <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Assommé\" alt=\"\" /><img src=\"https://www.kigard.fr/images/modificateur/3.gif?v=2.15.06\" class=\"statut\" title=\"Faille\" alt=\"\" /><img src=\"https://www.kigard.fr/images/modificateur/28.gif?v=2.15.06\" class=\"statut\" title=\"Impact\" alt=\"\" />"
   },
   "176": {
     "name": "Permutation",
@@ -472,7 +472,7 @@ const COMPETENCES = {
     "name": "Tourmenter",
     "type": "Technique (Attaque)",
     "info_html": "(Coût Arme) PA & PM • Portée 1 • <span class='rouge'>Requis : Arme de contact",
-    "desc_html": "Attaque <b>de Ténèbres <img src=\"https://www.kigard.fr/images/elements/5.gif?v=2.15.06\" class=\"elements\" title=\"Ombre\" alt=\"\" /></b> de l'<b>arme principale</b> avec <b>3 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Malus de Volonté\" alt=\"\" /> Malus de Volonté</b>.<br><br>Chaque niveau de <b>Malus de Volonté</b> déjà présent donne <b>+5 de Précision (maximum +30)</b>."
+    "desc_html": "Attaque <b>de Ténèbres <img src=\"https://www.kigard.fr/images/elements/5.gif?v=2.15.06\" class=\"elements\" title=\"Ombre\" alt=\"\" /></b> de l'<b>arme principale</b> avec <b>3 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Terreur\" alt=\"\" /> Terreur</b>.<br><br>Chaque niveau de <b>Terreur</b> déjà présent donne <b>+5 de Précision (maximum +30)</b>."
   },
   "181": {
     "name": "Maléfice de saignement",
@@ -490,19 +490,19 @@ const COMPETENCES = {
     "name": "Réveil des chairs",
     "type": "Sortilège (Invocation)",
     "info_html": "4 PA & PM • Dépouille • Portée 1 à 2",
-    "desc_html": "Relève une <b><img src=\"https://www.kigard.fr/images/vue/monstre/77.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Goule</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil de la <img src=\"https://www.kigard.fr/images/vue/monstre/77.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Goule</b><br>Invocation mineure<br><br>FOR <b>0.6 x MAG</b><br>CON <b>0.3 x MAG</b><br>ESP <b>0.2 x MAG</b><br>Pre <b>1.0 x MAG</b><br><br><b>Vulnérabilité Lumière <img src=\"https://www.kigard.fr/images/elements/4.gif?v=2.15.06\" class=\"elements\" title=\"Lumière\" alt=\"\" /> 30%</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/9.gif?v=2.15.06\" class=\"statut\" title=\"Nécrose\" alt=\"\" /> Nécrose</b><br><br><u>Bonus <b>Critique</b>:</u><br><b>Attaque défensive</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Malus de Volonté\" alt=\"\" /> Malus de Volonté</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i><br><br>Note : le contenu de la <b>dépouille</b> est ramassé."
+    "desc_html": "Relève une <b><img src=\"https://www.kigard.fr/images/vue/monstre/77.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Goule</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil de la <img src=\"https://www.kigard.fr/images/vue/monstre/77.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Goule</b><br>Invocation mineure<br><br>FOR <b>0.6 x MAG</b><br>CON <b>0.3 x MAG</b><br>ESP <b>0.2 x MAG</b><br>Pre <b>1.0 x MAG</b><br><br><b>Vulnérabilité Lumière <img src=\"https://www.kigard.fr/images/elements/4.gif?v=2.15.06\" class=\"elements\" title=\"Lumière\" alt=\"\" /> 30%</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/9.gif?v=2.15.06\" class=\"statut\" title=\"Nécrose\" alt=\"\" /> Nécrose</b><br><br><u>Bonus <b>Critique</b>:</u><br><b>Attaque défensive</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Terreur\" alt=\"\" /> Terreur</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i><br><br>Note : le contenu de la <b>dépouille</b> est ramassé."
   },
   "184": {
     "name": "Réveil des âmes",
     "type": "Sortilège (Invocation)",
     "info_html": "4 PA & PM • Dépouille • Portée 1 à 2",
-    "desc_html": "Relève un <b><img src=\"https://www.kigard.fr/images/vue/monstre/72.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Fantôme</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil du <img src=\"https://www.kigard.fr/images/vue/monstre/72.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Fantôme</b><br>Invocation mineure<br><br>FOR <b>0.4 x MAG</b><br>INT <b>0.4 x MAG</b><br>CON <b>0.2 x MAG</b><br>ESP <b>0.4 x MAG</b><br>Pre <b>1.0 x MAG</b><br>MM <b>1.0 x MAG</b><br>Esq <b>0.5 x MAG</b><br>DM <b>0.5 x MAG</b><br><br><b>Vulnérabilité Lumière <img src=\"https://www.kigard.fr/images/elements/4.gif?v=2.15.06\" class=\"elements\" title=\"Lumière\" alt=\"\" /> 30%</b><br><b>Siphonner</b><br><br><u>Bonus <b>Critique</b>:</u><br><b>Vol de magie</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Malus de Volonté\" alt=\"\" /> Malus de Volonté</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i><br><br>Note : le contenu de la <b>dépouille</b> est ramassé."
+    "desc_html": "Relève un <b><img src=\"https://www.kigard.fr/images/vue/monstre/72.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Fantôme</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil du <img src=\"https://www.kigard.fr/images/vue/monstre/72.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Fantôme</b><br>Invocation mineure<br><br>FOR <b>0.4 x MAG</b><br>INT <b>0.4 x MAG</b><br>CON <b>0.2 x MAG</b><br>ESP <b>0.4 x MAG</b><br>Pre <b>1.0 x MAG</b><br>MM <b>1.0 x MAG</b><br>Esq <b>0.5 x MAG</b><br>DM <b>0.5 x MAG</b><br><br><b>Vulnérabilité Lumière <img src=\"https://www.kigard.fr/images/elements/4.gif?v=2.15.06\" class=\"elements\" title=\"Lumière\" alt=\"\" /> 30%</b><br><b>Siphonner</b><br><br><u>Bonus <b>Critique</b>:</u><br><b>Vol de magie</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/20.gif?v=2.15.06\" class=\"statut\" title=\"Terreur\" alt=\"\" /> Terreur</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i><br><br>Note : le contenu de la <b>dépouille</b> est ramassé."
   },
   "185": {
     "name": "Invocation de la roche",
     "type": "Sortilège (Invocation)",
     "info_html": "8 PA & PM • Rocher • Portée 1 à 2",
-    "desc_html": "Transforme un rocher en un <b> <img src=\"https://www.kigard.fr/images/vue/monstre/16.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Golem de pierre</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil du <img src=\"https://www.kigard.fr/images/vue/monstre/16.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Golem de pierre</b><br>Invocation majeure<br><br>FOR <b>0.6 x MAG</b><br>CON <b>0.6 x MAG</b><br>ESP <b>0.5 x MAG</b><br>Pre <b>1.0 x MAG</b><br><br>ARM <b>+6</b><br><br><u>Bonus <b>Critique</b>:</u><br>ARM <b>+3</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Malus d'Esquive\" alt=\"\" /> Malus d'Esquive</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i>"
+    "desc_html": "Transforme un rocher en un <b> <img src=\"https://www.kigard.fr/images/vue/monstre/16.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Golem de pierre</b>.<br><br><div style='background-color:white;padding:20px'><b>Profil du <img src=\"https://www.kigard.fr/images/vue/monstre/16.gif?v=2.15.06\" class=\"vue\" title=\"\" alt=\"\" /> Golem de pierre</b><br>Invocation majeure<br><br>FOR <b>0.6 x MAG</b><br>CON <b>0.6 x MAG</b><br>ESP <b>0.5 x MAG</b><br>Pre <b>1.0 x MAG</b><br><br>ARM <b>+6</b><br><br><u>Bonus <b>Critique</b>:</u><br>ARM <b>+3</b><br><b>Inflige 1 <img src=\"https://www.kigard.fr/images/modificateur/1.gif?v=2.15.06\" class=\"statut\" title=\"Assommé\" alt=\"\" /> Assommé</b></div><br> <b>Semi-réussite</b>: aucun effet (comme <b>Echec</b>)<br> <b>Critique</b>: gagne <b>un trait</b> et les <b>bonus listés</b> <i>(valeur de MAG non augmentée)</i>"
   },
   "186": {
     "name": "Invocation du givre",
