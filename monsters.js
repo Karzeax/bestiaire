@@ -26,8 +26,8 @@ const MONSTERS = [
       { id: 186, nom: "Perle",               emplacement: "Fétiche" }
     ],
     drops: [
-      { id: 342, nom: "Encre" },
       { id: 142, nom: "Fibre violette" },
+      { id: 342, nom: "Encre" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Il est difficile de savoir si la peur d'être observé est apparue avant ou après les Observateurs de l'Ombre. Une chose est certaine cependant : leur regard perçant glace le sang, d'autant qu'ils sont la majeure partie du temps fondue dans les ombres au point d'être complètement invisibles, ne laissant que cette horrible sensation d'être surveillé. Apparition sur les murs, ombres s'allongeant sur le sol, leur corps quasi translucide ne se dessine qu'aux rayons de lune qui découpent leur silhouette effroyablement humanoïde. Une vieille légende de Nandor raconte que quiconque voit un Observateur connaît un destin tragique dans les quelques jours à venir."
@@ -57,9 +57,9 @@ const MONSTERS = [
       { id: 362, nom: "Dague sinistre",     emplacement: "Une main" }
     ],
     drops: [
-      { id: 342, nom: "Encre" },
       { id: 298, nom: "Clé en ossements" },
       { id: 67,  nom: "Dents" },
+      { id: 342, nom: "Encre" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Les Matagots sont des esprits qui hantent les cimetières. Des âmes-sorcières qui ont pris dans la mort l'apparence de chat noir aux yeux de rubis. Des monstruosités qui peuvent grandir ou rétrécir à volonté dans la pénombre. Leur discrétion est à la hauteur de leur souplesse. Si leur morsure est à craindre, c'est surtout leur sournoiserie qui fait frémir les baroudeurs, même les plus expérimentés. Nombreux sont les voyageurs ayant cru s'en prendre à un matagot et en ressortir vivant, pour finalement se retrouver quelques mètres plus loin, aux mains d'ennemis bien plus nombreux que prévu. Car le matagot a une petite astuce, que ce soit pour attaquer ou pour fuir : si sa proie ne veut pas s'approcher, le chat-sorcier peut bien décider pour lui."
@@ -149,10 +149,10 @@ const MONSTERS = [
       { id: 337, nom: "Eventail noble",      emplacement: "Une main" }
     ],
     drops: [
-      { id: 176, nom: "Gemme améthyste" },
-      { id: 369, nom: "Ame légendaire", emplacement: "Fétiche" },
-      { id: 177, nom: "Diadème",        emplacement: "Tête" },
+      { id: 369, nom: "Ame légendaire",      emplacement: "Fétiche" },
+      { id: 177, nom: "Diadème",             emplacement: "Tête" },
       { id: 15,  nom: "Potion d'expérience" },
+      { id: 176, nom: "Gemme améthyste" },
       { id: 342, nom: "Encre" },
       { id: 0,   nom: "30-50" },
     ],
@@ -186,8 +186,8 @@ const MONSTERS = [
       ],
     ],
     drops: [
-      { id: 210, nom: "Sang" },
       { id: 178, nom: "Potion de vigueur" },
+      { id: 210, nom: "Sang" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Les Adorateurs sont les bourreaux des cultistes, des êtres qui trouvèrent dans cette nouvelle idéologie une nouvelle façon de vivre ce qui jadis leur était interdit. À quoi bon s’en faire de tuer dans un monde où la mort est partout après tout ? Leur soif de sang ne sera épanchée que le jour où la dernière tête du dernier vivant tombera, et comme il en vient régulièrement, des aventuriers pensant pouvoir les sauver, cela fait bien leur affaire. Si d’aventure, vous voudriez leur faire entendre raison, vous ne tomberez que sur un visage émacié, à l’haleine suintant le fer et balbutiant des mots obscènes, vous faisant comprendre bien vite que la chose qui se tient devant vous n’est plus que l’ombre d’un humain. Un fou aurait plus d’humanité."
@@ -216,10 +216,10 @@ const MONSTERS = [
       { id: 77,  nom: "Souliers en soie",   emplacement: "Pieds" }
     ],
     drops: [
-      { id: 210, nom: "Sang" },
-      { id: 45,  nom: "Viande" },
-      { id: 221, nom: "Fiole d'argent" },
       { id: 298, nom: "Clé en ossements" },
+      { id: 221, nom: "Fiole d'argent" },
+      { id: 45,  nom: "Viande" },
+      { id: 210, nom: "Sang" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Les pactisants sont poussés leur recherche de solution jusqu’à sacrifier une partie d’eux-mêmes afin d’obtenir d’un autre monde, d’une autre réalité, des pouvoirs bien obscurs. Souvent insuffisants, ils cherchent désormais comment tirer de cet autre monde qu’ils ont pu entrevoir le pouvoir nécessaire non plus pour réparer les maux, mais pour devenir plus puissants encore. Car avoir vu l’autre-monde les a rendu aveugles, comme à chaque fois qu’on observe l’abîme et qu’il nous observe en retour. Ce qu’ils ont vu là-bas a dévoré leur humanité et ils ne restent désormais d’eux qu’une coquille désespérée d’obtenir davantage, libérant des diablotins pour assouvir leur pulsion de domination et de mort."
@@ -243,10 +243,10 @@ const MONSTERS = [
     items: [
     ],
     drops: [
-      { id: 210, nom: "Sang" },
+      { id: 15,  nom: "Potion d'expérience" },
       { id: 68,  nom: "Estomac" },
       { id: 73,  nom: "Tripes" },
-      { id: 15,  nom: "Potion d'expérience" },
+      { id: 210, nom: "Sang" },
       { id: 0,   nom: "20-40" },
     ],
     description: "La gelée de sang émerge du sol ou tombe mollement des arbres qui généralement les abritent. Il apparaît comme une masse visqueuse, d’un carmin brillant. Ses contours fluctuants semblent constamment en mutation alors qu’il tente par tous les moyens de piéger toute source de vie à même son corps. Des éclats d’os et de métal sont piégés dans sa gelée sinistre, témoins des précédentes victimes à peine digérées. Une odeur de soufre et de fer flotte partout où il va, indiquant bien souvent sa présence avant qu’on ne l’aperçoive. La simple vue de ce limon éveille généralement chez les aventuriers une frayeur toute primale."
@@ -273,13 +273,13 @@ const MONSTERS = [
     items: [
     ],
     drops: [
+      { id: 228, nom: "Talisman du centaure", emplacement: "Fétiche" },
       { id: 369, nom: "Ame légendaire",       emplacement: "Fétiche" },
       { id: 250, nom: "Orbe démon",           emplacement: "Une main" },
-      { id: 228, nom: "Talisman du centaure", emplacement: "Fétiche" },
       { id: 15,  nom: "Potion d'expérience" },
       { id: 298, nom: "Clé en ossements" },
-      { id: 210, nom: "Sang" },
       { id: 259, nom: "Potion de vie" },
+      { id: 210, nom: "Sang" },
       { id: 0,   nom: "30-50" },
     ],
     description: "On devine un corps fluide et visqueux sous le sang, à la silhouette féminine. Il semble sculpté à partir d’une matière fluide mais poisseuse, élégante et dérangeante à la fois. Sa peau reflète de multiples nuances de carmin, créant de subtil dégradé de pourpre, donnant l’impression d’une cascade de sang en perpétuel mouvement. Elle semble tout à la fois solide et liquide, douce et sinistre, à l’instar de la petite mélodie qui s’échappe d’elle. Comme un murmure lointain et indiscernable, il provoque des émotions contradictoires, de fascination et de crainte. A proximité, la seule chose qui frappe est le rythme très régulier des battements de son cœur qui vous parvient, éclipsant tous les autres sons."
@@ -342,8 +342,8 @@ const MONSTERS = [
       { id: 229, nom: "Chaussons en soie", emplacement: "Pieds" },
     ],
     drops: [
-      { id: 343, nom: "Poudre noire" },
       { id: 438, nom: "Elixir d'énergie" },
+      { id: 343, nom: "Poudre noire" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Les Lampades sont des nymphes de l'Ardent, dont les flammes lèchent leur nuque à la façon d'une cascade de cheveux roux. Leur corps est semble-t-il couvert d'une épaisse suie noire ce qui leur donne cet aspect sombre et terreux. Lorsqu'elles se déplacent, elles sont aussi légères et nébuleuses que la flammèche qui vacille au vent. D'une nature dominante, les lampades ont pour arme un fouet de feu qui lacère et cautérise à la fois les plaies, ne permettant pas à sa proie de mourir, comme pour mieux se délecter de sa souffrance. Attirantes derrière leur aspect de diable, nombreux sont ceux qui se sont faits surprendre par la précision de leurs coups et la rapidité d'exécution de celles qui dansent dans les flammes."
@@ -372,8 +372,8 @@ const MONSTERS = [
       { id: 20,  nom: "Bague rubis",       emplacement: "Fétiche" },
     ],
     drops: [
-      { id: 343, nom: "Poudre noire" },
       { id: 131, nom: "Potion d'éther" },
+      { id: 343, nom: "Poudre noire" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Les Fiélons se trouvent plutôt vers le bas de la pyramide des enfers, mais ils n'en sont pas moins dangereux. Mesquins, sournois et surtout rapides, les Fiélons sont, selon quelques légendes, les âmes des traîtres qui ne se firent jamais pardonner. Cela explique en partie leur méthode qui consiste à lancer des boules de feu et fuir en ricanant bruyamment. D'un fond bête et méchant, les fiélons sont attirés par le sang. Ces créatures sont, malgré une magie particulièrement vivace, trop bêtes pour être domestiqués et ont une certaine tendance à être de très mauvais compagnons, tentant de sournoisement vous trahir à la moindre occasion, y compris de face et en plein jour."
@@ -399,12 +399,12 @@ const MONSTERS = [
       { nom: "Vulnérabilité glace_icone 20%", type: "don" },
     ],
     items: [
-      { id: 200,  nom: "Cloche",  emplacement: "Une main" },
+      { id: 200,  nom: "Cloche", emplacement: "Une main" },
     ],
     drops: [
-      { id: 343, nom: "Poudre noire" },
       { id: 359, nom: "Fiole incendiaire" },
-      { id: 66, nom: "Crâne" },
+      { id: 343, nom: "Poudre noire" },
+      { id: 66,  nom: "Crâne" },
       { id: 0,   nom: "20-40" },
     ],
     description: "Le Sonneur ardent est une créature étrange, un spectre qui flotte partout où la guerre approche et qui émet un drôle de son, comme le tintement d'une cloche quand il repère des victimes. Pour certains, il annonce le chaos, pour d'autres, il ne fait que sanctionner de sa présence les champs de bataille que les hommes ont provoqué bien avant lui. Le sourire qui fend son visage s'élargit à chaque fois que la rage gagne du terrain, donnant l'impression aux aventuriers de bien souvent leur rire au nez alors que ces derniers s'acharnent pour sauver leur peau. "
@@ -436,9 +436,9 @@ const MONSTERS = [
       { id: 260, nom: "Jambières en cuivre",    emplacement: "Pieds" }
     ],
     drops: [
-      { id: 173, nom: "Gemme topaze" },
-      { id: 369, nom: "Ame légendaire", emplacement: "Fétiche" },
+      { id: 369, nom: "Ame légendaire",      emplacement: "Fétiche" },
       { id: 15,  nom: "Potion d'expérience" },
+      { id: 173, nom: "Gemme topaze" },
       { id: 343, nom: "Poudre noire" },
       { id: 0,   nom: "30-50" },
     ],
@@ -455,11 +455,11 @@ const MONSTERS = [
     arm: 14,
     res: 2,
     competences: [
-      { nom: "Disloquer",              type: "tech_combat" },
-      { nom: "Ravager",                type: "tech_combat" },
-      { nom: "Coup de bouclier",       type: "tech_combat" },
-      { nom: "Bravoure",               type: "don" },
-      { nom: "Inflige 1 faille_icone", type: "don" },
+      { nom: "Disloquer",               type: "tech_combat" },
+      { nom: "Ravager",                 type: "tech_combat" },
+      { nom: "Coup de bouclier",        type: "tech_combat" },
+      { nom: "Bravoure",                type: "don" },
+      { nom: "Inflige 1 faille_icone",  type: "don" },
       { nom: "Inflige 1 assommé_icone", type: "don" },
     ],
     items: [
@@ -477,7 +477,7 @@ const MONSTERS = [
     drops: [
       { id: 46, nom: "Viande cuite" },
       { id: 67, nom: "Dents" },
-      { id: 0, nom: "20-40" },
+      { id: 0,  nom: "20-40" },
     ],
     description: "Le soldat hobgobelin est un bon soldat, en ce que vous verrez rarement des êtres aussi disciplinés issus de la nature. Leur capacité à se coordonner les uns aux autres est bluffante et tout à fait ancrée dans leurs gênes. Ainsi, on voit chez les plus jeunes hobgobelins des comportements similaires où ils peuvent s'en prendre à des plus faibles qu'eux, et toujours en groupe bien organisé. Le soldat hobgobelin collectionne les trophées de guerre et prend plaisir à tuer un ennemi, surtout si ce dernier est plus grand ou a l'air plus fort que lui. Le but d'un soldat hobgobelin est de parvenir en effet à gravir les rangs de la tribu, toujours dans le respect des règles et dans l'idée d'être méritant vis à vis de ce rang."
   },
@@ -492,11 +492,11 @@ const MONSTERS = [
     arm: 1,
     res: 1,
     competences: [
-      { nom: "Attaque précise",        type: "tech_combat" },
-      { nom: "Ravager",                type: "tech_combat" },
-      { nom: "Recherche intuitive",    type: "tech_combat" },
-      { nom: "Bravoure",               type: "don" },
-      { nom: "Inflige 1 faille_icone", type: "don" },
+      { nom: "Attaque précise",         type: "tech_combat" },
+      { nom: "Ravager",                 type: "tech_combat" },
+      { nom: "Recherche intuitive",     type: "tech_combat" },
+      { nom: "Bravoure",                type: "don" },
+      { nom: "Inflige 1 faille_icone",  type: "don" },
       { nom: "Inflige 1 assommé_icone", type: "don" },
     ],
     items: [
@@ -540,9 +540,8 @@ const MONSTERS = [
     ],
     drops: [
       { id: 295, nom: "Aile de fée" },
-      { id: 69,  nom: "Oeil" },
       { id: 72,  nom: "Tendon" },
-      { id: 0,   nom: "0" },
+      { id: 69,  nom: "Oeil" },
     ],
   },
   {
@@ -566,7 +565,6 @@ const MONSTERS = [
       { id: 287, nom: "Amulette gelée",      emplacement: "Fétiche" },
       { id: 205, nom: "Sceptre glace",       emplacement: "Une main" },
       { id: 15,  nom: "Potion d'expérience" },
-      { id: 0,   nom: "0" },
     ],
   },
   {
@@ -598,8 +596,8 @@ const MONSTERS = [
     ],
     drops: [
       { id: 52,  nom: "Invocation du givre", emplacement: "Une main" },
-      { id: 221, nom: "Fiole d'argent" },
       { id: 15,  nom: "Potion d'expérience" },
+      { id: 221, nom: "Fiole d'argent" },
       { id: 0,   nom: "15-35" },
     ],
   },
@@ -1220,7 +1218,7 @@ const MONSTERS = [
     ],
     items: [  
       { id: 48, nom: "Armure en cuir", emplacement: "Buste" },    
-      { id: 39, nom: "Arc court",      emplacement: "Une main" },    
+      { id: 39, nom: "Arc court",      emplacement: "Deux mains" },    
       { id: 8,  nom: "Bottes",         emplacement: "Pieds" },   
     ],
     variantes: [

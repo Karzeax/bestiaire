@@ -1149,6 +1149,17 @@ header p {
   opacity: .8;
 }
 
+/* Sur la carte (vignette), les items individuels ne doivent JAMAIS suggérer
+   une interactivité propre — la carte entière est l'unique cible cliquable.
+   pointer-events:none neutralise tout hover/clic au niveau item, sans empêcher
+   les tooltips natifs (title) de se déclencher. */
+.monster-card .item,
+.monster-card .drop-item,
+.monster-card .variante-item,
+.monster-card .variante-part {
+  pointer-events: none;
+}
+
 /* État cliquable sur les items dans la modal monstre */
 .modal-item.clickable,
 .modal-variante-item .variante-part.clickable,

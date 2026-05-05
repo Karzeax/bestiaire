@@ -137,17 +137,29 @@ function isWeaponSlot(emp) {
   return emp === 'Une main' || emp === 'Deux mains';
 }
 
-// Renvoie true si l'item est cliquable (a une fiche dans ITEMS).
-function hasItemFiche(id) {
-  return typeof ITEMS === 'object' && ITEMS && ITEMS[id] !== undefined;
+// Renvoie true si l'item est cliquable :
+//   - soit il a une fiche dans ITEMS (cas standard)
+//   - soit son nom correspond à un sort connu (cas du parchemin de sort, ex: "Invocation du givre")
+function hasItemFiche(id, name) {
+  if (typeof ITEMS === 'object' && ITEMS && ITEMS[id] !== undefined) return true;
+  if (name && typeof MAGIE_IDS === 'object' && MAGIE_IDS) {
+    const compId = MAGIE_IDS[name];
+    if (compId !== undefined && typeof COMPETENCES === 'object' && COMPETENCES && COMPETENCES[String(compId)]) {
+      return true;
+    }
+  }
+  return false;
 }
 
+// Échappe les guillemets pour insertion dans un attribut HTML.
+function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+
 // Rendu d'une ligne d'item (utilisée sur carte et dans la modal via classes).
-// `clickable` (modal uniquement) ajoute la classe + data-item-id.
+// `clickable` (modal uniquement) ajoute la classe + data-item-id + data-item-name.
 function renderItemLine(it, containerClass, empClass, clickable) {
-  const isClickable = clickable && hasItemFiche(it.id);
+  const isClickable = clickable && hasItemFiche(it.id, it.nom);
   const cls = isClickable ? `${containerClass} clickable` : containerClass;
-  const dataAttr = isClickable ? ` data-item-id="${it.id}"` : '';
+  const dataAttr = isClickable ? ` data-item-id="${it.id}" data-item-name="${escAttr(it.nom)}"` : '';
   return `
     <div class="${cls}"${dataAttr}>
       <span><img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}"></span>
@@ -160,9 +172,9 @@ function renderItemLine(it, containerClass, empClass, clickable) {
 // Rendu d'une variante (set d'armement alternatif : 1 ou N items sur une même ligne)
 function renderVarianteLine(variante, containerClass, clickable) {
   const partsHTML = variante.map(it => {
-    const isClickable = clickable && hasItemFiche(it.id);
+    const isClickable = clickable && hasItemFiche(it.id, it.nom);
     const cls = isClickable ? 'variante-part clickable' : 'variante-part';
-    const dataAttr = isClickable ? ` data-item-id="${it.id}"` : '';
+    const dataAttr = isClickable ? ` data-item-id="${it.id}" data-item-name="${escAttr(it.nom)}"` : '';
     return `
       <span class="${cls}"${dataAttr}>
         <img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}">
@@ -216,9 +228,9 @@ function renderDropLine(d, clickable) {
   const empHTML = d.emplacement
     ? `<span class="drop-emp">${d.emplacement}</span>`
     : '';
-  const isClickable = clickable && d.id !== 0 && d.emplacement && hasItemFiche(d.id);
+  const isClickable = clickable && d.id !== 0 && d.emplacement && hasItemFiche(d.id, d.nom);
   const cls = isClickable ? 'drop-item clickable' : 'drop-item';
-  const dataAttr = isClickable ? ` data-item-id="${d.id}"` : '';
+  const dataAttr = isClickable ? ` data-item-id="${d.id}" data-item-name="${escAttr(d.nom)}"` : '';
   return `
     <span class="${cls}"${dataAttr}>
       <img src="${imgUrl}" alt="${d.nom}" title="${d.nom}">
@@ -462,13 +474,27 @@ function openModal(m) {
     });
   });
 
-  // Clic sur un item (item équipé, variante, ou drop avec emplacement) → fiche d'item
+  // Clic sur un item (item équipé, variante, ou drop avec emplacement)
+  // → ouvre la fiche d'item, ou si pas trouvée, la fiche de sort correspondante
+  //   (cas du parchemin de sort dont le nom matche un sort connu).
   content.querySelectorAll('[data-item-id]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.stopPropagation();
-      const id = el.dataset.itemId;
+      const id   = el.dataset.itemId;
+      const name = el.dataset.itemName;
+
+      // Tentative 1 : fiche d'item
       const item = (typeof ITEMS === 'object' && ITEMS) ? ITEMS[id] : null;
-      if (item) openItemModal(item);
+      if (item) { openItemModal(item); return; }
+
+      // Tentative 2 : parchemin de sort (le nom correspond à un sort)
+      if (name && typeof MAGIE_IDS === 'object' && MAGIE_IDS) {
+        const compId = MAGIE_IDS[name];
+        if (compId !== undefined && typeof COMPETENCES === 'object' && COMPETENCES) {
+          const fiche = COMPETENCES[String(compId)];
+          if (fiche) { openHelpModal(fiche); return; }
+        }
+      }
     });
   });
 }
@@ -819,15 +845,19 @@ function filterMonsters(query) {
       );
 
     case 'items':
+      // Mode "Items" : large — l'utilisateur cherche "où trouver tel équipement ?".
+      // On matche dans les items équipés, les variantes, ET les drops qui ont un
+      // emplacement (= équipement potentiel listé dans les drops).
       return MONSTERS.filter(m => {
         const inItems = Array.isArray(m.items) &&
           m.items.some(it => normalizeSearch(it.nom).includes(q));
         if (inItems) return true;
-        if (Array.isArray(m.variantes)) {
-          return m.variantes.some(v =>
-            v.some(it => normalizeSearch(it.nom).includes(q))
-          );
-        }
+        if (Array.isArray(m.variantes) && m.variantes.some(v =>
+          v.some(it => normalizeSearch(it.nom).includes(q))
+        )) return true;
+        if (Array.isArray(m.drops) && m.drops.some(d =>
+          d.emplacement && normalizeSearch(d.nom).includes(q)
+        )) return true;
         return false;
       });
 
