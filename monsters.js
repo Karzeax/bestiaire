@@ -694,8 +694,8 @@ const MONSTERS = [
       { id: 128, nom: "Arc composite",     emplacement: "Deux mains" },
     ],
     drops: [
-      { id: 365, nom: "Fumigène" },
       { id: 298, nom: "Clé en ossements" },
+      { id: 365, nom: "Fumigène" },
       { id: 0,   nom: "15-30" },
     ],
   },
@@ -725,7 +725,7 @@ const MONSTERS = [
       ],
     ],
     drops: [
-      { id: 178,   nom: "Potion de vigueur" },
+      { id: 178, nom: "Potion de vigueur" },
       { id: 0,   nom: "15-30" },
     ],
   },
@@ -751,7 +751,7 @@ const MONSTERS = [
       { id: 47,  nom: "Poignard",     emplacement: "Une main" },
     ],
     drops: [
-      { id: 0,   nom: "15-30" },
+      { id: 0, nom: "15-30" },
     ],
   },
   {
@@ -779,9 +779,9 @@ const MONSTERS = [
       { id: 311, nom: "Main-gauche",      emplacement: "Une main" },
     ],
     drops: [
-      { id: 15, nom: "Potion d'expérience" },
+      { id: 15,  nom: "Potion d'expérience" },
       { id: 438, nom: "Elixir d'énergie" },
-      { id: 0, nom: "15-35" },
+      { id: 0,   nom: "15-35" },
     ],
   },
   {
@@ -1059,10 +1059,10 @@ const MONSTERS = [
       ],
     ],
     drops: [
-      { id: 3,  nom: "Potion de vie mineure" },
-      { id: 15, nom: "Potion d'expérience" },
+      { id: 3,   nom: "Potion de vie mineure" },
+      { id: 15,  nom: "Potion d'expérience" },
       { id: 298, nom: "Clé en ossements" },
-      { id: 0,  nom: "10-30" },
+      { id: 0,   nom: "10-30" },
     ],
   },
   {
@@ -1199,7 +1199,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 303, nom: "Potion de régénération" },
-      { id: 0, nom: "5-20" },
+      { id: 0,   nom: "5-20" },
     ],
   },
   {
@@ -1252,7 +1252,7 @@ const MONSTERS = [
     ],
     drops: [
       { id: 61, nom: "Potion d'éther mineure" },
-      { id: 0, nom: "5-20" },
+      { id: 0,  nom: "5-20" },
     ],
   },
   {
@@ -1268,7 +1268,7 @@ const MONSTERS = [
     competences: [
     ],
     items: [
-      { id: 55, nom: "Haillon",       emplacement: "Buste" },    
+      { id: 55, nom: "Haillon",  emplacement: "Buste" },    
       { id: 34, nom: "Coutelas", emplacement: "Une main" },    
     ],
     drops: [
