@@ -611,7 +611,7 @@ const STATUS_ICONS = {
   'Cécité':     'https://www.kigard.fr/images/modificateur/38.gif?v=2.15.06',
 };
 
-const PARCHEMIN_ICON = 'https://www.kigard.fr/images/items/52.gif?v=2.15.06';
+const PARCHEMIN_ICON = 'https://www.kigard.fr/images/items/276.gif?v=2.15.06';
 
 const WEIGHT_ICON_SVG = '<svg class="weight-icon" viewBox="0 0 512 512" aria-hidden="true"><path d="M510.28 445.86l-73-292a16 16 0 0 0-15.51-12.36H320.7c1.45-5 2.69-10 2.69-15.4a64 64 0 0 0-128 0c0 5.4 1.24 10.4 2.69 15.4H93.27a16 16 0 0 0-15.51 12.36l-73 292A16 16 0 0 0 20.6 464h470.8a16 16 0 0 0 18.88-18.14zM256 64a32 32 0 1 1-32 32 32 32 0 0 1 32-32z"/></svg>';
 
