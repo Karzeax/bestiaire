@@ -523,7 +523,7 @@ const MONSTERS = [
     zone: "Île au Givre (Kigard)",
     rang: 2,
     hp: 80,
-    esq: "?",
+    esq: 40,
     dm: 40,
     arm: 1,
     res: 6,
