@@ -1238,7 +1238,7 @@ const MONSTERS = [
     rang: 1,
     hp: 80,
     esq: 0,
-    dm: 15,
+    dm: 0,
     arm: 0,
     res: 6,
     competences: [
