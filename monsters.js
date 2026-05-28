@@ -1237,7 +1237,7 @@ const MONSTERS = [
     zone: "Marais & Forêt (Kigard)",
     rang: 1,
     hp: 80,
-    esq: "?",
+    esq: 0,
     dm: 15,
     arm: 0,
     res: 6,
