@@ -1,0 +1,74 @@
+/* =========================================================
+   Beastgard — Thème JOUR (parchemin).
+   Surcharge le :root (palette sable/brun) + les couleurs codées
+   en dur du logo. Chargé uniquement quand le thème jour est actif.
+   Même famille de couleurs que le thème jour du builder.
+   ========================================================= */
+:root {
+  --bg:      #e8d5a8;   /* sable du jeu */
+  --bg-rgb:  232, 213, 168;
+  --surface: #f0e2bc;   /* surface cards */
+  --surface-rgb: 240, 226, 188;
+  --border:  #9a6030;   /* contour brun chaud */
+  --accent:  #7a4010;   /* brun chaud — focus, accents */
+  --accent-rgb: 120, 64, 16;
+  --accent2: #5a3010;   /* brun foncé — titres */
+  --accent2-rgb: 90, 48, 16;
+  --emphasis: #7a4010;
+  --gold:    #b07a10;   /* or profond (lisible sur sable) */
+  --text:    #2a1a08;   /* quasi-noir brun — texte principal */
+  --text-bright: #2a1a08;
+  --muted:   #7a5828;   /* brun moyen — texte secondaire */
+  --text-soft: #5a4420; /* texte secondaire (fiches d'aide) — lisible sur sable */
+  --card-img-grad: linear-gradient(160deg, #e3cd9a, #d8c08a); /* vignettes claires */
+  --hp:      #2a8040;   /* vert positif */
+  --esq:     #1a6f96;   /* bleu profond */
+  --dm:      #a02020;   /* rouge négatif */
+  --arm:     #6a5836;   /* gris-brun */
+  --res:     #7a4aa0;   /* violet-brun (rappel de l'identité) */
+}
+
+/* ── Glow de fond : halo brun chaud discret ── */
+body::before {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(120, 64, 16, 0.08), transparent),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+
+/* ── Logo « Beastgard » en or/brun (jour) ── */
+/* Losange B : or + contour brun */
+.logo-icon-wrap .fa-diamond {
+  color: #d4a843;
+  -webkit-text-stroke: 5px #7a4a10;
+  paint-order: stroke fill;
+}
+/* Cercle D : brun foncé + contour doré */
+.logo-icon-wrap .fa-circle {
+  color: #6a3810;
+  -webkit-text-stroke: 5px #c8a030;
+  paint-order: stroke fill;
+}
+.logo-icon-wrap .logo-inner-frame {
+  -webkit-text-stroke: 2px rgba(120, 72, 16, 0.70) !important;
+}
+.beastgard-logo .logo-icon-wrap:last-child .logo-inner-frame {
+  -webkit-text-stroke: 2px rgba(210, 168, 50, 0.85) !important;
+}
+.beastgard-logo .logo-icon-wrap:first-child .logo-icon-letter {
+  color: #6a3810;
+  -webkit-text-stroke: 0;
+}
+.beastgard-logo .logo-icon-wrap:last-child .logo-icon-letter {
+  color: #d4a843;
+  -webkit-text-stroke: 0;
+}
+/* EASTGAR : dégradé or → brun */
+.logo-letters {
+  background: linear-gradient(90deg, #c09020 0%, #6a3010 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Bouton de thème actif : texte blanc lisible sur le brun */
+.theme-option.active { color: #fff; }

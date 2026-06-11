@@ -3,14 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bestiaire</title>
+  <title>Beastgard</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" id="theme-extra" href="">
 </head>
 <body>
 
+<div class="theme-switcher" id="theme-switcher" aria-label="Changer de thème">
+  <button class="theme-option" id="theme-dawn" type="button" aria-pressed="false">
+    <i class="fa-solid fa-sun" aria-hidden="true"></i>
+    <span>Dawn</span>
+  </button>
+  <div class="theme-switcher-divider"></div>
+  <button class="theme-option active" id="theme-dusk" type="button" aria-pressed="true">
+    <i class="fa-solid fa-moon" aria-hidden="true"></i>
+    <span>Dusk</span>
+  </button>
+</div>
+
 <header>
-  <h1>Bestiaire</h1>
+  <div class="beastgard-logo" aria-label="Beastgard">
+    <span class="logo-icon-wrap">
+      <i class="fa-solid fa-diamond" aria-hidden="true"></i>
+      <i class="fa-solid fa-diamond logo-inner-frame" aria-hidden="true"></i>
+      <span class="logo-icon-letter">B</span>
+    </span>
+    <span class="logo-letters">E A S T G A R</span>
+    <span class="logo-icon-wrap">
+      <i class="fa-solid fa-circle" aria-hidden="true"></i>
+      <i class="fa-solid fa-circle logo-inner-frame" aria-hidden="true"></i>
+      <span class="logo-icon-letter">D</span>
+    </span>
+  </div>
   <p>Répertoire des créatures de Kigard</p>
 </header>
 
@@ -62,6 +88,35 @@
 <script src="dons.js"></script>
 <script src="items.js"></script>
 <script src="main.js"></script>
+
+<!-- Bascule de thème jour / nuit (défaut : nuit) -->
+<script>
+(function () {
+  const STORAGE_KEY = 'beastgard-theme';
+  const themeExtra  = document.getElementById('theme-extra');
+  const btnDusk     = document.getElementById('theme-dusk');
+  const btnDawn     = document.getElementById('theme-dawn');
+
+  // localStorage peut lever (navigation privée / quota) → on l'enrobe.
+  function saveTheme(t) { try { localStorage.setItem(STORAGE_KEY, t); } catch (_) {} }
+  function readTheme()  { try { return localStorage.getItem(STORAGE_KEY); } catch (_) { return null; } }
+
+  function applyTheme(theme) {
+    const isDawn = theme === 'dawn';
+    themeExtra.href = isDawn ? 'parchemin.css' : '';   // jour = parchemin, nuit = aucun override
+    btnDawn.classList.toggle('active',  isDawn);
+    btnDusk.classList.toggle('active', !isDawn);
+    btnDawn.setAttribute('aria-pressed', String( isDawn));
+    btnDusk.setAttribute('aria-pressed', String(!isDawn));
+    saveTheme(theme);
+  }
+
+  btnDusk.addEventListener('click', () => applyTheme('dusk'));
+  btnDawn.addEventListener('click', () => applyTheme('dawn'));
+
+  applyTheme(readTheme() || 'dusk');  // défaut : nuit (identité actuelle du bestiaire)
+})();
+</script>
 
 </body>
 </html>

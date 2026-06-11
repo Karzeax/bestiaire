@@ -630,7 +630,7 @@ const ITEM_STAT_DEFS = [
   { key: 'RES',       label: 'RES',  percent: false },
   { key: 'BonusDGT',  label: 'DGT',  percent: false },
   { key: 'BonusMAG',  label: 'MAG',  percent: false },
-  { key: 'Bonus PA',  label: 'PA',   percent: false },
+  { key: 'bonusPa',   label: 'PA',   percent: false },
   // Stats secondaires
   { key: 'PRE',       label: 'PRE',  percent: true },
   { key: 'ESQ',       label: 'ESQ',  percent: true },
@@ -657,98 +657,109 @@ function statusIconHtml(name) {
   return `<span class="kigard-icon" style="background-image:url('${url}')" title="${name}"></span>`;
 }
 
-function renderItemFiche(item) {
-  const isWeapon = item.usageCost !== undefined;
-  const type     = isWeapon ? 'Arme' : 'Equipement';
-  const iconUrl  = `https://www.kigard.fr/images/items/${item.id}.gif?v=2.15.06`;
-  const iconCls  = 'item-icon kigard-icon-item';
-
-  let html = `
-    <div class="item-header">
-      <span class="${iconCls}" style="background-image:url('${iconUrl}')"></span>
-      <span class="item-name">${item.name}</span>
-    </div>
-    <div class="item-meta">
-      <span>${type}</span>
-      <span>${item.slot}</span>
-    </div>
-    <div class="item-body">
-  `;
-
-  // ── Section Caractéristiques (armes uniquement) ──
-  if (isWeapon) {
-    html += `<div class="item-section-title">Caractéristiques</div>`;
-    html += `<div class="effect-line"><span class="label">Coût</span><span class="stat-value">${item.usageCost} PA</span></div>`;
-    if (item.range) {
-      html += `<div class="effect-line"><span class="label">Portée</span><span class="stat-value">${item.range.min} à ${item.range.max}</span></div>`;
-    }
-    if (item.element) {
-      html += `<div class="effect-line"><span class="label">Élément</span>${elementIconHtml(item.element)}<span class="stat-value">${item.element}</span></div>`;
-    }
-  }
-
-  // ── Section Stats ──
-  const statLines = [];
+// Stats permanentes (hors attaque) — mêmes clés/format que la fiche du builder.
+function permanentStatsLines(item) {
+  const lines = [];
   for (const def of ITEM_STAT_DEFS) {
     const v = item[def.key];
     if (v === undefined || v === 0) continue;
-    statLines.push(`<div class="stat-line"><span class="stat-name">${def.label}</span><span class="stat-value">${fmtSigned(v, def.percent)}</span></div>`);
+    lines.push(`${def.label} ${fmtSigned(v, def.percent)}`);
   }
-  if (item.regeneration) {
-    statLines.push(`<div class="stat-line"><span class="stat-name">PV</span><span class="stat-value">+${item.regeneration}/tour</span></div>`);
-  }
-  if (statLines.length) {
-    if (isWeapon) html += `<div class="item-section-title">Stats</div>`;
-    html += statLines.join('');
-  }
+  if (item.regeneration) lines.push(`PV/tour +${item.regeneration}`);
+  return lines;
+}
 
-  // ── Section Résistances élémentaires ──
-  if (Array.isArray(item.elementaryResistances) && item.elementaryResistances.length) {
-    html += `<div class="item-section-title">Résistances élémentaires</div>`;
-    for (const r of item.elementaryResistances) {
-      html += `<div class="effect-line">${elementIconHtml(r.element)}<span class="stat-value">+${r.value}%</span></div>`;
-    }
-  }
+// Clés de stats en % (bonus contextuels affichés dans le bloc d'attaque)
+const STAT_PCT_KEYS = ITEM_STAT_DEFS.filter(d => d.percent).map(d => d.key);
 
-  // ── Section Effets ──
-  const hasStatus    = Array.isArray(item.status) && item.status.length;
-  const hasAffinity  = !!item.elementaryAffinity;
-  const hasMagSpace  = !!item.magicalSpace;
-  if (hasStatus || hasAffinity || hasMagSpace) {
-    html += `<div class="item-section-title">Effets</div>`;
+// Fiche d'item alignée sur l'affichage du builder (mêmes blocs : type + sous-type,
+// bloc « Attaquer », stats permanentes, résistances, effets, footer rang ★ + poids).
+function renderItemFiche(item) {
+  const iconUrl = `https://www.kigard.fr/images/items/${item.id}.gif?v=2.15.06`;
+  const sections = [];
 
-    if (hasStatus) {
-      for (const s of item.status) {
-        html += `<div class="effect-line"><span class="label">Inflige</span><span class="stat-value">${s.value}</span>${statusIconHtml(s.status)}<span class="stat-value">${s.status}</span></div>`;
-      }
-    }
-
-    if (hasAffinity) {
-      html += `
-        <div class="affinity-block">
-          <div class="affinity-title">Affinité élémentaire ${elementIconHtml(item.elementaryAffinity)}</div>
-          <div class="affinity-formula"><b>MAG +2</b> et <b>MM +10</b> pour lancer un sort de cet élément.</div>
-        </div>
-      `;
-    }
-
-    if (hasMagSpace) {
-      for (let i = 0; i < item.magicalSpace; i++) {
-        html += `
-          <div class="scroll-slot">
-            <span class="kigard-icon" style="background-image:url('${PARCHEMIN_ICON}')"></span>
-            — emplacement libre —
-          </div>
-        `;
-      }
-    }
-  }
-
-  html += `
+  // ── 1. Type + sous-titre weaponType ──
+  const slotLabel = item.slot || '';
+  const wtLine = item.weaponType ? `<div class="details-wt"><em>(${item.weaponType})</em></div>` : '';
+  sections.push(`
+    <div class="details-typeline">
+      <span>Équipement</span>
+      <span class="details-slotname"><em>${slotLabel}</em></span>
     </div>
-    <div class="item-footer">${WEIGHT_ICON_SVG} ${item.weight}</div>
+    ${wtLine}
+  `);
+
+  // ── 2. Bloc Attaquer (armes) ──
+  const a = item.attack;
+  if (a) {
+    const rangeText = a.range ? `Portée ${a.range.min} à ${a.range.max}` : 'Contact';
+    const paLine = a.usageCost != null ? `<span class="details-pa">${a.usageCost} PA</span>` : '';
+    const innerLines = [];
+    if (a.BonusDGT != null) {
+      const elemSuffix = a.element ? ` ${elementIconHtml(a.element)}` : '';
+      innerLines.push(`DGT ${a.BonusDGT > 0 ? '+' : ''}${a.BonusDGT}${elemSuffix}`);
+    } else if (a.element) {
+      innerLines.push(`${elementIconHtml(a.element)} ${a.element}`);
+    }
+    for (const s of (a.statuses || [])) innerLines.push(`Inflige ${s.value} ${statusIconHtml(s.status)}`);
+    for (const k of STAT_PCT_KEYS) {
+      if (a[k]) innerLines.push(`${k} ${a[k] > 0 ? '+' : ''}${a[k]}%`);
+    }
+    sections.push(`
+      <div class="details-attack">
+        <div class="details-attack-head">
+          <span><strong>Attaquer</strong> (${rangeText})</span>
+          ${paLine}
+        </div>
+        <div class="details-attack-body">
+          ${innerLines.map(l => `<div>${l}</div>`).join('')}
+        </div>
+      </div>
+    `);
+  }
+
+  // ── 3. Stats permanentes (hors attaque) ──
+  const permLines = permanentStatsLines(item);
+  if (permLines.length) {
+    sections.push(`<div class="details-perm">${permLines.map(l => `<div>${l}</div>`).join('')}</div>`);
+  }
+
+  // ── 4. Résistances élémentaires natives ──
+  if (Array.isArray(item.elementaryResistances) && item.elementaryResistances.length) {
+    const lines = item.elementaryResistances.map(r =>
+      `${elementIconHtml(r.element)} ${r.element} ${r.value > 0 ? '+' : ''}${r.value}%`);
+    sections.push(`<div class="details-perm">${lines.map(l => `<div>${l}</div>`).join('')}</div>`);
+  }
+
+  // ── 5. Effets (réceptacle de sorts = emplacements libres, affinité) ──
+  const effects = [];
+  if (item.magicalSpace) {
+    const parch = `<span class="kigard-icon" style="background-image:url('${PARCHEMIN_ICON}')"></span>`;
+    for (let i = 0; i < item.magicalSpace; i++) {
+      effects.push(`${parch} <em class="spell-slot-empty">Emplacement libre</em>`);
+    }
+  }
+  if (item.elementaryAffinity) {
+    effects.push(`Affinité ${elementIconHtml(item.elementaryAffinity)} ${item.elementaryAffinity} : <strong>+2 MAG</strong> et <strong>+10% MM</strong> <em>(sortilèges ${item.elementaryAffinity})</em>`);
+  }
+  if (effects.length) {
+    sections.push(`<div class="details-perm">${effects.map(l => `<div>${l}</div>`).join('')}</div>`);
+  }
+
+  // ── 6. Footer : rang ★ + poids ──
+  const footerParts = [];
+  if (item.rank != null) footerParts.push(`<span class="details-footer-rank">★ ${item.rank}</span>`);
+  if (item.weight != null) footerParts.push(`<span>${WEIGHT_ICON_SVG} ${item.weight}</span>`);
+  const footer = footerParts.length ? `<div class="details-footer">${footerParts.join('')}</div>` : '';
+
+  return `
+    <div class="item-header">
+      <span class="item-icon kigard-icon-item" style="background-image:url('${iconUrl}')"></span>
+      <span class="item-name">${item.name}</span>
+    </div>
+    <div class="item-body">${sections.join('')}</div>
+    ${footer}
   `;
-  return html;
 }
 
 function openItemModal(item) {
