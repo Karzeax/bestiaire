@@ -71,12 +71,12 @@
 
 <!-- Modal principale (détails monstre) -->
 <div class="modal-overlay" id="modal-overlay">
-  <div class="modal" id="modal-content"></div>
+  <div class="modal" id="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1"></div>
 </div>
 
 <!-- Modal d'aide (fiche Kigard rendue nativement en thème sombre) -->
 <div class="help-overlay" id="help-modal-overlay">
-  <div class="help-modal">
+  <div class="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title" tabindex="-1">
     <button class="help-close" id="help-close-btn" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
     <div class="help-content" id="help-content"></div>
   </div>

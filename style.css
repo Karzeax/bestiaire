@@ -1501,3 +1501,17 @@ header p {
   background: var(--border);
   flex-shrink: 0;
 }
+
+/* ── Focus clavier (accessibilité) ──
+   Anneau visible uniquement à la navigation clavier (:focus-visible),
+   pas au clic souris. Couleur cohérente avec l'accent du thème actif. */
+.monster-card:focus-visible,
+.modal-competence.clickable:focus-visible,
+[data-item-id]:focus-visible,
+.modal-close:focus-visible,
+.help-close:focus-visible,
+#modal-content:focus-visible,
+.help-modal:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

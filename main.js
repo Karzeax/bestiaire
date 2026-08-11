@@ -160,8 +160,9 @@ function renderItemLine(it, containerClass, empClass, clickable) {
   const isClickable = clickable && hasItemFiche(it.id, it.nom);
   const cls = isClickable ? `${containerClass} clickable` : containerClass;
   const dataAttr = isClickable ? ` data-item-id="${it.id}" data-item-name="${escAttr(it.nom)}"` : '';
+  const a11yAttr = isClickable ? ` tabindex="0" role="button"` : '';
   return `
-    <div class="${cls}"${dataAttr}>
+    <div class="${cls}"${dataAttr}${a11yAttr}>
       <span><img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}"></span>
       <span>${it.nom}</span>
       <span class="${empClass}">${it.emplacement}</span>
@@ -175,8 +176,9 @@ function renderVarianteLine(variante, containerClass, clickable) {
     const isClickable = clickable && hasItemFiche(it.id, it.nom);
     const cls = isClickable ? 'variante-part clickable' : 'variante-part';
     const dataAttr = isClickable ? ` data-item-id="${it.id}" data-item-name="${escAttr(it.nom)}"` : '';
+    const a11yAttr = isClickable ? ` tabindex="0" role="button"` : '';
     return `
-      <span class="${cls}"${dataAttr}>
+      <span class="${cls}"${dataAttr}${a11yAttr}>
         <img src="https://www.kigard.fr/images/items/${it.id}.gif" alt="${it.nom}">
         <span class="variante-name">${it.nom}</span>
         <span class="variante-emp">${it.emplacement}</span>
@@ -231,8 +233,9 @@ function renderDropLine(d, clickable) {
   const isClickable = clickable && d.id !== 0 && d.emplacement && hasItemFiche(d.id, d.nom);
   const cls = isClickable ? 'drop-item clickable' : 'drop-item';
   const dataAttr = isClickable ? ` data-item-id="${d.id}" data-item-name="${escAttr(d.nom)}"` : '';
+  const a11yAttr = isClickable ? ` tabindex="0" role="button"` : '';
   return `
-    <span class="${cls}"${dataAttr}>
+    <span class="${cls}"${dataAttr}${a11yAttr}>
       <img src="${imgUrl}" alt="${d.nom}" title="${d.nom}">
       <span class="drop-name">${parseCompetenceText(d.nom)}</span>
       ${empHTML}
@@ -245,6 +248,9 @@ function createCard(m, index) {
   const card = document.createElement('div');
   card.className = 'monster-card';
   card.style.animationDelay = (index * 60) + 'ms';
+  card.tabIndex = 0;
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', `Voir la fiche de ${m.name}`);
 
   // compétences (max 4 affichées sur la carte)
   const compsHTML = m.competences.slice(0, 4).map(c => `
@@ -287,6 +293,11 @@ function createCard(m, index) {
   `;
 
   card.addEventListener('click', () => openModal(m));
+  card.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    openModal(m);
+  });
   return card;
 }
 
@@ -373,6 +384,30 @@ function applyAffixToModal(m, affixKey) {
 }
 
 // ── Modal ─────────────────────────────────────────────────────
+// Éléments ayant ouvert une modale, pour restituer le focus clavier à la
+// fermeture (accessibilité : un utilisateur au clavier ne doit pas perdre
+// ses repères une fois la modale refermée).
+let lastFocusedBeforeModal = null;
+let lastFocusedBeforeHelpModal = null;
+
+// Piège à focus : empêche Tab / Shift+Tab de sortir de la modale ouverte.
+function trapFocus(e, container) {
+  if (e.key !== 'Tab') return;
+  const focusable = Array.from(
+    container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+  ).filter(el => el.offsetParent !== null);
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
 function openModal(m) {
   const overlay = document.getElementById('modal-overlay');
   const content = document.getElementById('modal-content');
@@ -383,8 +418,9 @@ function openModal(m) {
     // On stocke l'index de la compétence dans le monstre pour pouvoir
     // récupérer la fiche au clic (évite d'inliner du HTML dans un attribut).
     const dataAttr = fiche ? ` data-comp-index="${i}"` : '';
+    const a11yAttr = fiche ? ` tabindex="0" role="button"` : '';
     return `
-      <div class="${cls}"${dataAttr}>
+      <div class="${cls}"${dataAttr}${a11yAttr}>
         <span><img src="https://www.kigard.fr/images/interface/${c.type}.gif?v=2.15.06" alt="${c.type}"></span>
         <span>${parseCompetenceText(c.nom)}</span>
       </div>
@@ -400,7 +436,7 @@ function openModal(m) {
     <div class="modal-header">
       <img src="https://www.kigard.fr/images/vue/monstre/${m.id}.gif" alt="${m.name}">
       <div>
-        <h2>${m.name}</h2>
+        <h2 id="modal-title">${m.name}</h2>
         <span class="affix-name" id="modal-affix-name"></span>
         <div style="margin-top:4px">${getStars(m.rang)}</div>
         <div style="font-size:.82rem;color:var(--muted);font-style:italic;margin-top:2px"><i class="fa-solid fa-location-dot"></i> ${m.zone}</div>
@@ -448,8 +484,11 @@ function openModal(m) {
     </div>` : ''}
   `;
 
+  lastFocusedBeforeModal = document.activeElement;
   overlay.classList.add('open');
-  document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+  const closeBtn = document.getElementById('modal-close-btn');
+  closeBtn.addEventListener('click', closeModal);
+  closeBtn.focus();
 
   // Pills affixes : recalcul des stats à chaque clic
   content.querySelectorAll('.affix-pill').forEach(pill => {
@@ -464,13 +503,19 @@ function openModal(m) {
 
   // Clic sur une compétence cliquable → ouvre la fiche d'aide en natif
   content.querySelectorAll('.modal-competence.clickable').forEach(row => {
-    row.addEventListener('click', () => {
+    const activate = () => {
       const idx = parseInt(row.dataset.compIndex, 10);
       if (Number.isNaN(idx)) return;
       const c = m.competences[idx];
       if (!c) return;
       const fiche = getCompetenceFiche(c);
       if (fiche) openHelpModal(fiche);
+    };
+    row.addEventListener('click', activate);
+    row.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      activate();
     });
   });
 
@@ -478,8 +523,7 @@ function openModal(m) {
   // → ouvre la fiche d'item, ou si pas trouvée, la fiche de sort correspondante
   //   (cas du parchemin de sort dont le nom matche un sort connu).
   content.querySelectorAll('[data-item-id]').forEach(el => {
-    el.addEventListener('click', (e) => {
-      e.stopPropagation();
+    const activate = () => {
       const id   = el.dataset.itemId;
       const name = el.dataset.itemName;
 
@@ -495,6 +539,16 @@ function openModal(m) {
           if (fiche) { openHelpModal(fiche); return; }
         }
       }
+    };
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      activate();
+    });
+    el.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      e.stopPropagation();
+      activate();
     });
   });
 }
@@ -562,7 +616,7 @@ function openHelpModal(fiche) {
   content.classList.remove('is-item-fiche');
 
   const parts = [];
-  parts.push(`<h3 class="help-title">${fiche.name || ''}</h3>`);
+  parts.push(`<h3 class="help-title" id="help-title">${fiche.name || ''}</h3>`);
   if (fiche.type) {
     parts.push(`<div class="help-subtype">${fiche.type}</div>`);
   }
@@ -573,10 +627,13 @@ function openHelpModal(fiche) {
     parts.push(`<div class="help-desc">${decorateOutcomes(sanitizeKigardIcons(dedupeIconLabels(fiche.desc_html)))}</div>`);
   }
   content.innerHTML = parts.join('');
+  lastFocusedBeforeHelpModal = document.activeElement;
   overlay.classList.add('open');
   // Reset scroll au cas où la modal a été scrollée auparavant
   const modal = overlay.querySelector('.help-modal');
   if (modal) modal.scrollTop = 0;
+  const helpCloseBtn = document.getElementById('help-close-btn');
+  if (helpCloseBtn) helpCloseBtn.focus();
 }
 
 function closeHelpModal() {
@@ -586,10 +643,18 @@ function closeHelpModal() {
   // On retire la classe item-fiche au cas où le prochain ouvert soit une compétence
   const content = document.getElementById('help-content');
   if (content) content.classList.remove('is-item-fiche');
+  if (lastFocusedBeforeHelpModal && typeof lastFocusedBeforeHelpModal.focus === 'function') {
+    lastFocusedBeforeHelpModal.focus();
+  }
+  lastFocusedBeforeHelpModal = null;
 }
 
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
+  if (lastFocusedBeforeModal && typeof lastFocusedBeforeModal.focus === 'function') {
+    lastFocusedBeforeModal.focus();
+  }
+  lastFocusedBeforeModal = null;
 }
 
 // ── Fiche d'item (rendu natif sombre) ─────────────────────────
@@ -755,7 +820,7 @@ function renderItemFiche(item) {
   return `
     <div class="item-header">
       <span class="item-icon kigard-icon-item" style="background-image:url('${iconUrl}')"></span>
-      <span class="item-name">${item.name}</span>
+      <span class="item-name" id="help-title">${item.name}</span>
     </div>
     <div class="item-body">${sections.join('')}</div>
     ${footer}
@@ -768,9 +833,12 @@ function openItemModal(item) {
   if (!overlay || !content) return;
   content.classList.add('is-item-fiche');
   content.innerHTML = renderItemFiche(item);
+  lastFocusedBeforeHelpModal = document.activeElement;
   overlay.classList.add('open');
   const modal = overlay.querySelector('.help-modal');
   if (modal) modal.scrollTop = 0;
+  const helpCloseBtn = document.getElementById('help-close-btn');
+  if (helpCloseBtn) helpCloseBtn.focus();
 }
 
 // ── Rendu liste ───────────────────────────────────────────────
@@ -964,13 +1032,25 @@ document.addEventListener('DOMContentLoaded', () => {
     helpCloseBtn.addEventListener('click', closeHelpModal);
   }
 
-  // Escape : on ferme la modal du dessus en priorité (modal d'aide), puis la modal monstre
+  // Escape : on ferme la modal du dessus en priorité (modal d'aide), puis la modal monstre.
+  // Tab : piège le focus dans la modale du dessus tant qu'une modale est ouverte.
+  const modalOverlay = document.getElementById('modal-overlay');
   document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
-    if (helpOverlay && helpOverlay.classList.contains('open')) {
-      closeHelpModal();
-    } else {
-      closeModal();
+    const helpOpen  = helpOverlay && helpOverlay.classList.contains('open');
+    const modalOpen = modalOverlay && modalOverlay.classList.contains('open');
+
+    if (e.key === 'Escape') {
+      if (helpOpen) closeHelpModal();
+      else if (modalOpen) closeModal();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      if (helpOpen) {
+        trapFocus(e, document.querySelector('#help-modal-overlay .help-modal'));
+      } else if (modalOpen) {
+        trapFocus(e, document.getElementById('modal-content'));
+      }
     }
   });
 
