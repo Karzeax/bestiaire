@@ -608,9 +608,9 @@ const MONSTERS = [
     rang: 0,
     hp: 120,
     esq: 25,
-    dm: "?",
+    dm: 0,
     arm: 6,
-    res: "?",
+    res: 0,
     competences: [
       { nom: "Attaque précise",               type: "tech_combat" },
       { nom: "Disparition soudaine",          type: "tech_combat" },
