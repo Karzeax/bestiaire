@@ -34,7 +34,7 @@ function parseCompetenceText(nom) {
 }
 
 function getStars(rang) {
-  return '⭐'.repeat(rang);
+  return '<i class="fa-solid fa-star"></i>'.repeat(rang);
 }
 
 // ── URLs des fiches d'aide Kigard ────────────────────────────
@@ -268,7 +268,7 @@ function createCard(m, index) {
     </div>
     <div class="card-body">
       <h2>${m.name}</h2>
-      <div class="zone">📍 ${m.zone}</div>
+      <div class="zone"><i class="fa-solid fa-location-dot"></i> ${m.zone}</div>
       <div class="stars">${getStars(m.rang)}</div>
       <div class="stats">
         <div class="stat"><span class="stat-label">PV</span>  <span class="stat-val c-hp">${m.hp}</span></div>
@@ -395,7 +395,7 @@ function openModal(m) {
   const dropsHTML = m.drops.map(d => renderDropLine(d, true)).join('');
 
   content.innerHTML = `
-    <button class="modal-close" id="modal-close-btn">✕</button>
+    <button class="modal-close" id="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
 
     <div class="modal-header">
       <img src="https://www.kigard.fr/images/vue/monstre/${m.id}.gif" alt="${m.name}">
@@ -403,7 +403,7 @@ function openModal(m) {
         <h2>${m.name}</h2>
         <span class="affix-name" id="modal-affix-name"></span>
         <div style="margin-top:4px">${getStars(m.rang)}</div>
-        <div style="font-size:.82rem;color:var(--muted);font-style:italic;margin-top:2px">📍 ${m.zone}</div>
+        <div style="font-size:.82rem;color:var(--muted);font-style:italic;margin-top:2px"><i class="fa-solid fa-location-dot"></i> ${m.zone}</div>
       </div>
     </div>
 

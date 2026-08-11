@@ -310,10 +310,20 @@ header p {
   margin-bottom: 8px;
 }
 
+.zone i {
+  color: var(--accent2);
+  margin-right: 2px;
+}
+
 .stars {
   font-size: .95rem;
   margin-bottom: 12px;
   letter-spacing: 2px;
+}
+
+.stars i {
+  color: var(--gold);
+  margin-right: 1px;
 }
 
 /* stats grid */
