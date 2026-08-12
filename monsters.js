@@ -620,12 +620,13 @@ const MONSTERS = [
     items: [
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 209, nom: "Croc" },
+      { id: 220, nom: "Écailles" },
     ],
   },
   {
     id: 22,
-    name: "Tarentule",
+    name: "Tarentule géante",
     zone: "Île aux Venins (Kigard)",
     rang: 0,
     hp: 120,
@@ -641,7 +642,7 @@ const MONSTERS = [
     items: [
     ],
     drops: [
-      { id: 0,   nom: "?" },
+      { id: 223, nom: "Fil à coudre" },
     ],
   },
   {
