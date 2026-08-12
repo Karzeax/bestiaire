@@ -630,9 +630,9 @@ const MONSTERS = [
     rang: 0,
     hp: 120,
     esq: 25,
-    dm: "?",
+    dm: 0,
     arm: 6,
-    res: "?",
+    res: 0,
     competences: [
       { nom: "Recherche intuitive",     type: "tech_combat" },
       { nom: "Inflige 2 poison_icone",  type: "don" },
