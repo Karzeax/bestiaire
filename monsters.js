@@ -645,6 +645,7 @@ const MONSTERS = [
     drops: [
       { id: 209, nom: "Croc" },
       { id: 223, nom: "Fil à coudre" },
+      { id: 304, nom: "Cocon" },
     ],
   },
   {
