@@ -655,9 +655,9 @@ const MONSTERS = [
     rang: 3,
     hp: 500,
     esq: "?",
-    dm: "?",
+    dm: 40,
     arm: "?",
-    res: "?",
+    res: 3,
     competences: [
       { nom: "Disparition soudaine",          type: "tech_combat" },
       { nom: "Maléfice de poison",            type: "magie" },
