@@ -674,6 +674,8 @@ const MONSTERS = [
       { id: 270, nom: "Bouclier dragon",  emplacement: "Une main" },
     ],
     drops: [
+      { id: 15,  nom: "Potion d'expérience" },
+      { id: 350, nom: "Fiole de poison" },
       { id: 0, nom: "15-35" },
     ],
   },
