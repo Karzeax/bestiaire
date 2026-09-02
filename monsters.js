@@ -654,9 +654,9 @@ const MONSTERS = [
     zone: "Île aux Venins (Kigard)",
     rang: 3,
     hp: 500,
-    esq: "?",
+    esq: 40,
     dm: 40,
-    arm: "?",
+    arm: 12,
     res: 3,
     competences: [
       { nom: "Disparition soudaine",          type: "tech_combat" },
