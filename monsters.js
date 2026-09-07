@@ -598,7 +598,7 @@ const MONSTERS = [
       { id: 52,  nom: "Invocation du givre", emplacement: "Une main" },
       { id: 15,  nom: "Potion d'expérience" },
       { id: 221, nom: "Fiole d'argent" },
-      { id: 0,   nom: "15-35" },
+      { id: 0,   nom: "15-40" },
     ],
   },
   {
@@ -676,7 +676,7 @@ const MONSTERS = [
     drops: [
       { id: 15,  nom: "Potion d'expérience" },
       { id: 350, nom: "Fiole de poison" },
-      { id: 0, nom: "15-35" },
+      { id: 0, nom: "15-40" },
     ],
   },
   {
@@ -955,7 +955,7 @@ const MONSTERS = [
     drops: [
       { id: 213, nom: "Champignon hallucinogène" },
       { id: 15,  nom: "Potion d'expérience" },
-      { id: 0,   nom: "15-35" },
+      { id: 0,   nom: "15-40" },
     ],
   },
   {
