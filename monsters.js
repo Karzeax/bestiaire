@@ -676,6 +676,11 @@ const MONSTERS = [
     drops: [
       { id: 15,  nom: "Potion d'expérience" },
       { id: 350, nom: "Fiole de poison" },
+      { id: 301, nom: "Clé des marchands" },
+      { id: 40,  nom: "Rose des rois" },
+      { id: 177, nom: "Diadème" },
+      { id: 223, nom: "Fil à coudre" },
+      { id: 216, nom: "Boucle en or" },
       { id: 0, nom: "15-40" },
     ],
   },
