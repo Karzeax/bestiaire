@@ -1312,9 +1312,9 @@ const MONSTERS = [
     zone: "Forêt (Kigard)",
     rang: 1,
     hp: "?",
-    esq: "?",
+    esq: 0,
     dm: 0,
-    arm: "?",
+    arm: 2,
     res: 2,
     competences: [
       { nom: "Attaque explosive",        type: "tech_combat" }, 
@@ -1336,9 +1336,9 @@ const MONSTERS = [
     zone: "Forêt (Kigard)",
     rang: 1,
     hp: 80,
-    esq: "?",
+    esq: 10,
     dm: 0,
-    arm: "?",
+    arm: 0,
     res: 0,
     competences: [
       { nom: "Ambidextrie",  type: "tech_combat" }, 
