@@ -1279,10 +1279,11 @@ const MONSTERS = [
       { id: 34, nom: "Coutelas", emplacement: "Une main" },    
     ],
     drops: [
+      { id: 298, nom: "Clé en ossements" },
       { id: 0, nom: "5-10" },
     ],
   },
-  
+
   {
     id: 129,
     name: "Shaman Gobelin",
